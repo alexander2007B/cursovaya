@@ -54,6 +54,9 @@ import {
 } from "lucide-react";
 import { api, money, date, day, categories, statuses, roles } from "./api";
 import "./styles.css";
+import "./glass.css";
+import PhoneField from "./PhoneField";
+import { CarImage, PhotoField } from "./CarPhoto";
 const Context = createContext();
 const useApp = () => useContext(Context);
 const Icon = ({ children }) => <span className="icon-box">{children}</span>;
@@ -201,15 +204,7 @@ function AuthModal() {
               maxLength={80}
               placeholder="Александр Баев"
             />
-            <Field
-              label="Телефон"
-              name="phone"
-              type="tel"
-              autoComplete="tel"
-              required
-              placeholder="+7 900 123-45-67"
-              pattern="[+0-9 ()\-]{10,20}"
-            />
+            <PhoneField />
           </>
         )}
         <Field
@@ -274,7 +269,7 @@ function Header() {
         </nav>
         <div className="header-actions">
           <span className="location">
-            <MapPin size={15} /> Нижний Новгород
+            <MapPin size={15} /> Вологда
           </span>
           {user ? (
             <>
@@ -348,9 +343,9 @@ function CarCard({ car }) {
       <Link className="car-visual" to={target}>
         <span className="car-category">{categories[car.category]}</span>
         <span className="car-year">{car.year}</span>
-        <img
+        <CarImage
           src={car.image}
-          alt={`Иллюстрация: ${car.brand} ${car.model}`}
+          alt={`${car.brand} ${car.model}`}
           loading="lazy"
         />
       </Link>
@@ -420,16 +415,16 @@ function Home() {
       <section className="hero wrap">
         <div className="hero-copy">
           <div className="eyebrow">
-            <span /> АРЕНДА БЕЗ ЛИШНИХ СЛОЖНОСТЕЙ
+            <span /> АРЕНДА АВТОМОБИЛЕЙ В ВОЛОГДЕ
           </div>
           <h1>
-            Планы ваши.
+            Ваш город.
             <br />
-            Автомобиль <em>наш.</em>
+            Ваш <em>маршрут.</em>
           </h1>
           <p>
-            Для города, важных встреч и маленьких
-            <br className="desktop-only" /> побегов на выходные. Просто
+            Автомобиль для дел, поездок за город
+            <br className="desktop-only" /> и спонтанных выходных. Просто
             выбирайте маршрут.
           </p>
           <Link className="button primary" to="/catalog">
@@ -443,21 +438,21 @@ function Home() {
             </div>
             <div>
               <b>Свобода начинается с выбора</b>
-              <small>От городского седана до кроссовера</small>
+              <small>От 2 400 ₽ в сутки · бронирование онлайн</small>
             </div>
           </div>
         </div>
         <div className="hero-art">
-          <div className="hero-number">01 / ВАШ СЛЕДУЮЩИЙ МАРШРУТ</div>
+          <div className="hero-number">59°13′ N / 39°53′ E · ВОЛОГДА</div>
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />
-          <div className="hero-word">В ПУТЬ.</div>
+          <div className="hero-word">DRIVE.</div>
           <img
-            src="/images/hero.svg"
-            alt="Зелёный кроссовер на фоне абстрактного городского пейзажа"
+            src="/images/hero-road.jpg"
+            alt="Автомобиль на дороге — атмосферная фотография"
           />
           <div className="hero-label">
-            <span className="live-dot" /> ГОРОД · ПРИРОДА · ВПЕЧАТЛЕНИЯ
+            <span className="live-dot" /> БЛИЖЕ К ВАШИМ ПЛАНАМ
             <ArrowUpRight size={18} />
           </div>
         </div>
@@ -468,7 +463,7 @@ function Home() {
             <MapPin />
             <div>
               <small>Где забрать</small>
-              <b>Нижний Новгород</b>
+              <b>Вологда</b>
             </div>
           </div>
           <Field label="Начало аренды">
@@ -798,12 +793,11 @@ function CarDetail() {
         <div>
           <div className={`detail-visual ${car.category}`}>
             <span className="car-category">{categories[car.category]}</span>
-            <img
-              src={car.image}
-              alt={`Иллюстрация ${car.brand} ${car.model}`}
-            />
+            <CarImage src={car.image} alt={`${car.brand} ${car.model}`} />
             <span className="illustration-note">
-              Иллюстрация класса автомобиля
+              {car.image?.endsWith(".svg")
+                ? "Иллюстрация класса автомобиля"
+                : "Фотография автомобиля"}
             </span>
           </div>
           <div className="detail-title">
@@ -1077,7 +1071,7 @@ function Account() {
             rentals.map((r) => (
               <article className="rental-card" key={r._id}>
                 <div className="rental-car">
-                  <img src={r.car?.image || "/images/sedan.svg"} alt="" />
+                  <CarImage src={r.car?.image} alt="" />
                   <div>
                     <small>{r.number}</small>
                     <h3>{r.carName}</h3>
@@ -1153,13 +1147,7 @@ function Account() {
               maxLength={80}
               required
             />
-            <Field
-              label="Телефон"
-              name="phone"
-              type="tel"
-              defaultValue={user.phone}
-              required
-            />
+            <PhoneField defaultValue={user.phone} />
             <Field label="Email" value={user.email} disabled />
             <button className="button outline full" disabled={busy}>
               Сохранить изменения
@@ -1218,7 +1206,7 @@ function Conditions() {
           [
             "04",
             "Получение и возврат",
-            "Получение и возврат — в Нижнем Новгороде. Конкретные место и время согласовываются с менеджером. Состояние, уровень топлива и пробег фиксируются при выдаче и возврате.",
+            "Получение и возврат — в Вологде. Конкретные место и время согласовываются с менеджером. Состояние, уровень топлива и пробег фиксируются при выдаче и возврате.",
           ],
           [
             "05",
@@ -1696,7 +1684,7 @@ function Admin() {
                         <tr key={c._id}>
                           <td>
                             <div className="table-car">
-                              <img src={c.image} alt="" />
+                              <CarImage src={c.image} alt="" />
                               <div>
                                 <b>
                                   {c.brand} {c.model}
@@ -1996,16 +1984,7 @@ function Admin() {
                           ))}
                         </select>
                       </Field>
-                      <Field label="Иллюстрация">
-                        <select
-                          name="image"
-                          defaultValue={modal.car?.image || "/images/sedan.svg"}
-                        >
-                          <option value="/images/sedan.svg">Седан</option>
-                          <option value="/images/suv.svg">Кроссовер</option>
-                          <option value="/images/compact.svg">Компакт</option>
-                        </select>
-                      </Field>
+                      <PhotoField defaultValue={modal.car?.image} />
                     </div>
                     <div className="form-row">
                       <Field

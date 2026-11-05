@@ -413,3 +413,67 @@ test("Пароль длиннее 72 байт отклоняется до хеш
     });
   assert.equal(r.status, 400);
 });
+
+test("Телефон нормализуется; иностранный и короткий номера отклоняются", async () => {
+  const valid = await mutation(admin, "patch", "/api/profile", {
+    name: "Администратор теста",
+    phone: "8 (921) 555-44-33",
+  });
+  assert.equal(valid.status, 200);
+  assert.equal(valid.body.user.phone, "+79215554433");
+  for (const phone of ["+12025550123", "+7 (921)-555"])
+    assert.equal(
+      (
+        await mutation(admin, "patch", "/api/profile", {
+          name: "Администратор теста",
+          phone,
+        })
+      ).status,
+      400,
+    );
+});
+test("Фото: доступ только администратору, проверка байтов и сохранение ссылки", async () => {
+  const sharp = (await import("sharp")).default;
+  const bytes = await sharp({
+    create: { width: 10, height: 10, channels: 3, background: "#ffffff" },
+  })
+    .png()
+    .toBuffer();
+  const data = "data:image/png;base64," + bytes.toString("base64");
+  assert.equal(
+    (await mutation(manager, "post", "/api/admin/photos", { data })).status,
+    403,
+  );
+  assert.equal(
+    (
+      await mutation(admin, "post", "/api/admin/photos", {
+        data: "data:image/png;base64,YmFk",
+      })
+    ).status,
+    400,
+  );
+  const r = await mutation(admin, "post", "/api/admin/photos", { data });
+  assert.equal(r.status, 201);
+  assert.match(r.body.image, /^\/uploads\/[a-f0-9]{32}\.webp$/);
+  try {
+    assert.equal(
+      (
+        await mutation(admin, "patch", `/api/admin/cars/${car._id}`, {
+          image: r.body.image,
+        })
+      ).status,
+      200,
+    );
+    assert.equal((await request(app).get(r.body.image)).status, 200);
+    assert.equal(
+      (
+        await mutation(admin, "patch", `/api/admin/cars/${car._id}`, {
+          image: "javascript:alert(1)",
+        })
+      ).status,
+      400,
+    );
+  } finally {
+    await (await import("node:fs/promises")).unlink("." + r.body.image);
+  }
+});

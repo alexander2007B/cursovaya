@@ -1,3 +1,4 @@
+import { normalizeRussianPhone } from "../../shared/phone.js";
 // Local UI sandbox only. The server remains authoritative in normal mode.
 import { cars as seed } from "./demo-cars";
 import {
@@ -90,7 +91,15 @@ export async function demoApi(path, { method = "GET", body = {} } = {}) {
     p = url.pathname,
     q = url.searchParams;
   let user = db.users.find((u) => u.id === sessionStorage.getItem(SESSION));
-  const save = () => localStorage.setItem(KEY, JSON.stringify(db));
+  const save = () => {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(db));
+    } catch {
+      fail(
+        "Хранилище демо заполнено. Выберите меньшее фото или сбросьте демо.",
+      );
+    }
+  };
   const requireUser = () => user || fail("Войдите в аккаунт", 401);
   const staff = () => {
     requireUser();
@@ -150,7 +159,7 @@ export async function demoApi(path, { method = "GET", body = {} } = {}) {
       user = {
         id: uid(),
         name: body.name.trim(),
-        phone: body.phone,
+        phone: normalizeRussianPhone(body.phone),
         email,
         role: "client",
         passwordHash: await hash(body.password),
@@ -174,7 +183,10 @@ export async function demoApi(path, { method = "GET", body = {} } = {}) {
     requireUser();
     if (!body.name?.trim() || body.phone.replace(/\D/g, "").length < 10)
       fail("Проверьте имя и телефон");
-    Object.assign(user, { name: body.name, phone: body.phone });
+    Object.assign(user, {
+      name: body.name,
+      phone: normalizeRussianPhone(body.phone),
+    });
     save();
     return { user: publicUser(user) };
   }
@@ -299,6 +311,15 @@ export async function demoApi(path, { method = "GET", body = {} } = {}) {
     return { rental: rentalView(r) };
   }
   if (p.startsWith("/admin")) staff();
+  if (p === "/admin/photos") {
+    admin();
+    if (
+      !/^data:image\/(png|jpeg|webp);base64,/.test(body.data) ||
+      body.data.length > 1500000
+    )
+      fail("Фотография слишком большая для демо");
+    return { image: body.data };
+  }
   if (p === "/admin/overview")
     return {
       cars: db.cars.filter((c) => !c.archived),

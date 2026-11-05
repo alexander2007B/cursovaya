@@ -1,3 +1,6 @@
+import sharp from "sharp";
+import { mkdir, writeFile } from "node:fs/promises";
+import { normalizeRussianPhone } from "../shared/phone.js";
 import express from "express";
 import session from "express-session";
 import MongoStore from "connect-mongo";
@@ -18,14 +21,14 @@ import {
 } from "./domain.js";
 
 const id = z.string().regex(/^[a-f\d]{24}$/i, "Некорректный идентификатор");
-const phone = z
-  .string()
-  .trim()
-  .regex(/^\+?[\d ()-]{10,20}$/, "Введите телефон в формате +7 900 123-45-67")
-  .refine((value) => {
-    const digits = value.replace(/\D/g, "");
-    return digits.length >= 10 && digits.length <= 15;
-  }, "Телефон должен содержать от 10 до 15 цифр");
+const phone = z.string().transform((value, ctx) => {
+  try {
+    return normalizeRussianPhone(value);
+  } catch (error) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, message: error.message });
+    return z.NEVER;
+  }
+});
 const credentials = z.object({
   email: z
     .string()
@@ -67,11 +70,11 @@ const carInput = z
     seats: z.number().int().min(2).max(9),
     transmission: z.enum(["Автомат", "Механика"]),
     fuel: z.string().trim().min(1).max(30),
-    image: z.enum([
-      "/images/sedan.svg",
-      "/images/suv.svg",
-      "/images/compact.svg",
-    ]),
+    image: z
+      .string()
+      .regex(
+        /^\/(?:images\/[a-zA-Z0-9_/-]+\.(?:svg|jpg|jpeg|png|webp)|uploads\/[a-f0-9]{32}\.webp)$/,
+      ),
     description: z.string().trim().min(10).max(1500),
     status: z.enum(["available", "maintenance", "broken"]),
   })
@@ -117,7 +120,7 @@ export function createApp({ mongoUri, secret, production = false }) {
     }),
   );
   app.use(helmet({ contentSecurityPolicy: production ? undefined : false }));
-  app.use(express.json({ limit: "32kb" }));
+  app.use(express.json({ limit: "6mb" }));
   const store = MongoStore.create({
     mongoUrl: mongoUri,
     collectionName: "sessions",
@@ -150,12 +153,10 @@ export function createApp({ mongoUri, secret, production = false }) {
   });
   app.get("/api/auth/session", (req, res) => {
     req.session.csrf ||= randomBytes(32).toString("hex");
-    res
-      .set("Cache-Control", "no-store")
-      .json({
-        user: req.user ? publicUser(req.user) : null,
-        csrfToken: req.session.csrf,
-      });
+    res.set("Cache-Control", "no-store").json({
+      user: req.user ? publicUser(req.user) : null,
+      csrfToken: req.session.csrf,
+    });
   });
   app.use("/api", (req, res, next) => {
     res.set("Cache-Control", "no-store");
@@ -445,6 +446,39 @@ export function createApp({ mongoUri, secret, production = false }) {
     res.json({ rental: result });
   });
   app.use("/api/admin", requireUser, requireStaff);
+  app.post("/api/admin/photos", requireAdmin, async (req, res) => {
+    const { data } = z
+      .object({
+        data: z
+          .string()
+          .max(5600000)
+          .regex(/^data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/),
+      })
+      .strict()
+      .parse(req.body);
+    const bytes = Buffer.from(data.split(",")[1], "base64");
+    if (bytes.length > 4 * 1024 * 1024)
+      throw new AppError(400, "Фото должно быть не больше 4 МБ");
+    let output;
+    try {
+      output = await sharp(bytes, { limitInputPixels: 20000000 })
+        .rotate()
+        .resize({
+          width: 1400,
+          height: 1000,
+          fit: "inside",
+          withoutEnlargement: true,
+        })
+        .webp({ quality: 82 })
+        .toBuffer();
+    } catch {
+      throw new AppError(400, "Не удалось прочитать изображение");
+    }
+    await mkdir("uploads", { recursive: true });
+    const name = randomBytes(16).toString("hex") + ".webp";
+    await writeFile(path.join("uploads", name), output, { flag: "wx" });
+    res.status(201).json({ image: "/uploads/" + name });
+  });
   app.get("/api/admin/overview", async (req, res) => {
     const [cars, rentals, events, clients] = await Promise.all([
       Car.find({ archived: false }).select("-lockVersion"),
@@ -664,24 +698,24 @@ export function createApp({ mongoUri, secret, production = false }) {
   app.use("/api", (req, res, next) =>
     next(new AppError(404, "Маршрут не найден")),
   );
+  app.use(
+    "/uploads",
+    express.static(path.resolve("uploads"), { dotfiles: "deny", index: false }),
+  );
   app.use(express.static(path.resolve("dist")));
   app.get("/{*path}", (req, res) =>
     res.sendFile(path.resolve("dist/index.html")),
   );
   app.use((error, req, res, next) => {
     if (error instanceof ZodError)
-      return res
-        .status(400)
-        .json({
-          message: "Проверьте заполнение полей",
-          fields: error.flatten().fieldErrors,
-        });
+      return res.status(400).json({
+        message: "Проверьте заполнение полей",
+        fields: error.flatten().fieldErrors,
+      });
     if (error.code === 11000)
-      return res
-        .status(409)
-        .json({
-          message: "Такой email, госномер или номер записи уже используется",
-        });
+      return res.status(409).json({
+        message: "Такой email, госномер или номер записи уже используется",
+      });
     if (error instanceof AppError)
       return res.status(error.status).json({ message: error.message });
     if (error.type === "entity.parse.failed")
