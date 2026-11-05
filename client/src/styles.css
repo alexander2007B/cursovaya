@@ -2500,3 +2500,22 @@ td .comment {
     scroll-behavior: auto !important;
   }
 }
+
+.demo-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 10px 20px;
+  background: #e5efd1;
+  color: #294530;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+.demo-banner button {
+  border: 1px solid #809667;
+  border-radius: 5px;
+  background: white;
+  padding: 5px 10px;
+  font-size: 11px;
+}

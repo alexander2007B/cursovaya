@@ -1,5 +1,9 @@
 let csrfToken = "";
 export async function api(path, options = {}) {
+  if (import.meta.env.MODE === "demo") {
+    const { demoApi } = await import("./demo-api.js");
+    return demoApi(path, options);
+  }
   const response = await fetch(`/api${path}`, {
     ...options,
     headers: {

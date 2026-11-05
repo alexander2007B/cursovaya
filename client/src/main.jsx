@@ -1652,6 +1652,12 @@ function Admin() {
                   <a
                     className="button outline small"
                     href="/api/admin/export"
+                    onClick={async (e) => {
+                      if (import.meta.env.MODE === "demo") {
+                        e.preventDefault();
+                        await (await import("./demo-api")).exportDemo();
+                      }
+                    }}
                     download
                   >
                     <Download size={16} /> CSV
@@ -2270,6 +2276,22 @@ function App() {
     <Context.Provider
       value={{ user, setUser, auth, setAuth, notify: setToast, logout }}
     >
+      {import.meta.env.MODE === "demo" && (
+        <div className="demo-banner">
+          <span>
+            Демо без базы данных · изменения сохраняются только в этом браузере
+            · используйте учебные данные
+          </span>
+          <button
+            onClick={async () => {
+              if (confirm("Сбросить все учебные изменения?"))
+                (await import("./demo-api")).resetDemo();
+            }}
+          >
+            Сбросить демо
+          </button>
+        </div>
+      )}
       <Header />
       {connectionError ? (
         <main className="wrap page">

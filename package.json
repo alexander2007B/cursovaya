@@ -17,7 +17,8 @@
     "test:coverage": "node --experimental-test-coverage --test --test-concurrency=1 tests/*.test.js",
     "test:e2e": "playwright test",
     "test:load": "node scripts/load.js",
-    "setup:env": "node scripts/init-env.js"
+    "setup:env": "node scripts/init-env.js",
+    "demo": "vite --mode demo --host 127.0.0.1 --port 5173 --strictPort"
   },
   "dependencies": {
     "@fontsource/manrope": "^5.3.0",
