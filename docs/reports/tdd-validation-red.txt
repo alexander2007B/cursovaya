@@ -1,0 +1,72 @@
+
+> avtobaza@1.0.0 test
+> node --test --test-concurrency=1 tests/*.test.js
+
+✔ MongoDB отвечает; каталог возвращает сохранённый автомобиль (277.702376ms)
+✔ Регистрация: пароль хешируется, роль назначается сервером (611.848191ms)
+✔ Самостоятельное назначение роли администратора запрещено (12.796703ms)
+✔ Повторный email и неверный пароль отклоняются (315.557758ms)
+✔ CSRF: запрос без токена отклоняется (6.911929ms)
+✔ Гость и клиент не имеют доступа к управлению (17.508483ms)
+✔ Цена рассчитывается сервером; присланная сумма не принимается (15.976325ms)
+✔ Две параллельные заявки: одна сохранена, другая отклонена (32.50113ms)
+✔ Фильтр дат исключает занятый автомобиль; чужие заявки не видны (27.33298ms)
+✔ Нельзя архивировать или ремонтировать авто с бронью (17.879735ms)
+✔ Менеджер проводит аренду по статусам, пробег обновляется (83.713403ms)
+✔ Отмена освобождает автомобиль, соседние интервалы разрешены (55.951023ms)
+✔ CRUD автомобиля и осмотры сохраняются в базе, история сохраняется при архивировании (71.857993ms)
+✔ Изменение роли действует для существующей сессии (33.500722ms)
+✔ CSV выгружается, некорректные идентификаторы отклоняются (15.313682ms)
+✔ Выход завершает сессию (7.596956ms)
+✖ Телефон из знаков пунктуации не принимается (8.037002ms)
+✖ Пароль длиннее 72 байт отклоняется до хеширования bcrypt (303.658231ms)
+✔ Стоимость: сутки, дополнительные услуги и отдельный залог (1.68944ms)
+✔ Неделя аренды даёт скидку 10% на базовую стоимость (0.160522ms)
+✔ Даты проверяются строго, включая невозможные и прошедшие (0.339733ms)
+✔ Статусы аренды изменяются только по разрешённым переходам (0.956173ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 20
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2443.112619
+
+✖ failing tests:
+
+test at tests/api.test.js:34:1
+✖ Телефон из знаков пунктуации не принимается (8.037002ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 400
+  
+      at TestContext.<anonymous> (file:///workspace/cursovaya/tests/api.test.js:34:168)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 400,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/api.test.js:35:1
+✖ Пароль длиннее 72 байт отклоняется до хеширования bcrypt (303.658231ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  201 !== 400
+  
+      at TestContext.<anonymous> (file:///workspace/cursovaya/tests/api.test.js:35:354)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

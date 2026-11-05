@@ -1,0 +1,4 @@
+digraph G {graph [fontname="DejaVu Sans",bgcolor="white",pad="0.3",ranksep="0.65",nodesep="0.35"]; node [fontname="DejaVu Sans",fontsize=11,shape=box,style="rounded,filled",fillcolor="#edf2eb",color="#355343",margin="0.15"]; edge [fontname="DejaVu Sans",fontsize=9,color="#566c5b"];rankdir=TB; browser[label="Браузер
+React / Router / CSS"]; api[label="Express API
+права / валидация / расчёт"]; db[label="MongoDB replica set
+сессии / документы / индексы",shape=cylinder]; browser->api[label="HTTP JSON + cookie + CSRF"]; api->db[label="Mongoose / транзакции"]; db->api[label="Документы"]; api->browser[label="Ответ / ошибка"];}

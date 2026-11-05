@@ -1,0 +1,36 @@
+{
+  "at": "2026-11-05T12:45:27.686Z",
+  "node": "v24.22.1",
+  "endpoint": "GET /api/cars",
+  "dataset": "8 active car documents, local MongoDB replica set, unauthenticated catalogue requests",
+  "results": [
+    {
+      "connections": 10,
+      "duration": 11.01,
+      "requests": 12400,
+      "requestsPerSecond": 1127.28,
+      "bytesPerSecond": 6169413.82,
+      "latencyMeanMs": 8.37,
+      "latencyP50Ms": 7,
+      "latencyP97_5Ms": 18,
+      "latencyP99Ms": 22,
+      "errors": 0,
+      "timeouts": 0,
+      "non2xx": 0
+    },
+    {
+      "connections": 50,
+      "duration": 11.01,
+      "requests": 14530,
+      "requestsPerSecond": 1320.91,
+      "bytesPerSecond": 7228881.46,
+      "latencyMeanMs": 37.3,
+      "latencyP50Ms": 36,
+      "latencyP97_5Ms": 56,
+      "latencyP99Ms": 61,
+      "errors": 0,
+      "timeouts": 0,
+      "non2xx": 0
+    }
+  ]
+}

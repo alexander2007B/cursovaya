@@ -1,0 +1,4 @@
+digraph G {graph [fontname="DejaVu Sans",bgcolor="white",pad="0.3",ranksep="0.65",nodesep="0.35"]; node [fontname="DejaVu Sans",fontsize=11,shape=box,style="rounded,filled",fillcolor="#edf2eb",color="#355343",margin="0.15"]; edge [fontname="DejaVu Sans",fontsize=9,color="#566c5b"];rankdir=TB;client[label="«actor»
+Клиент"];manager[label="«actor»
+Менеджер"];admin[label="«actor»
+Администратор"];node[shape=ellipse];catalog[label="Найти автомобиль"];book[label="Оформить / отменить заявку"];profile[label="Просмотреть свои аренды"];process[label="Подтвердить / выдать / принять"];service[label="Записать осмотр / статус авто"];fleet[label="Вести каталог и тарифы"];roles[label="Назначить роли"];client->catalog;client->book;client->profile;manager->process;manager->service;admin->fleet;admin->roles;admin->manager[label="обобщение",arrowhead=empty];manager->client[label="обобщение",arrowhead=empty];}

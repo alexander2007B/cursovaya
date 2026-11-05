@@ -1,0 +1,5 @@
+digraph G {graph [fontname="DejaVu Sans",bgcolor="white",pad="0.3",ranksep="0.65",nodesep="0.35"]; node [fontname="DejaVu Sans",fontsize=11,shape=box,style="rounded,filled",fillcolor="#edf2eb",color="#355343",margin="0.15"]; edge [fontname="DejaVu Sans",fontsize=9,color="#566c5b"];start[label="Начало",shape=circle,width=.3];auth[label="Вход и ввод дат"];valid[label="Входные данные
+корректны?",shape=diamond];tx[label="Начать транзакцию
+записать lockVersion"];free[label="Исправен и нет
+пересечений?",shape=diamond];save[label="Сохранить заявку и событие
+commit"];err[label="Показать причину отказа"];end[label="Конец",shape=doublecircle];start->auth;auth->valid;valid->tx[label="да"];valid->err[label="нет"];tx->free;free->save[label="да"];free->err[label="нет / rollback"];save->end;err->end;}

@@ -1,0 +1,219 @@
+import "dotenv/config";
+import bcrypt from "bcryptjs";
+import mongoose from "mongoose";
+import { connectDatabase } from "../server/db.js";
+import { User, Car, Maintenance, Event } from "../server/models.js";
+if (process.env.NODE_ENV === "production" || process.env.SEED_DEMO !== "true")
+  throw new Error(
+    "Демо-данные разрешены только при SEED_DEMO=true вне production",
+  );
+await connectDatabase(process.env.MONGODB_URI);
+const passwordHash = await bcrypt.hash("Avtobaza2026!", 12);
+for (const [name, email, role] of [
+  ["Администратор", "admin@avtobaza.test", "admin"],
+  ["Анна Миронова", "manager@avtobaza.test", "manager"],
+  ["Александр Баев", "client@avtobaza.test", "client"],
+]) {
+  await User.updateOne(
+    { email },
+    {
+      $setOnInsert: {
+        name,
+        email,
+        role,
+        phone: "+7 900 123-45-67",
+        passwordHash,
+      },
+    },
+    { upsert: true },
+  );
+}
+const cars = [
+  [
+    "Kia",
+    "Rio",
+    2022,
+    "А101АА52",
+    "economy",
+    2400,
+    10000,
+    42000,
+    5,
+    "Автомат",
+    "Бензин",
+    "compact",
+    "Компактный седан для повседневных поездок. Климат-контроль, подогрев сидений и удобная мультимедиа.",
+    "available",
+  ],
+  [
+    "Hyundai",
+    "Solaris",
+    2023,
+    "А202АА52",
+    "economy",
+    2700,
+    10000,
+    31000,
+    5,
+    "Автомат",
+    "Бензин",
+    "compact",
+    "Лёгкий в управлении автомобиль для города. Вместительный багажник и экономичный двигатель.",
+    "available",
+  ],
+  [
+    "Škoda",
+    "Octavia",
+    2023,
+    "В303ВВ52",
+    "comfort",
+    3900,
+    15000,
+    28000,
+    5,
+    "Автомат",
+    "Бензин",
+    "sedan",
+    "Просторный лифтбек для путешествий вдвоём и всей семьёй. Большой багажник, круиз-контроль и камера заднего вида.",
+    "available",
+  ],
+  [
+    "Toyota",
+    "Camry",
+    2024,
+    "В404ВВ52",
+    "business",
+    5900,
+    25000,
+    18000,
+    5,
+    "Автомат",
+    "Бензин",
+    "sedan",
+    "Тихий салон, плавный ход и комфорт в каждой детали. Для деловых встреч и дальних поездок.",
+    "available",
+  ],
+  [
+    "Kia",
+    "Sportage",
+    2024,
+    "Е505ЕЕ52",
+    "suv",
+    5200,
+    20000,
+    22000,
+    5,
+    "Автомат",
+    "Бензин",
+    "suv",
+    "Уверенность на любом маршруте. Полный привод, просторный салон, климат-контроль и камера заднего вида.",
+    "available",
+  ],
+  [
+    "Hyundai",
+    "Tucson",
+    2023,
+    "Е606ЕЕ52",
+    "suv",
+    4900,
+    20000,
+    34000,
+    5,
+    "Автомат",
+    "Дизель",
+    "suv",
+    "Практичный кроссовер для загородных поездок. Полный привод, подогрев сидений и вместительный багажник.",
+    "available",
+  ],
+  [
+    "BMW",
+    "320i",
+    2023,
+    "К707КК52",
+    "business",
+    7900,
+    35000,
+    26000,
+    5,
+    "Автомат",
+    "Бензин",
+    "sedan",
+    "Динамичный седан с выразительным характером. Кожаный салон, навигация и двухзонный климат-контроль.",
+    "maintenance",
+  ],
+  [
+    "Renault",
+    "Duster",
+    2022,
+    "К808КК52",
+    "suv",
+    3500,
+    15000,
+    51000,
+    5,
+    "Механика",
+    "Бензин",
+    "suv",
+    "Надёжный спутник для поездок за город. Полный привод, высокий клиренс и практичный салон.",
+    "available",
+  ],
+];
+for (const [
+  brand,
+  model,
+  year,
+  plate,
+  category,
+  dailyRate,
+  deposit,
+  mileage,
+  seats,
+  transmission,
+  fuel,
+  image,
+  description,
+  status,
+] of cars) {
+  await Car.updateOne(
+    { plate },
+    {
+      $setOnInsert: {
+        brand,
+        model,
+        year,
+        plate,
+        category,
+        dailyRate,
+        deposit,
+        mileage,
+        seats,
+        transmission,
+        fuel,
+        image: `/images/${image}.svg`,
+        description,
+        status,
+      },
+    },
+    { upsert: true },
+  );
+}
+const admin = await User.findOne({ email: "admin@avtobaza.test" }),
+  bmw = await Car.findOne({ plate: "К707КК52" });
+if (!(await Maintenance.exists({ car: bmw._id })))
+  await Maintenance.create({
+    car: bmw._id,
+    author: admin._id,
+    node: "Тормоза",
+    wear: 78,
+    mileage: bmw.mileage,
+    note: "Плановая замена передних тормозных колодок. Автомобиль временно снят с выдачи.",
+  });
+if (!(await Event.exists({ action: "Подготовлен автопарк" })))
+  await Event.create({
+    actor: admin._id,
+    action: "Подготовлен автопарк",
+    entity: "seed",
+    details: "Добавлены 8 автомобилей и учебные аккаунты",
+  });
+console.log("Демо-данные готовы. Существующие записи сохранены.");
+await mongoose.disconnect();

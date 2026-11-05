@@ -1,0 +1,4 @@
+digraph G {graph [fontname="DejaVu Sans",bgcolor="white",pad="0.3",ranksep="0.65",nodesep="0.35"]; node [fontname="DejaVu Sans",fontsize=11,shape=box,style="rounded,filled",fillcolor="#edf2eb",color="#355343",margin="0.15"]; edge [fontname="DejaVu Sans",fontsize=9,color="#566c5b"];rankdir=TB; client[label="Клиент",shape=box]; manager[label="Сотрудник",shape=box]; p1[label="1.0
+Обработать заявку",shape=ellipse];p2[label="2.0
+Обработать выдачу",shape=ellipse];p3[label="3.0
+Учесть состояние",shape=ellipse];d1[label="D1 Автомобили",shape=cylinder];d2[label="D2 Аренды",shape=cylinder];d3[label="D3 Осмотры",shape=cylinder];client->p1[label="Даты, услуги"];p1->client[label="Цена, номер заявки"];d1->p1[label="Тариф / статус"];p1->d2[label="Заявка"];d2->p1[label="Занятые интервалы"];manager->p2[label="Решение, пробег"];p2->d2[label="Новый статус"];p2->d1[label="Пробег"];manager->p3[label="Результат осмотра"];p3->d3[label="Запись осмотра"];p3->d1[label="Пробег"];}
