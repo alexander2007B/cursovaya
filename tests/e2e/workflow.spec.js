@@ -112,7 +112,9 @@ test("Мобильный интерфейс без горизонтальной 
   }
   await page.getByRole("button", { name: "Открыть меню" }).click();
   await expect(
-    page.getByRole("navigation").getByRole("link", { name: "Автомобили" }),
+    page
+      .getByRole("navigation", { name: "Основная навигация" })
+      .getByRole("link", { name: "Автомобили" }),
   ).toBeVisible();
 });
 test("Регистрация, изменение профиля и отмена своей заявки", async ({

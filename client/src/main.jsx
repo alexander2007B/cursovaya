@@ -1,3 +1,4 @@
+import Brand from "./Brand";
 import ThemeToggle from "./ThemeToggle";
 import EligibilityFields, { eligibilityForm } from "./EligibilityFields";
 import { canRent } from "../../shared/eligibility";
@@ -59,6 +60,7 @@ import { api, money, date, day, categories, statuses, roles } from "./api";
 import "./styles.css";
 import "./glass.css";
 import "./themes.css";
+import "./norde.css";
 import PhoneField from "./PhoneField";
 import { CarImage, PhotoField } from "./CarPhoto";
 const Context = createContext();
@@ -256,12 +258,12 @@ function Header() {
     <header className="header">
       <div className="header-inner">
         <Link className="brand" to="/">
-          <span className="brand-mark">
-            A<ArrowUpRight size={15} />
-          </span>
-          АВТОБАЗА<span className="brand-dot">®</span>
+          <Brand />
         </Link>
-        <nav className={open ? "nav open" : "nav"}>
+        <nav
+          aria-label="Основная навигация"
+          className={open ? "nav open" : "nav"}
+        >
           <NavLink to="/" end>
             Главная
           </NavLink>
@@ -314,23 +316,21 @@ function Header() {
 }
 function Footer() {
   return (
-    <footer>
-      <div className="footer-inner">
-        <div>
-          <Link className="brand" to="/">
-            АВТОБАЗА<span className="brand-dot">®</span>
+    <footer className="norde-footer">
+      <div className="wrap">
+        <div className="norde-footer-top">
+          <Link className="brand" to="/" aria-label="NORDÉ — главная">
+            <Brand />
           </Link>
-          <p>Ваш автомобиль. Ваш маршрут.</p>
+          <p>Вологда. Дальше — куда захотите.</p>
         </div>
-        <div className="footer-links">
-          <Link to="/catalog">Автомобили</Link>
-          <Link to="/conditions">Условия аренды</Link>
-          <Link to="/account">Личный кабинет</Link>
-        </div>
-        <div className="footer-note">
-          Учебный проект · 2026
-          <br />
-          Аренда и учёт состояния автопарка
+        <div className="norde-footer-bottom">
+          <nav aria-label="Ссылки в подвале">
+            <Link to="/catalog">Автомобили</Link>
+            <Link to="/conditions">Условия аренды</Link>
+            <Link to="/account">Личный кабинет</Link>
+          </nav>
+          <span>© NORDÉ · 2026 · Учебный проект</span>
         </div>
       </div>
     </footer>
@@ -417,54 +417,53 @@ function Home() {
     );
   }
   return (
-    <>
-      <section className="hero wrap">
-        <div className="hero-copy">
-          <div className="eyebrow">
-            <span /> АРЕНДА АВТОМОБИЛЕЙ В ВОЛОГДЕ
-          </div>
-          <h1>
-            Ваш город.
-            <br />
-            Ваш <em>маршрут.</em>
-          </h1>
-          <p>Авто для города и поездок за его пределы.</p>
-          <Link className="button primary" to="/catalog">
-            Найти свой автомобиль <ArrowUpRight size={20} />
-          </Link>
-          <div className="hero-proof">
-            <div className="mini-avatars">
-              <span>А</span>
-              <span>В</span>
-              <span>М</span>
-            </div>
-            <div>
-              <b>Свобода начинается с выбора</b>
-              <small>От 2 400 ₽ в сутки · бронирование онлайн</small>
-            </div>
-          </div>
+    <main className="norde-home">
+      <section className="norde-hero" aria-labelledby="home-title">
+        <img
+          className="norde-hero-image"
+          src="/images/hero-road.jpg"
+          alt="Чёрный автомобиль на открытой дороге"
+          fetchPriority="high"
+        />
+        <div className="norde-hero-shade" />
+        <div className="norde-hero-top">
+          <span>CAR RENTAL / VOLOGDA</span>
+          <span>59°13′ N · 39°53′ E</span>
         </div>
-        <div className="hero-art">
-          <div className="hero-number">59°13′ N / 39°53′ E · ВОЛОГДА</div>
-          <div className="orbit orbit-one" />
-          <div className="orbit orbit-two" />
-          <div className="hero-word">DRIVE.</div>
-          <img
-            src="/images/hero-road.jpg"
-            alt="Автомобиль на дороге — атмосферная фотография"
-          />
-          <div className="hero-label">
-            <span className="live-dot" /> БЛИЖЕ К ВАШИМ ПЛАНАМ
-            <ArrowUpRight size={18} />
-          </div>
+        <div className="norde-hero-copy">
+          <span className="norde-kicker">ВАШ РИТМ. ВАШ МАРШРУТ.</span>
+          <h1 id="home-title">
+            Дорога.
+            <br />
+            По вашим
+            <br />
+            <em>правилам.</em>
+          </h1>
+          <p>Аренда автомобилей в Вологде.</p>
+          <Link className="button norde-hero-cta" to="/catalog">
+            Выбрать автомобиль <ArrowUpRight size={20} />
+          </Link>
+        </div>
+        <div className="norde-hero-bottom">
+          <span>СВОБОДА НАЧИНАЕТСЯ С ВЫБОРА</span>
+          <a href="#fleet" aria-label="Перейти к автопарку">
+            Листайте дальше <ArrowRight size={17} />
+          </a>
         </div>
       </section>
-      <div className="wrap">
+      <section
+        className="norde-booking wrap"
+        aria-label="Подобрать автомобиль по датам"
+      >
+        <div className="norde-booking-caption">
+          <span>01 / ВАША ПОЕЗДКА</span>
+          <span>От 2 400 ₽ в сутки</span>
+        </div>
         <form className="search-bar" onSubmit={search}>
           <div className="search-location">
-            <MapPin />
+            <MapPin size={20} />
             <div>
-              <small>Где забрать</small>
+              <small>Город получения</small>
               <b>Вологда</b>
             </div>
           </div>
@@ -489,20 +488,18 @@ function Home() {
             />
           </Field>
           <button className="button primary" type="submit">
-            <Search size={19} /> Подобрать авто
+            Найти автомобиль <ArrowUpRight size={20} />
           </button>
         </form>
-      </div>
-      <section className="wrap section">
+      </section>
+      <section id="fleet" className="wrap section norde-fleet">
         <div className="section-heading">
           <div>
-            <div className="eyebrow">АВТОПАРК</div>
-            <h2>
-              Под ваш ритм жизни<span className="accent">.</span>
-            </h2>
+            <div className="norde-kicker">02 / КОЛЛЕКЦИЯ</div>
+            <h2>Под ваш характер.</h2>
           </div>
           <Link className="text-link" to="/catalog">
-            Весь каталог <ArrowUpRight size={18} />
+            Все автомобили <ArrowUpRight size={19} />
           </Link>
         </div>
         <ErrorMessage error={error} />
@@ -512,58 +509,35 @@ function Home() {
           ))}
         </div>
       </section>
-      <section className="wrap benefits">
-        <div>
-          <span className="step-number">01</span>
-          <ShieldCheck />
-          <h3>Понятные условия</h3>
-          <p>Стоимость и залог — до бронирования.</p>
-        </div>
-        <div>
-          <span className="step-number">02</span>
-          <Wrench />
-          <h3>Авто под контролем</h3>
-          <p>Проверяем авто перед выдачей.</p>
-        </div>
-        <div>
-          <span className="step-number">03</span>
-          <CalendarDays />
-          <h3>Всё в одном месте</h3>
-          <p>Заявки и история — в личном кабинете.</p>
-        </div>
+      <section className="wrap norde-principles" aria-label="Условия аренды">
+        {[
+          ["01", "Прозрачно", "Стоимость и залог видны до бронирования."],
+          ["02", "Просто", "От 21 года. Права и стаж от 1 года."],
+          ["03", "Под контролем", "Ваши заявки — в личном кабинете."],
+        ].map(([n, t, p]) => (
+          <article key={n}>
+            <span>{n}</span>
+            <h3>{t}</h3>
+            <p>{p}</p>
+          </article>
+        ))}
       </section>
-      <section className="wrap journey">
+      <section className="wrap norde-invitation">
         <div>
-          <div className="eyebrow">МЕНЬШЕ ЗАБОТ. БОЛЬШЕ ДОРОГ.</div>
+          <div className="norde-kicker">
+            МЕНЬШЕ ФОРМАЛЬНОСТЕЙ. БОЛЬШЕ ДОРОГ.
+          </div>
           <h2>
-            Хорошие поездки
+            Ваш следующий
             <br />
-            начинаются здесь.
+            <em>маршрут — здесь.</em>
           </h2>
-          <Link to="/conditions" className="button light">
-            Как устроена аренда <ArrowUpRight size={18} />
-          </Link>
         </div>
-        <div className="journey-steps">
-          {[
-            [
-              "Выберите автомобиль",
-              "Укажите даты и найдите подходящий вариант.",
-            ],
-            ["Отправьте заявку", "Мы проверим её и подтвердим бронирование."],
-            ["Заберите ключи", "Документы, договор — и вы в пути."],
-          ].map(([title, description], i) => (
-            <div key={title}>
-              <span>0{i + 1}</span>
-              <div>
-                <h3>{title}</h3>
-                <p>{description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Link className="button outline" to="/conditions">
+          Условия аренды <ArrowUpRight size={20} />
+        </Link>
       </section>
-    </>
+    </main>
   );
 }
 function Catalog() {
@@ -602,16 +576,8 @@ function Catalog() {
     <main className="wrap page">
       <div className="eyebrow">ВАШ СЛЕДУЮЩИЙ АВТОМОБИЛЬ</div>
       <div className="page-heading">
-        <h1>
-          Выбирайте. Влюбляйтесь.
-          <br />
-          <span className="serif">Отправляйтесь.</span>
-        </h1>
-        <p>
-          Для каждого маршрута
-          <br />
-          есть свой автомобиль.
-        </p>
+        <h1>Автомобили.</h1>
+        <p>Выберите свой маршрут — и автомобиль к нему.</p>
       </div>
       <form key={key} className="catalog-filters" onSubmit={filter}>
         <label className="search-input">
@@ -1488,7 +1454,7 @@ function Admin() {
         <div className="admin-heading">
           <div>
             <div className="eyebrow">
-              АВТОБАЗА / {roles[user.role].toUpperCase()}
+              NORDÉ / {roles[user.role].toUpperCase()}
             </div>
             <h1>{nav.find((n) => n[0] === tab)?.[1] || "Обзор"}</h1>
             <p>
@@ -2257,73 +2223,76 @@ function App() {
     <Context.Provider
       value={{ user, setUser, auth, setAuth, notify: setToast, logout }}
     >
-      {import.meta.env.MODE === "demo" && (
-        <div className="demo-banner">
-          <span>
-            Демо без базы данных · изменения сохраняются только в этом браузере
-            · используйте учебные данные
-          </span>
-          <button
-            onClick={async () => {
-              if (confirm("Сбросить все учебные изменения?"))
-                (await import("./demo-api")).resetDemo();
-            }}
-          >
-            Сбросить демо
-          </button>
-        </div>
-      )}
-      <Header />
-      {connectionError ? (
-        <main className="wrap page">
-          <ErrorMessage error={connectionError} />
-          <button
-            className="button primary"
-            onClick={() => window.location.reload()}
-          >
-            Повторить подключение
-          </button>
-        </main>
-      ) : !ready ? (
-        <Loading />
-      ) : (
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="/cars/:id" element={<CarDetail />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/conditions" element={<Conditions />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route
-            path="*"
-            element={
-              <main className="wrap page">
-                <Empty title="Эта дорога пока не проложена">
-                  Страница не найдена.
-                </Empty>
-                <Link className="button primary centered" to="/">
-                  На главную
-                </Link>
-              </main>
-            }
-          />
-        </Routes>
-      )}
-      {!location.pathname.startsWith("/admin") && <Footer />}
-      {auth && <AuthModal key={auth} />}{" "}
-      {toast && (
-        <div className="toast" role="status">
-          <CheckCircle2 size={20} />
-          {toast}
-          <button
-            className="icon-button"
-            aria-label="Закрыть уведомление"
-            onClick={() => setToast(null)}
-          >
-            <X size={16} />
-          </button>
-        </div>
-      )}
+      <div
+        className={
+          location.pathname.startsWith("/admin") ? "staff-site" : "client-site"
+        }
+      >
+        {import.meta.env.MODE === "demo" && (
+          <div className="demo-banner">
+            <span>Деморежим · данные сохраняются в этом браузере</span>
+            <button
+              onClick={async () => {
+                if (confirm("Сбросить все учебные изменения?"))
+                  (await import("./demo-api")).resetDemo();
+              }}
+            >
+              Сбросить демо
+            </button>
+          </div>
+        )}
+        <Header />
+        {connectionError ? (
+          <main className="wrap page">
+            <ErrorMessage error={connectionError} />
+            <button
+              className="button primary"
+              onClick={() => window.location.reload()}
+            >
+              Повторить подключение
+            </button>
+          </main>
+        ) : !ready ? (
+          <Loading />
+        ) : (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/cars/:id" element={<CarDetail />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/conditions" element={<Conditions />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route
+              path="*"
+              element={
+                <main className="wrap page">
+                  <Empty title="Эта дорога пока не проложена">
+                    Страница не найдена.
+                  </Empty>
+                  <Link className="button primary centered" to="/">
+                    На главную
+                  </Link>
+                </main>
+              }
+            />
+          </Routes>
+        )}
+        {!location.pathname.startsWith("/admin") && <Footer />}
+        {auth && <AuthModal key={auth} />}{" "}
+        {toast && (
+          <div className="toast" role="status">
+            <CheckCircle2 size={20} />
+            {toast}
+            <button
+              className="icon-button"
+              aria-label="Закрыть уведомление"
+              onClick={() => setToast(null)}
+            >
+              <X size={16} />
+            </button>
+          </div>
+        )}
+      </div>
     </Context.Provider>
   );
 }
