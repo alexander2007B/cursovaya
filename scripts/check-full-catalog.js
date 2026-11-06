@@ -10,7 +10,12 @@ try {
   const errors = [];
   p.on("pageerror", (e) => errors.push(e.message));
   await fs.mkdir("docs/screenshots/full-catalog", { recursive: true });
+  await p.addInitScript(() => localStorage.setItem("avtobaza-theme", "dark"));
   await p.goto("http://127.0.0.1:5173/catalog");
+  await expect(p.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(p.getByRole("button", { name: /Включить.*тему/ })).toHaveCount(
+    0,
+  );
   await expect(p.locator(".car-card")).toHaveCount(12);
   await p.evaluate(() => {
     const d = JSON.parse(localStorage.getItem("avtobaza-preview-v1"));
@@ -69,7 +74,7 @@ try {
   ).toBeVisible();
   for (const width of [1440, 390, 320]) {
     await p.setViewportSize({ width, height: 1000 });
-    for (const theme of ["light", "dark"]) {
+    for (const theme of ["light"]) {
       if ((await p.locator("html").getAttribute("data-theme")) !== theme)
         await p
           .getByRole("button", {
@@ -98,7 +103,7 @@ try {
   await expect.poll(() => p.evaluate(() => scrollY)).toBeLessThan(10);
   expect(errors).toEqual([]);
   console.log(
-    "PASS: all 12 photos decode, legacy photo migration preserves IDs/mileage/events/custom photo, footer contacts/map, back to top and 320/390/1440px both themes; no browser errors",
+    "PASS: all 12 photos decode, legacy photo migration preserves IDs/mileage/events/custom photo, footer contacts/map, back to top and 320/390/1440px light theme, including saved legacy dark preference; no browser errors",
   );
 } finally {
   await browser.close();

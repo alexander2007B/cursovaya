@@ -124,7 +124,7 @@ try {
   await expect(page.locator(".stage-link")).toBeVisible();
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({ width, height: 950 });
-    for (const theme of ["light", "dark"]) {
+    for (const theme of ["light"]) {
       await page.goto("http://127.0.0.1:5173");
       if ((await page.locator("html").getAttribute("data-theme")) !== theme)
         await page

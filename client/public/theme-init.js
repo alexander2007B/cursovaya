@@ -1,4 +1,4 @@
+document.documentElement.dataset.theme = "light";
 try {
-  document.documentElement.dataset.theme =
-    localStorage.getItem("avtobaza-theme") === "dark" ? "dark" : "light";
+  localStorage.removeItem("avtobaza-theme");
 } catch {}

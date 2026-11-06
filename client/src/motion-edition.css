@@ -4,14 +4,6 @@
   --ink: #15252d;
   --line: #dce6ec;
 }
-[data-theme="dark"] .client-site {
-  --page: #0a1430;
-  --surface: #101f3c;
-  --wash: #142645;
-  --ink: #eff6fc;
-  --line: #293d59;
-  --muted: #a9bbd1;
-}
 .client-site .header {
   border-bottom: 0;
   height: 86px;

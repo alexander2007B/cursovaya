@@ -2,7 +2,6 @@ import Footer from "./Footer";
 import RentalHome from "./RentalHome";
 import useFavorites from "./useFavorites";
 import Brand from "./Brand";
-import ThemeToggle from "./ThemeToggle";
 import EligibilityFields, { eligibilityForm } from "./EligibilityFields";
 import { canRent } from "../../shared/eligibility";
 import React, {
@@ -312,7 +311,6 @@ function Header() {
               </Link>
             </>
           )}
-          <ThemeToggle />
           <button
             type="button"
             className="location header-city"

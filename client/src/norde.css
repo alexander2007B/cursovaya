@@ -33,15 +33,6 @@
   color: var(--ink);
   min-height: 100vh;
 }
-[data-theme="dark"] .client-site {
-  --page: #0a1430;
-  --surface: #0e1c38;
-  --wash: #152541;
-  --ink: #edf4f7;
-  --muted: #aab8c9;
-  --line: #293953;
-  --glass: #0e1c38;
-}
 .client-site .header {
   height: 88px;
   background: var(--page);
@@ -110,13 +101,6 @@
 }
 .client-site .button.small {
   padding: 11px 17px;
-}
-.client-site .theme-toggle {
-  width: 35px;
-  height: 35px;
-  border: 0;
-  background: transparent;
-  color: var(--ink);
 }
 .client-site .wrap {
   max-width: 1440px;
@@ -745,23 +729,4 @@
 .client-site .empty .icon-box {
   background: var(--wash);
   color: var(--muted);
-}
-[data-theme="dark"] .client-site .badge {
-  background: #213350;
-  color: #c2d6ef;
-}
-[data-theme="dark"] .client-site .badge.available,
-[data-theme="dark"] .client-site .badge.completed {
-  background: #153b38;
-  color: #a1d9c1;
-}
-[data-theme="dark"] .client-site .badge.maintenance,
-[data-theme="dark"] .client-site .badge.new {
-  background: #463721;
-  color: #f1d1a2;
-}
-[data-theme="dark"] .client-site .badge.cancelled,
-[data-theme="dark"] .client-site .badge.faulty {
-  background: #402b37;
-  color: #e8b3c0;
 }
