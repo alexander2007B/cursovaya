@@ -1,27 +1,32 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-export MPLCONFIGDIR=/tmp/avtobaza-matplotlib
-export XDG_CACHE_HOME=/tmp/avtobaza-cache
+export MPLCONFIGDIR=/tmp/norde-matplotlib
+export XDG_CACHE_HOME=/tmp/norde-cache
 mkdir -p "$MPLCONFIGDIR" "$XDG_CACHE_HOME"
+if ! fc-match -f '%{family}' 'XO Thames' | rg -q 'XO Thames'; then
+  echo 'XO Thames is required. Install the official MyOffice XO Thames 1.1 fonts or set FONTCONFIG_FILE before rendering.' >&2
+  exit 1
+fi
 python scripts/diagrams.py
 for iteration in 1 2 3; do
   python scripts/build_coursework.py
-  soffice -env:UserInstallation=file:///tmp/avtobaza-lo --headless --convert-to pdf --outdir docs/coursework docs/coursework/Baev_Avtobaza.docx
-  pdftotext -layout docs/coursework/Baev_Avtobaza.pdf /tmp/avtobaza-course.txt
+  soffice -env:UserInstallation=file:///tmp/norde-course-lo --headless --convert-to pdf --outdir docs/coursework docs/coursework/Baev_NORDE.docx
   python - <<'PY'
 from pathlib import Path
-import re,json
-pages=Path('/tmp/avtobaza-course.txt').read_text().split('\f')
-source=Path('docs/coursework/coursework.md').read_text()
-headings=[m[1] for line in source.splitlines() if (m:=re.match(r'^#{1,3} (.+)$',line))]
+import re,json,fitz
+pdf=fitz.open('docs/coursework/Baev_NORDE.pdf')
+struct=json.loads(Path('docs/coursework/document-structure.json').read_text())
 normalize=lambda s:re.sub(r'\s+',' ',s).strip()
 mapping={}
-for heading in headings:
- for i,page in enumerate(pages[2:],3):
-  if normalize(heading) in normalize(page):mapping[heading]=i;break
-if len(mapping)!=len(headings):raise RuntimeError('Some headings missing from PDF')
+for _,heading in struct['headings']:
+ for i,page in enumerate(pdf):
+  if i<2:continue
+  text=page.get_text()
+  found=(re.search(r'(?m)^\s*'+re.escape(heading)+r'\s*$',text) if heading.startswith('Приложение ') else normalize(heading) in normalize(text))
+  if found:mapping[heading]=i+1;break
+if len(mapping)!=len(struct['headings']):raise RuntimeError('Headings missing from PDF: '+str(set(t for _,t in struct['headings'])-mapping.keys()))
 Path('docs/coursework/toc-pages.json').write_text(json.dumps(mapping,ensure_ascii=False,indent=2))
-print('TOC:',len(mapping),'headings;',len(pages)-1,'pages')
+print('TOC:',len(mapping),'headings;',len(pdf),'pages;',mapping['Приложение 1']-1,'pages before appendices')
 PY
 done

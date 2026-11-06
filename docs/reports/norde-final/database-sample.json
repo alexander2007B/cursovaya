@@ -1,0 +1,200 @@
+{
+  "query": "db.cars.find({archived:false},{brand:1,model:1,category:1,dailyRate:1,status:1}).sort({dailyRate:1}); db.rentals.find({number:\"DOC-0001\"}); db.users.find({role:\"client\"},{name:1,email:1,role:1,ageConfirmed:1,licenseConfirmed:1,drivingExperience:1})",
+  "cars": [
+    {
+      "_id": "6aeda3809169793a3ec2e1b6",
+      "brand": "Solaris",
+      "category": "economy",
+      "dailyRate": 2400,
+      "model": "KRS Comfort",
+      "status": "available"
+    },
+    {
+      "_id": "6aeda3809169793a3ec2e1b7",
+      "brand": "Jaecoo",
+      "category": "comfort",
+      "dailyRate": 2700,
+      "model": "J6",
+      "status": "available"
+    },
+    {
+      "_id": "6aeda3809169793a3ec2e1bd",
+      "brand": "Tank",
+      "category": "suv",
+      "dailyRate": 3500,
+      "model": "500",
+      "status": "available"
+    },
+    {
+      "_id": "6aeda3809169793a3ec2e1b8",
+      "brand": "Geely",
+      "category": "comfort",
+      "dailyRate": 3900,
+      "model": "Cityray",
+      "status": "available"
+    },
+    {
+      "_id": "6aeda3809169793a3ec2e1bb",
+      "brand": "Tank",
+      "category": "suv",
+      "dailyRate": 4900,
+      "model": "300",
+      "status": "available"
+    },
+    {
+      "_id": "6aeda3809169793a3ec2e1ba",
+      "brand": "Mercedes-Benz",
+      "category": "suv",
+      "dailyRate": 5200,
+      "model": "GLB 200",
+      "status": "available"
+    },
+    {
+      "_id": "6aeda3809169793a3ec2e1b9",
+      "brand": "Audi",
+      "category": "business",
+      "dailyRate": 5900,
+      "model": "A5",
+      "status": "available"
+    },
+    {
+      "_id": "6aeda3809169793a3ec2e1bc",
+      "brand": "WEY",
+      "category": "business",
+      "dailyRate": 7900,
+      "model": "80",
+      "status": "maintenance"
+    },
+    {
+      "_id": "6aeda3809169793a3ec2e1bf",
+      "brand": "BMW",
+      "category": "business",
+      "dailyRate": 9900,
+      "model": "520d xDrive",
+      "status": "available"
+    },
+    {
+      "_id": "6aeda3809169793a3ec2e1be",
+      "brand": "Mercedes-Benz",
+      "category": "business",
+      "dailyRate": 10900,
+      "model": "CLS 250 d",
+      "status": "available"
+    },
+    {
+      "_id": "6aeda3809169793a3ec2e1c0",
+      "brand": "Ford",
+      "category": "premium",
+      "dailyRate": 11200,
+      "model": "Mustang",
+      "status": "available"
+    },
+    {
+      "_id": "6aeda3809169793a3ec2e1c1",
+      "brand": "BMW",
+      "category": "premium",
+      "dailyRate": 18900,
+      "model": "M4 Competition",
+      "status": "available"
+    }
+  ],
+  "rentals": [
+    {
+      "_id": "6aeda380173ac0272161f112",
+      "number": "DOC-0001",
+      "user": "6aeda3809169793a3ec2e1b5",
+      "car": "6aeda3809169793a3ec2e1b9",
+      "carName": "Audi A5",
+      "from": "2026-11-10",
+      "to": "2026-11-13",
+      "quote": {
+        "days": 3,
+        "base": 17700,
+        "insurance": 0,
+        "childSeat": 0,
+        "total": 17700,
+        "deposit": 25000
+      },
+      "status": "cancelled"
+    }
+  ],
+  "users": [
+    {
+      "_id": "6aeda3809169793a3ec2e1b5",
+      "email": "client@avtobaza.test",
+      "ageConfirmed": true,
+      "drivingExperience": 3,
+      "licenseConfirmed": true,
+      "name": "Александр Баев",
+      "role": "client"
+    }
+  ],
+  "indexes": {
+    "cars": [
+      {
+        "v": 2,
+        "key": {
+          "_id": 1
+        },
+        "name": "_id_"
+      },
+      {
+        "v": 2,
+        "key": {
+          "plate": 1
+        },
+        "name": "plate_1",
+        "background": true,
+        "unique": true
+      },
+      {
+        "v": 2,
+        "key": {
+          "archived": 1,
+          "category": 1,
+          "dailyRate": 1
+        },
+        "name": "archived_1_category_1_dailyRate_1",
+        "background": true
+      }
+    ],
+    "rentals": [
+      {
+        "v": 2,
+        "key": {
+          "_id": 1
+        },
+        "name": "_id_"
+      },
+      {
+        "v": 2,
+        "key": {
+          "number": 1
+        },
+        "name": "number_1",
+        "background": true,
+        "unique": true
+      },
+      {
+        "v": 2,
+        "key": {
+          "car": 1,
+          "status": 1,
+          "from": 1,
+          "to": 1
+        },
+        "name": "car_1_status_1_from_1_to_1",
+        "background": true
+      },
+      {
+        "v": 2,
+        "key": {
+          "user": 1,
+          "createdAt": -1
+        },
+        "name": "user_1_createdAt_-1",
+        "background": true
+      }
+    ]
+  }
+}

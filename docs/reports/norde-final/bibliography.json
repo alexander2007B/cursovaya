@@ -1,0 +1,107 @@
+[
+  [
+    "Новые облачные технологии",
+    "МойОфис: шрифты XO",
+    "https://myoffice.ru/products/fonts/"
+  ],
+  [
+    "Яндекс",
+    "Яндекс Прокат: аренда автомобилей",
+    "https://rentacar.yandex.ru/russia/moscow"
+  ],
+  [
+    "Automattic and contributors",
+    "Mongoose 8: Schemas",
+    "https://mongoosejs.com/docs/guide.html"
+  ],
+  [
+    "Collina, M. and contributors",
+    "Autocannon: HTTP/1.1 benchmarking tool",
+    "https://github.com/mcollina/autocannon"
+  ],
+  [
+    "dcodeIO and contributors",
+    "bcrypt.js: Optimized bcrypt in JavaScript",
+    "https://github.com/dcodeIO/bcrypt.js"
+  ],
+  [
+    "Desboeufs, J. and contributors",
+    "connect-mongo: MongoDB session store",
+    "https://github.com/jdesboeufs/connect-mongo"
+  ],
+  [
+    "Docker Inc.",
+    "Docker Compose: How Compose works",
+    "https://docs.docker.com/compose/intro/compose-application-model/"
+  ],
+  [
+    "Express contributors",
+    "express-session: Session middleware",
+    "https://github.com/expressjs/session"
+  ],
+  [
+    "Helmet contributors",
+    "Helmet: HTTP security headers",
+    "https://helmetjs.github.io/"
+  ],
+  [
+    "IMask contributors",
+    "IMask: JavaScript input mask",
+    "https://imask.js.org/guide.html"
+  ],
+  [
+    "Lovell, L. and contributors",
+    "sharp: High performance Node.js image processing",
+    "https://sharp.pixelplumbing.com/"
+  ],
+  [
+    "McDonnell, C. and contributors",
+    "Zod 3: Schema validation",
+    "https://v3.zod.dev/"
+  ],
+  [
+    "Meta Platforms, Inc.",
+    "React 19: Reference",
+    "https://react.dev/reference/react"
+  ],
+  [
+    "Microsoft",
+    "Playwright: Writing tests",
+    "https://playwright.dev/docs/writing-tests"
+  ],
+  [
+    "MongoDB, Inc.",
+    "MongoDB 8.0: Transactions",
+    "https://www.mongodb.com/docs/v8.0/core/transactions/"
+  ],
+  [
+    "Node.js contributors",
+    "Node.js 24: Test runner",
+    "https://nodejs.org/docs/latest-v24.x/api/test.html"
+  ],
+  [
+    "OpenJS Foundation",
+    "Express 5: Web framework for Node.js",
+    "https://expressjs.com/en/5x/api.html"
+  ],
+  [
+    "OWASP Foundation",
+    "Authorization Cheat Sheet",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+  ],
+  [
+    "SIXT SE",
+    "SIXT: Car rental",
+    "https://www.sixt.com/"
+  ],
+  [
+    "Turo Inc.",
+    "Turo: Car rental marketplace",
+    "https://turo.com/"
+  ],
+  [
+    "Vite contributors",
+    "Vite: Getting Started",
+    "https://vite.dev/guide/"
+  ]
+]

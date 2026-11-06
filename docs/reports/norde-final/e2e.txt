@@ -1,0 +1,23 @@
+
+> avtobaza@1.0.0 test:e2e
+> playwright test
+
+[WebServer] (node:212625) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:212641) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+(node:212682) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/workflow.spec.js:11:1 › Клиент бронирует, менеджер подтверждает и принимает автомобиль (4.3s)
+  ✓  2 tests/e2e/workflow.spec.js:57:1 › Каталог: фильтрация, поиск без результатов, сброс (916ms)
+[WebServer] Request failed: Error Unable to find the session to touch
+[WebServer] Request failed: Error Unable to find the session to touch
+[WebServer] Request failed: Error Unable to find the session to touch
+  ✓  3 tests/e2e/workflow.spec.js:71:1 › Администратор создаёт авто, редактирует и архивирует (2.5s)
+  ✓  4 tests/e2e/workflow.spec.js:102:1 › Мобильный интерфейс без горизонтальной прокрутки (736ms)
+  ✓  5 tests/e2e/workflow.spec.js:120:1 › Регистрация, изменение профиля и отмена своей заявки (2.6s)
+
+  5 passed (13.5s)

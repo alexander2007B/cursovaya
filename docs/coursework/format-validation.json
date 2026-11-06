@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-06",
+  "pages": 53,
+  "body_pages_excluding_title_TOC_references_appendices": 45,
+  "figures": 22,
+  "tables": 14,
+  "sources": 21,
+  "checks": {
+    "A4": true,
+    "margins_mm_30_15_20_20": true,
+    "font_XO_Thames_12": true,
+    "indent_1_25cm": true,
+    "line_spacing_1_5": true,
+    "justified_body": true,
+    "headings_not_bold": true,
+    "title_page_without_number": true,
+    "embedded_font_files": true,
+    "tables_font_12_single_spacing": true,
+    "table_headers_centered": true,
+    "all_body_runs_black": true,
+    "tables_count_14": true,
+    "TOC_pages_correct": true,
+    "TOC_all_headings": true,
+    "appendices_after_bibliography": true,
+    "appendix_names_excluded_from_TOC": true,
+    "body_at_least_25_pages": true,
+    "PDF_only_XO_Thames": true,
+    "PDF_font_size_12": true,
+    "figures_22": true,
+    "two_numbered_formulas": true,
+    "all_figures_referenced": true,
+    "all_tables_referenced": true,
+    "at_least_15_sources": true,
+    "no_unresolved_template_markers": true,
+    "no_text_outside_printable_area": true
+  },
+  "all_passed": true,
+  "sha256": {
+    "Baev_NORDE.docx": "d442eb87145701929ede6d01af4349962f8fa245b93a6033c5a20b1e6f85ac83",
+    "Baev_NORDE.pdf": "56d7149cd7fdca055182d6d6ecec418895b715dee9dd0698959fa4ef3df72e0a"
+  }
+}

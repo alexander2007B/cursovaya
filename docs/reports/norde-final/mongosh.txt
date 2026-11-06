@@ -1,0 +1,24 @@
+norde_coursework_20261106 > db.cars.find({}, {_id:0, brand:1, model:1, dailyRate:1}).limit(2)
+[
+  {
+    brand: 'Solaris',
+    dailyRate: 2400,
+    model: 'KRS Comfort'
+  },
+  {
+    brand: 'Jaecoo',
+    dailyRate: 2700,
+    model: 'J6'
+  }
+]
+norde_coursework_20261106 > db.rentals.findOne({number:"DOC-0001"})
+{
+  number: 'DOC-0001',
+  carName: 'Audi A5',
+  from: '2026-11-10',
+  to: '2026-11-13',
+  quote: {
+    total: 17700
+  },
+  status: 'cancelled'
+}

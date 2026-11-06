@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-06T09:53:04.957Z",
+  "node": "v24.22.1",
+  "mongodb": "8.0.34",
+  "appCommit": "9415815ef48d46d1fe7f3bd578ee40710b8bb4a4",
+  "carCount": 12,
+  "database": "norde_coursework_20261106",
+  "endpoint": "http://127.0.0.1:3012/api/cars"
+}
