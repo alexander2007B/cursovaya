@@ -64,8 +64,10 @@ try {
   const dialog = page.getByRole("dialog");
   await dialog.getByLabel("Марка или модель").fill("Mercedes");
   await dialog.getByRole("button", { name: "Найти автомобиль" }).click();
-  await expect(page.locator(".car-card")).toHaveCount(1);
-  await expect(page.locator(".car-card")).toContainText("CLS");
+  await expect(page.locator(".car-card")).toHaveCount(2);
+  await expect(
+    page.locator(".car-card").filter({ hasText: "CLS" }),
+  ).toBeVisible();
   await page
     .getByRole("link", { name: "Выбрать Mercedes-Benz CLS 250 d" })
     .click();

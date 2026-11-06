@@ -21,7 +21,7 @@ try {
     fullPage: true,
   });
   await page.goto("http://127.0.0.1:5173/catalog");
-  await page.getByRole("link", { name: "Выбрать Kia Rio" }).click();
+  await page.getByRole("link", { name: "Выбрать Solaris KRS Comfort" }).click();
   const carUrl = page.url();
   await page
     .getByRole("button", { name: "Забронировать", exact: true })

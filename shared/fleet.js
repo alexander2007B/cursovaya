@@ -1,9 +1,9 @@
-// Shared demo fleet. Prices and stock are coursework examples.
+// Shared coursework fleet; one data set for MongoDB and browser demo.
 export const fleet = [
   {
-    brand: "Kia",
-    model: "Rio",
-    year: 2022,
+    brand: "Solaris",
+    model: "KRS Comfort",
+    year: 2025,
     plate: "А101АА52",
     category: "economy",
     dailyRate: 2400,
@@ -12,32 +12,30 @@ export const fleet = [
     seats: 5,
     transmission: "Автомат",
     fuel: "Бензин",
-    image: "/images/compact.svg",
-    description:
-      "Компактный седан для повседневных поездок. Климат-контроль, подогрев сидений и удобная мультимедиа.",
+    image: "/images/solaris-krs.jpg",
+    description: "Solaris KRS Comfort, 2025 год. Автомат, 5 мест.",
     status: "available",
   },
   {
-    brand: "Hyundai",
-    model: "Solaris",
-    year: 2023,
+    brand: "Jaecoo",
+    model: "J6",
+    year: 2026,
     plate: "А202АА52",
-    category: "economy",
+    category: "comfort",
     dailyRate: 2700,
     deposit: 10000,
     mileage: 31000,
     seats: 5,
     transmission: "Автомат",
     fuel: "Бензин",
-    image: "/images/compact.svg",
-    description:
-      "Лёгкий в управлении автомобиль для города. Вместительный багажник и экономичный двигатель.",
+    image: "/images/jaecoo-j6.jpg",
+    description: "Jaecoo J6, 2026 год. Автомат, 5 мест.",
     status: "available",
   },
   {
-    brand: "Škoda",
-    model: "Octavia",
-    year: 2023,
+    brand: "Geely",
+    model: "Cityray",
+    year: 2024,
     plate: "В303ВВ52",
     category: "comfort",
     dailyRate: 3900,
@@ -46,15 +44,14 @@ export const fleet = [
     seats: 5,
     transmission: "Автомат",
     fuel: "Бензин",
-    image: "/images/sedan.svg",
-    description:
-      "Просторный лифтбек для путешествий вдвоём и всей семьёй. Большой багажник, круиз-контроль и камера заднего вида.",
+    image: "/images/geely-cityray.jpg",
+    description: "Geely Cityray, 2024 год. Автомат, 5 мест.",
     status: "available",
   },
   {
-    brand: "Toyota",
-    model: "Camry",
-    year: 2024,
+    brand: "Audi",
+    model: "A5",
+    year: 2022,
     plate: "В404ВВ52",
     category: "business",
     dailyRate: 5900,
@@ -63,15 +60,14 @@ export const fleet = [
     seats: 5,
     transmission: "Автомат",
     fuel: "Бензин",
-    image: "/images/sedan.svg",
-    description:
-      "Тихий салон, плавный ход и комфорт в каждой детали. Для деловых встреч и дальних поездок.",
+    image: "/images/audi-a5.jpg",
+    description: "Audi A5, 2022 год. Автомат, 5 мест.",
     status: "available",
   },
   {
-    brand: "Kia",
-    model: "Sportage",
-    year: 2024,
+    brand: "Mercedes-Benz",
+    model: "GLB 200",
+    year: 2021,
     plate: "Е505ЕЕ52",
     category: "suv",
     dailyRate: 5200,
@@ -80,15 +76,14 @@ export const fleet = [
     seats: 5,
     transmission: "Автомат",
     fuel: "Бензин",
-    image: "/images/suv.svg",
-    description:
-      "Уверенность на любом маршруте. Полный привод, просторный салон, климат-контроль и камера заднего вида.",
+    image: "/images/mercedes-glb.jpg",
+    description: "Mercedes-Benz GLB 200, 2021 год. Автомат, 5 мест.",
     status: "available",
   },
   {
-    brand: "Hyundai",
-    model: "Tucson",
-    year: 2023,
+    brand: "Tank",
+    model: "300",
+    year: 2024,
     plate: "Е606ЕЕ52",
     category: "suv",
     dailyRate: 4900,
@@ -97,32 +92,30 @@ export const fleet = [
     seats: 5,
     transmission: "Автомат",
     fuel: "Дизель",
-    image: "/images/suv.svg",
-    description:
-      "Практичный кроссовер для загородных поездок. Полный привод, подогрев сидений и вместительный багажник.",
+    image: "/images/tank-300.jpg",
+    description: "Tank 300, 2024 год. Автомат, 5 мест.",
     status: "available",
   },
   {
-    brand: "BMW",
-    model: "320i",
-    year: 2023,
+    brand: "WEY",
+    model: "80",
+    year: 2024,
     plate: "К707КК52",
     category: "business",
     dailyRate: 7900,
     deposit: 35000,
     mileage: 26000,
-    seats: 5,
+    seats: 7,
     transmission: "Автомат",
-    fuel: "Бензин",
-    image: "/images/sedan.svg",
-    description:
-      "Динамичный седан с выразительным характером. Кожаный салон, навигация и двухзонный климат-контроль.",
+    fuel: "Гибрид",
+    image: "/images/wey-80.jpg",
+    description: "Семиместный минивэн с автоматической коробкой.",
     status: "maintenance",
   },
   {
-    brand: "Renault",
-    model: "Duster",
-    year: 2022,
+    brand: "Tank",
+    model: "500",
+    year: 2024,
     plate: "К808КК52",
     category: "suv",
     dailyRate: 3500,
@@ -131,9 +124,8 @@ export const fleet = [
     seats: 5,
     transmission: "Механика",
     fuel: "Бензин",
-    image: "/images/suv.svg",
-    description:
-      "Надёжный спутник для поездок за город. Полный привод, высокий клиренс и практичный салон.",
+    image: "/images/tank-500.jpg",
+    description: "Tank 500, 2024 год. Механика, 5 мест.",
     status: "available",
   },
   {
@@ -205,3 +197,66 @@ export const fleet = [
     gallery: ["/images/m4-0.jpg", "/images/m4-4.jpg"],
   },
 ];
+export const legacyFleet = [
+  {
+    plate: "А101АА52",
+    brand: "Kia",
+    model: "Rio",
+  },
+  {
+    plate: "А202АА52",
+    brand: "Hyundai",
+    model: "Solaris",
+  },
+  {
+    plate: "В303ВВ52",
+    brand: "Škoda",
+    model: "Octavia",
+  },
+  {
+    plate: "В404ВВ52",
+    brand: "Toyota",
+    model: "Camry",
+  },
+  {
+    plate: "Е505ЕЕ52",
+    brand: "Kia",
+    model: "Sportage",
+  },
+  {
+    plate: "Е606ЕЕ52",
+    brand: "Hyundai",
+    model: "Tucson",
+  },
+  {
+    plate: "К707КК52",
+    brand: "BMW",
+    model: "320i",
+  },
+  {
+    plate: "К808КК52",
+    brand: "Renault",
+    model: "Duster",
+  },
+];
+export function photoUpgrade(car) {
+  const old = legacyFleet.find(
+    (c) =>
+      c.plate === car.plate && c.brand === car.brand && c.model === car.model,
+  );
+  if (!old || !car.image?.endsWith(".svg")) return null;
+  const fresh = fleet.find((c) => c.plate === car.plate);
+  return Object.fromEntries(
+    [
+      "brand",
+      "model",
+      "year",
+      "category",
+      "image",
+      "description",
+      "seats",
+      "fuel",
+      "transmission",
+    ].map((k) => [k, fresh[k]]),
+  );
+}

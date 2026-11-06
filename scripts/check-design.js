@@ -53,7 +53,7 @@ await page.evaluate(async () => {
   });
 });
 await page.goto("http://127.0.0.1:5173/admin?tab=fleet");
-await page.getByRole("button", { name: "Изменить Kia Rio" }).click();
+await page.getByRole("button", { name: "Изменить Solaris KRS Comfort" }).click();
 dialog = page.getByRole("dialog");
 await dialog
   .getByLabel("Фотография автомобиля")
@@ -66,7 +66,7 @@ await page.waitForFunction(() =>
 await dialog.getByRole("button", { name: "Сохранить автомобиль" }).click();
 await dialog.waitFor({ state: "hidden" });
 await page.reload();
-await page.getByRole("button", { name: "Изменить Kia Rio" }).click();
+await page.getByRole("button", { name: "Изменить Solaris KRS Comfort" }).click();
 assert.match(
   await page.locator("input[name=image]").inputValue(),
   /^data:image\/webp/,
@@ -78,7 +78,7 @@ await page.screenshot({
 });
 await page.evaluate(() => {
   const db = JSON.parse(localStorage.getItem("avtobaza-preview-v1"));
-  db.cars.find((c) => c.brand === "Kia" && c.model === "Rio").image =
+  db.cars.find((c) => c.brand === "Solaris" && c.model === "KRS Comfort").image =
     "/images/sedan.svg";
   localStorage.setItem("avtobaza-preview-v1", JSON.stringify(db));
 });

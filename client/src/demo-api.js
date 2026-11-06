@@ -1,3 +1,4 @@
+import { photoUpgrade } from "../../shared/fleet.js";
 import { eligibilitySchema, canRent } from "../../shared/eligibility.js";
 import { normalizeRussianPhone } from "../../shared/phone.js";
 // Local UI sandbox only. The server remains authoritative in normal mode.
@@ -61,6 +62,13 @@ export async function demoApi(path, { method = "GET", body = {} } = {}) {
       if (!db.cars.some((existing) => existing.plate === car.plate))
         db.cars.push({ ...car, _id: uid(), archived: false });
     db.fleetEdition = "business-2026";
+  }
+  if (!db.fleetPhotosEdition) {
+    for (const car of db.cars) {
+      const patch = photoUpgrade(car);
+      if (patch) Object.assign(car, patch);
+    }
+    db.fleetPhotosEdition = "full-photos-2026";
   }
   localStorage.setItem(KEY, JSON.stringify(db));
   const url = new URL(path, "http://demo"),

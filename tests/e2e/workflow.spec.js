@@ -14,9 +14,9 @@ test("Клиент бронирует, менеджер подтверждает
 }) => {
   await login(page, "client@avtobaza.test");
   await page.goto("/catalog");
-  await page.getByRole("link", { name: "Выбрать Kia Rio" }).click();
+  await page.getByRole("link", { name: "Выбрать Solaris KRS Comfort" }).click();
   await expect(
-    page.getByRole("heading", { name: "Kia Rio", exact: true }),
+    page.getByRole("heading", { name: "Solaris KRS Comfort", exact: true }),
   ).toBeVisible();
   await page
     .getByRole("button", { name: "Забронировать", exact: true })
@@ -148,7 +148,7 @@ test("Регистрация, изменение профиля и отмена 
     page.getByRole("heading", { name: "Доступ ограничен" }),
   ).toBeVisible();
   await page.goto("/catalog");
-  await page.getByRole("link", { name: "Выбрать Hyundai Solaris" }).click();
+  await page.getByRole("link", { name: "Выбрать Jaecoo J6" }).click();
   await page
     .getByRole("button", { name: "Забронировать", exact: true })
     .click();

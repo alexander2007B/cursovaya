@@ -1,4 +1,4 @@
-import { fleet } from "../shared/fleet.js";
+import { fleet, legacyFleet, photoUpgrade } from "../shared/fleet.js";
 import "dotenv/config";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
@@ -39,15 +39,30 @@ for (const car of fleet) {
     { upsert: true },
   );
 }
+for (const old of legacyFleet) {
+  const existing = await Car.findOne({
+    plate: old.plate,
+    brand: old.brand,
+    model: old.model,
+  });
+  if (existing) {
+    const patch = photoUpgrade(existing);
+    if (patch)
+      await Car.updateOne(
+        { _id: existing._id, image: existing.image },
+        { $set: patch },
+      );
+  }
+}
 const admin = await User.findOne({ email: "admin@avtobaza.test" }),
-  bmw = await Car.findOne({ plate: "К707КК52" });
-if (!(await Maintenance.exists({ car: bmw._id })))
+  serviceCar = await Car.findOne({ plate: "К707КК52" });
+if (!(await Maintenance.exists({ car: serviceCar._id })))
   await Maintenance.create({
-    car: bmw._id,
+    car: serviceCar._id,
     author: admin._id,
     node: "Тормоза",
     wear: 78,
-    mileage: bmw.mileage,
+    mileage: serviceCar.mileage,
     note: "Плановая замена передних тормозных колодок. Автомобиль временно снят с выдачи.",
   });
 if (!(await Event.exists({ action: "Подготовлен автопарк" })))

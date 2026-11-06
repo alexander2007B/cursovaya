@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import RentalHome from "./RentalHome";
 import useFavorites from "./useFavorites";
 import Brand from "./Brand";
@@ -67,6 +68,7 @@ import "./themes.css";
 import "./norde.css";
 import "./motion-edition.css";
 import "./rental-edition.css";
+import "./contact-footer.css";
 import PhoneField from "./PhoneField";
 import { CarImage, PhotoField } from "./CarPhoto";
 const Context = createContext();
@@ -409,28 +411,6 @@ function Header() {
         </Modal>
       )}
     </header>
-  );
-}
-function Footer() {
-  return (
-    <footer className="norde-footer">
-      <div className="wrap">
-        <div className="norde-footer-top">
-          <Link className="brand" to="/" aria-label="NORDÉ — главная">
-            <Brand />
-          </Link>
-          <p>Прокат автомобилей в Вологде.</p>
-        </div>
-        <div className="norde-footer-bottom">
-          <nav aria-label="Ссылки в подвале">
-            <Link to="/catalog">Автомобили</Link>
-            <Link to="/conditions">Условия аренды</Link>
-            <Link to="/account">Личный кабинет</Link>
-          </nav>
-          <span>© NORDÉ · 2026 · Учебный проект</span>
-        </div>
-      </div>
-    </footer>
   );
 }
 function FavoriteButton({ car }) {
