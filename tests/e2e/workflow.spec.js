@@ -130,6 +130,9 @@ test("Регистрация, изменение профиля и отмена 
     .getByLabel("Email", { exact: true })
     .fill(`browser${Date.now()}@example.test`);
   await dialog.getByLabel("Пароль", { exact: true }).fill("Browserpass2026!");
+  await dialog.getByLabel("Стаж вождения, лет").fill("1");
+  await dialog.getByLabel("Мне исполнился 21 год").check();
+  await dialog.getByLabel("У меня есть действующие водительские права").check();
   await dialog.getByRole("button", { name: "Создать аккаунт" }).click();
   await expect(dialog).not.toBeVisible();
   await page.goto("/account");

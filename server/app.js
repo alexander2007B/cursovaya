@@ -1,3 +1,4 @@
+import { eligibilityFields, canRent } from "../shared/eligibility.js";
 import sharp from "sharp";
 import { mkdir, writeFile } from "node:fs/promises";
 import { normalizeRussianPhone } from "../shared/phone.js";
@@ -46,7 +47,11 @@ const credentials = z.object({
     ),
 });
 const registration = credentials
-  .extend({ name: z.string().trim().min(2).max(80), phone })
+  .extend({
+    name: z.string().trim().min(2).max(80),
+    phone,
+    ...eligibilityFields,
+  })
   .strict();
 const carInput = z
   .object({
@@ -196,6 +201,9 @@ export function createApp({ mongoUri, secret, production = false }) {
       name: data.name,
       email: data.email,
       phone: data.phone,
+      ageConfirmed: data.ageConfirmed,
+      licenseConfirmed: data.licenseConfirmed,
+      drivingExperience: data.drivingExperience,
       passwordHash: await bcrypt.hash(data.password, 12),
     });
     res.status(201).json(await signIn(req, user));
@@ -231,7 +239,16 @@ export function createApp({ mongoUri, secret, production = false }) {
       : next(new AppError(403, "Доступ только для администратора"));
   app.patch("/api/profile", requireUser, async (req, res) => {
     const data = z
-      .object({ name: z.string().trim().min(2).max(80), phone })
+      .object({
+        name: z.string().trim().min(2).max(80),
+        phone,
+        ...Object.fromEntries(
+          Object.entries(eligibilityFields).map(([key, schema]) => [
+            key,
+            schema.optional(),
+          ]),
+        ),
+      })
       .strict()
       .parse(req.body);
     Object.assign(req.user, data);
@@ -314,6 +331,11 @@ export function createApp({ mongoUri, secret, production = false }) {
     res.json({ quote, available: car.status === "available" && !busy });
   });
   app.post("/api/rentals", requireUser, async (req, res) => {
+    if (!canRent(req.user))
+      throw new AppError(
+        403,
+        "Подтвердите возраст, права и стаж от 1 года в профиле",
+      );
     const data = bookingInput.parse(req.body);
     let rental;
     await mongoose.connection.transaction(async (dbSession) => {

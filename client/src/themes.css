@@ -1,0 +1,391 @@
+:root {
+  color-scheme: light;
+  --page: #fcffff;
+  --surface: #fcffff;
+  --glass: rgba(252, 255, 255, 0.84);
+  --ink: #123446;
+  --muted: #506977;
+  --line: #cce6ef;
+  --primary: #0593c6;
+  --accent: #db3996;
+  --wash: #eaf7fc;
+  --green: #0593c6;
+  --lime: #fcffff;
+  --soft: #eaf7fc;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0a1430;
+  --surface: #112040;
+  --glass: rgba(10, 20, 48, 0.86);
+  --ink: #eef7ff;
+  --muted: #a7bad4;
+  --line: #294366;
+  --primary: #0297de;
+  --accent: #fc734d;
+  --wash: #14294b;
+  --green: #0297de;
+  --lime: #0a1430;
+  --soft: #14294b;
+}
+body {
+  background:
+    radial-gradient(
+      ellipse at 90% 5%,
+      color-mix(in srgb, var(--primary) 10%, transparent),
+      transparent 42%
+    ),
+    var(--page);
+  color: var(--ink);
+}
+.header,
+.nav.open,
+.modal,
+.toast {
+  background: var(--glass);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.header,
+.search-bar,
+.car-card,
+.modal {
+  box-shadow: 0 12px 35px color-mix(in srgb, var(--primary) 8%, transparent);
+}
+.brand,
+.nav a.active,
+.account-link,
+.text-link,
+.location,
+.icon-button,
+.button.outline,
+.profile-card h3 {
+  color: var(--ink);
+}
+.brand-mark,
+.button.primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fcffff;
+}
+.button.primary:hover {
+  background: color-mix(in srgb, var(--primary) 80%, #0a1430);
+}
+.button.outline,
+.button.light {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.nav a.active:after,
+.live-dot {
+  background: var(--accent);
+}
+.accent,
+.eyebrow,
+.hero .eyebrow,
+.hero h1 em {
+  color: var(--accent);
+}
+.hero .eyebrow > span {
+  background: var(--accent);
+  box-shadow: none;
+}
+.hero h1 {
+  color: var(--ink);
+}
+.hero-copy > p,
+.hero-proof small,
+.hero-proof b,
+.muted,
+.lead,
+.fine-print,
+.nav a,
+.field-hint,
+.benefits p,
+.car-features,
+.car-price > span,
+.search-location small,
+.search-bar .field > span {
+  color: var(--muted);
+}
+.hero-proof:before {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--accent);
+}
+.search-bar,
+.car-card,
+.booking-panel,
+.profile-card,
+.catalog-filters,
+.stats-grid article,
+.admin-panel,
+.conditions-grid article,
+.rental-card,
+.empty-state {
+  background: var(--glass);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.car-visual,
+.detail-visual,
+.info-panel,
+.demo-banner,
+.footer,
+.admin-sidebar,
+.admin-nav button.active,
+.segmented,
+.profile-avatar {
+  background: var(--wash);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.car-category,
+.car-year,
+.car-info .round-link,
+.demo-banner button,
+.chip {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.car-category {
+  color: var(--accent);
+}
+.car-info h3,
+.car-price,
+.section-heading h2,
+.search-location b,
+.benefits h3,
+.conditions h1,
+.catalog-title h1,
+.booking-price,
+.quote-total {
+  color: var(--ink);
+}
+.field input,
+.field select,
+.field textarea,
+input,
+select,
+textarea {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.search-bar .field input {
+  color: var(--ink);
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline-color: var(--primary);
+  border-color: var(--primary);
+}
+input[type="checkbox"] {
+  accent-color: var(--primary);
+}
+.chip.active,
+.segmented button.selected {
+  background: var(--primary);
+  color: #fcffff;
+  border-color: var(--primary);
+}
+.segmented button,
+.admin-nav button {
+  color: var(--muted);
+}
+.eligibility-fields {
+  margin: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.eligibility-fields legend {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 0 5px;
+}
+.eligibility-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.eligibility-check input {
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.theme-toggle {
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  width: 38px;
+  height: 38px;
+}
+.theme-toggle:hover {
+  background: var(--wash);
+}
+.journey {
+  background: linear-gradient(
+    120deg,
+    #0a1430,
+    color-mix(in srgb, var(--primary) 35%, #0a1430)
+  );
+}
+.benefits article,
+.car-info,
+.quote > div,
+.table-wrap,
+td,
+th,
+.admin-sidebar,
+.profile-card,
+.checkbox-line {
+  border-color: var(--line);
+}
+[data-theme="dark"] .table-wrap,
+[data-theme="dark"] table,
+[data-theme="dark"] tbody tr,
+[data-theme="dark"] .admin-main,
+[data-theme="dark"] .admin-layout,
+[data-theme="dark"] .admin-content,
+[data-theme="dark"] .detail-specs,
+[data-theme="dark"] .detail-description,
+[data-theme="dark"] .stat-card {
+  background: var(--surface);
+  color: var(--ink);
+}
+[data-theme="dark"] th,
+[data-theme="dark"] tbody tr:hover {
+  background: var(--wash);
+  color: var(--ink);
+}
+[data-theme="dark"] .footer p,
+[data-theme="dark"] .footer a,
+[data-theme="dark"] .photo-field small,
+[data-theme="dark"] .conditions article p,
+[data-theme="dark"] .detail-description p,
+[data-theme="dark"] .admin-heading p {
+  color: var(--muted);
+}
+[data-theme="dark"] .error {
+  color: #ffb39e;
+  background: #411f32;
+}
+[data-theme="dark"] .hero-label {
+  background: #0a143099;
+  color: #fcffff;
+  border-color: #ffffff70;
+}
+[data-theme="dark"] .car-visual img[src$=".svg"],
+[data-theme="dark"] .detail-visual img[src$=".svg"] {
+  filter: brightness(1.2);
+}
+@media (max-width: 640px) {
+  .header-actions {
+    gap: 6px;
+  }
+  .header .account-link {
+    font-size: 0;
+    gap: 0;
+  }
+  .header .button.small {
+    padding: 10px 13px;
+  }
+  .brand {
+    font-size: 16px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 13vw, 55px);
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .header,
+  .modal,
+  .toast,
+  .car-card,
+  .search-bar {
+    background: var(--surface);
+    backdrop-filter: none;
+  }
+}
+/* Complete shared surfaces, including more specific category/state selectors. */
+.car-card.comfort .car-visual,
+.car-card.business .car-visual,
+.car-card.suv .car-visual,
+.detail-visual.comfort,
+.detail-visual.business,
+.detail-visual.suv,
+.spec-grid > div,
+.rental-status-note,
+.photo-upload {
+  background: var(--wash);
+  border-color: var(--line);
+  color: var(--ink);
+}
+.panel,
+.stats-grid article:nth-child(3),
+.section-heading > .text-link {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.segmented > button.selected {
+  background: var(--primary);
+  color: #fcffff;
+}
+.admin-content {
+  background: var(--page);
+}
+.admin-nav button.active {
+  color: var(--ink);
+}
+.field > span,
+.quote .quote-total > span {
+  color: var(--ink);
+}
+.panel-heading p,
+.panel > .fine-print,
+.fleet-stat > div,
+.event-line p,
+.event-line small,
+td > span,
+td small,
+.stats-grid article > div,
+.stats-grid article small,
+.rental-meta > span,
+.rental-footer > small,
+.quote > div > span,
+.checkbox-line small,
+.info-panel p,
+.spec-grid small,
+.car-bottom span,
+.empty p,
+.photo-field > small {
+  color: var(--muted);
+}
+.benefits > div,
+.car-bottom,
+.search-location,
+.event-line,
+.fleet-stat {
+  border-color: var(--line);
+}
+.field input:disabled {
+  background: var(--wash);
+  color: var(--muted);
+}

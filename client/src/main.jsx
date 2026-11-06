@@ -1,3 +1,6 @@
+import ThemeToggle from "./ThemeToggle";
+import EligibilityFields, { eligibilityForm } from "./EligibilityFields";
+import { canRent } from "../../shared/eligibility";
 import React, {
   createContext,
   useContext,
@@ -55,6 +58,7 @@ import {
 import { api, money, date, day, categories, statuses, roles } from "./api";
 import "./styles.css";
 import "./glass.css";
+import "./themes.css";
 import PhoneField from "./PhoneField";
 import { CarImage, PhotoField } from "./CarPhoto";
 const Context = createContext();
@@ -146,14 +150,17 @@ function AuthModal() {
     setBusy(true);
     setError(null);
     try {
-      const data = Object.fromEntries(new FormData(e.target));
+      const data =
+        mode === "register"
+          ? eligibilityForm(e.target)
+          : Object.fromEntries(new FormData(e.target));
       const result = await api(`/auth/${mode}`, { method: "POST", body: data });
       setUser(result.user);
       setAuth(null);
       notify(
         mode === "login"
           ? "С возвращением!"
-          : "Аккаунт создан. Можно выбрать автомобиль",
+          : "Аккаунт создан. Продолжите бронирование",
       );
     } catch (e) {
       setError(e);
@@ -163,7 +170,7 @@ function AuthModal() {
   }
   return (
     <Modal
-      title={mode === "login" ? "С возвращением" : "Ваш следующий маршрут"}
+      title={mode === "login" ? "С возвращением" : "Регистрация"}
       onClose={() => setAuth(null)}
     >
       <p className="muted">
@@ -205,6 +212,7 @@ function AuthModal() {
               placeholder="Александр Баев"
             />
             <PhoneField />
+            <EligibilityFields />
           </>
         )}
         <Field
@@ -236,9 +244,6 @@ function AuthModal() {
           <ArrowRight size={18} />
         </button>
       </form>
-      <p className="fine-print">
-        Ваши бронирования и данные профиля будут доступны в личном кабинете.
-      </p>
     </Modal>
   );
 }
@@ -268,6 +273,7 @@ function Header() {
           )}
         </nav>
         <div className="header-actions">
+          <ThemeToggle />
           <span className="location">
             <MapPin size={15} /> Вологда
           </span>
@@ -422,11 +428,7 @@ function Home() {
             <br />
             Ваш <em>маршрут.</em>
           </h1>
-          <p>
-            Автомобиль для дел, поездок за город
-            <br className="desktop-only" /> и спонтанных выходных. Просто
-            выбирайте маршрут.
-          </p>
+          <p>Авто для города и поездок за его пределы.</p>
           <Link className="button primary" to="/catalog">
             Найти свой автомобиль <ArrowUpRight size={20} />
           </Link>
@@ -515,28 +517,19 @@ function Home() {
           <span className="step-number">01</span>
           <ShieldCheck />
           <h3>Понятные условия</h3>
-          <p>
-            Стоимость аренды и залог видны до оформления. Никаких неожиданных
-            услуг.
-          </p>
+          <p>Стоимость и залог — до бронирования.</p>
         </div>
         <div>
           <span className="step-number">02</span>
           <Wrench />
           <h3>Авто под контролем</h3>
-          <p>
-            Учитываем пробег и историю обслуживания. На ремонт — до следующей
-            поездки.
-          </p>
+          <p>Проверяем авто перед выдачей.</p>
         </div>
         <div>
           <span className="step-number">03</span>
           <CalendarDays />
           <h3>Всё в одном месте</h3>
-          <p>
-            Выбирайте даты, отслеживайте заявку и смотрите историю в личном
-            кабинете.
-          </p>
+          <p>Заявки и история — в личном кабинете.</p>
         </div>
       </section>
       <section className="wrap journey">
@@ -756,7 +749,11 @@ function CarDetail() {
   }, [id, data, form.from, form.to, form.insurance, form.childSeat]);
   async function book(e) {
     e.preventDefault();
-    if (!user) return setAuth("login");
+    if (!user) return setAuth("register");
+    if (!canRent(user)) {
+      setError(new Error("Подтвердите условия аренды в личном кабинете"));
+      return;
+    }
     setBusy(true);
     try {
       const result = await api("/rentals", {
@@ -877,6 +874,11 @@ function CarDetail() {
             </div>
           ) : (
             <form className="form-stack" onSubmit={book}>
+              {user && !canRent(user) && (
+                <Link className="info-panel" to="/account">
+                  Подтвердите возраст, права и стаж в профиле →
+                </Link>
+              )}
               <div className="form-row">
                 <Field label="Начало">
                   <input
@@ -974,8 +976,7 @@ function CarDetail() {
                 <ArrowUpRight size={18} />
               </button>
               <p className="fine-print">
-                Без оплаты сейчас. Окончательное подтверждение — после проверки
-                менеджером.
+                Без предоплаты. Подтверждает менеджер.
               </p>
             </form>
           )}
@@ -1004,7 +1005,7 @@ function Account() {
     try {
       const r = await api("/profile", {
         method: "PATCH",
-        body: Object.fromEntries(new FormData(e.target)),
+        body: eligibilityForm(e.target),
       });
       setUser(r.user);
       notify("Профиль обновлён");
@@ -1148,6 +1149,7 @@ function Account() {
               required
             />
             <PhoneField defaultValue={user.phone} />
+            <EligibilityFields user={user} />
             <Field label="Email" value={user.email} disabled />
             <button className="button outline full" disabled={busy}>
               Сохранить изменения
@@ -1183,7 +1185,7 @@ function Conditions() {
     <main className="wrap page conditions">
       <div className="eyebrow">ПРОСТО И ПРОЗРАЧНО</div>
       <h1>
-        Условия хорошей поездки<span className="accent">.</span>
+        Условия аренды<span className="accent">.</span>
       </h1>
       <p className="lead">Что нужно знать перед бронированием.</p>
       <div className="conditions-grid">
@@ -1191,7 +1193,7 @@ function Conditions() {
           [
             "01",
             "Кто может арендовать",
-            "Водитель от 21 года со стажем от 2 лет. При получении понадобятся паспорт и действующее водительское удостоверение. Менеджер проверяет документы перед выдачей.",
+            "От 21 года, стаж от 1 года. При получении — паспорт и действующие права.",
           ],
           [
             "02",
@@ -1201,22 +1203,22 @@ function Conditions() {
           [
             "03",
             "Оплата и залог",
-            "Бронирование на сайте не списывает деньги. Аренда и возвратный залог оплачиваются при получении. Размер залога указан в карточке и не включён в стоимость аренды.",
+            "Оплата при получении. Возвратный залог указан отдельно в карточке.",
           ],
           [
             "04",
             "Получение и возврат",
-            "Получение и возврат — в Вологде. Конкретные место и время согласовываются с менеджером. Состояние, уровень топлива и пробег фиксируются при выдаче и возврате.",
+            "Вологда. Место и время согласуйте с менеджером.",
           ],
           [
             "05",
             "Изменение планов",
-            "Новую или подтверждённую заявку можно отменить в личном кабинете. Для изменения дат отмените заявку и создайте новую. Активную аренду закрывает сотрудник после возврата.",
+            "Отмена — в личном кабинете до выдачи авто. Для смены дат создайте новую заявку.",
           ],
           [
             "06",
             "Состояние автомобиля",
-            "Автомобили на обслуживании и с неисправностями недоступны для бронирования. Техническое состояние и история осмотров учитываются в системе.",
+            "Авто на обслуживании недоступны. Состояние фиксируется при выдаче и возврате.",
           ],
         ].map(([n, t, p]) => (
           <article key={n}>

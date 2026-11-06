@@ -40,6 +40,9 @@ assert.equal(await phone.inputValue(), "+7 (921)-555-44-33");
 await dialog.getByLabel("Имя и фамилия").fill("Тест Вологда");
 await dialog.getByLabel("Email", { exact: true }).fill("design@example.test");
 await dialog.getByLabel("Пароль", { exact: true }).fill("Testpass2026!");
+await dialog.getByLabel("Стаж вождения, лет").fill("1");
+await dialog.getByLabel("Мне исполнился 21 год").check();
+await dialog.getByLabel("У меня есть действующие водительские права").check();
 await dialog.getByRole("button", { name: "Создать аккаунт" }).click();
 await dialog.waitFor({ state: "hidden" });
 await page.evaluate(async () => {

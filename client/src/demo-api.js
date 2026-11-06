@@ -1,3 +1,4 @@
+import { eligibilitySchema, canRent } from "../../shared/eligibility.js";
 import { normalizeRussianPhone } from "../../shared/phone.js";
 // Local UI sandbox only. The server remains authoritative in normal mode.
 import { cars as seed } from "./demo-cars";
@@ -37,6 +38,9 @@ function initial() {
       name,
       role,
       phone: "+7 900 123-45-67",
+      ageConfirmed: true,
+      licenseConfirmed: true,
+      drivingExperience: 3,
       demo: true,
     })),
     cars: seed.map(
@@ -157,6 +161,7 @@ export async function demoApi(path, { method = "GET", body = {} } = {}) {
       )
         fail("Проверьте заполнение полей");
       user = {
+        ...eligibilitySchema.parse(body),
         id: uid(),
         name: body.name.trim(),
         phone: normalizeRussianPhone(body.phone),
@@ -186,6 +191,9 @@ export async function demoApi(path, { method = "GET", body = {} } = {}) {
     Object.assign(user, {
       name: body.name,
       phone: normalizeRussianPhone(body.phone),
+      ...(body.drivingExperience !== undefined
+        ? eligibilitySchema.parse(body)
+        : {}),
     });
     save();
     return { user: publicUser(user) };
@@ -250,6 +258,8 @@ export async function demoApi(path, { method = "GET", body = {} } = {}) {
         !busy(car._id, body.from, body.to);
     if (p === "/quote") return { quote, available };
     requireUser();
+    if (!canRent(user))
+      fail("Подтвердите возраст, права и стаж от 1 года в профиле", 403);
     if (!available) fail("Автомобиль недоступен на эти даты", 409);
     const rental = {
       _id: uid(),

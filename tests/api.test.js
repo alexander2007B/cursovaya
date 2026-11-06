@@ -35,6 +35,9 @@ async function actor(email, role) {
     name: "Тестовый пользователь",
     email,
     phone: "+79001234567",
+    ageConfirmed: true,
+    licenseConfirmed: true,
+    drivingExperience: 3,
     role,
     passwordHash: await bcrypt.hash("Testpass2026!", 4),
   });
@@ -86,6 +89,9 @@ test("Регистрация: пароль хешируется, роль наз
       name: "Новый клиент",
       email: "NEW@test.ru",
       phone: "+79001112233",
+      ageConfirmed: true,
+      licenseConfirmed: true,
+      drivingExperience: 3,
       password: "Testpass2026!",
     });
   assert.equal(r.status, 201);
@@ -102,6 +108,9 @@ test("Самостоятельное назначение роли админи�
     name: "Атакующий",
     email: "role@test.ru",
     phone: "+79001112233",
+    ageConfirmed: true,
+    licenseConfirmed: true,
+    drivingExperience: 3,
     password: "Testpass2026!",
     role: "admin",
   });
@@ -115,6 +124,9 @@ test("Повторный email и неверный пароль отклоняю
         name: "Клиент",
         email: "client@test.ru",
         phone: "+79001112233",
+        ageConfirmed: true,
+        licenseConfirmed: true,
+        drivingExperience: 3,
         password: "Testpass2026!",
       })
     ).status,
@@ -409,6 +421,9 @@ test("Пароль длиннее 72 байт отклоняется до хеш
       name: "Проверка пароля",
       email: "unicode@test.ru",
       phone: "+79001234567",
+      ageConfirmed: true,
+      licenseConfirmed: true,
+      drivingExperience: 3,
       password: "Я".repeat(40),
     });
   assert.equal(r.status, 400);
@@ -476,4 +491,61 @@ test("Фото: доступ только администратору, пров
   } finally {
     await (await import("node:fs/promises")).unlink("." + r.body.image);
   }
+});
+
+test("Регистрация требует возраст, права и полный год стажа", async () => {
+  const agent = request.agent(app);
+  const session = await agent.get("/api/auth/session");
+  const valid = {
+    name: "Проверка условий",
+    email: "eligibility@test.ru",
+    phone: "+79001234567",
+    password: "Testpass2026!",
+    ageConfirmed: true,
+    licenseConfirmed: true,
+    drivingExperience: 1,
+  };
+  for (const invalid of [
+    { ageConfirmed: false },
+    { licenseConfirmed: false },
+    { drivingExperience: 0 },
+    { drivingExperience: 0.5 },
+    { ageConfirmed: "true" },
+    { drivingExperience: undefined },
+  ]) {
+    const r = await agent
+      .post("/api/auth/register")
+      .set("X-CSRF-Token", session.body.csrfToken)
+      .send({ ...valid, ...invalid });
+    assert.equal(r.status, 400);
+  }
+  const r = await agent
+    .post("/api/auth/register")
+    .set("X-CSRF-Token", session.body.csrfToken)
+    .send(valid);
+  assert.equal(r.status, 201);
+  assert.equal(r.body.user.drivingExperience, 1);
+  assert.equal(r.body.user.licenseConfirmed, true);
+});
+test("Старый профиль не бронирует до подтверждения условий", async () => {
+  await User.updateOne(
+    { email: "other@test.ru" },
+    {
+      $unset: { drivingExperience: 1 },
+      $set: { ageConfirmed: false, licenseConfirmed: false },
+    },
+  );
+  const r = await mutation(other, "post", "/api/rentals", {});
+  assert.equal(r.status, 403);
+  const profile = await mutation(other, "patch", "/api/profile", {
+    name: "Старый клиент",
+    phone: "+79001234567",
+    ageConfirmed: true,
+    licenseConfirmed: true,
+    drivingExperience: 1,
+  });
+  assert.equal(profile.status, 200);
+  assert.equal(profile.body.user.drivingExperience, 1);
+  const next = await mutation(other, "post", "/api/rentals", {});
+  assert.equal(next.status, 400); // passes eligibility and reaches booking payload validation
 });

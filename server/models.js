@@ -5,6 +5,9 @@ const userSchema = new Schema(
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     phone: { type: String, required: true },
+    ageConfirmed: { type: Boolean, default: false },
+    licenseConfirmed: { type: Boolean, default: false },
+    drivingExperience: { type: Number, min: 1, max: 80 },
     passwordHash: { type: String, required: true, select: false },
     role: {
       type: String,
@@ -109,5 +112,8 @@ export const publicUser = (u) => ({
   name: u.name,
   email: u.email,
   phone: u.phone,
+  ageConfirmed: u.ageConfirmed,
+  licenseConfirmed: u.licenseConfirmed,
+  drivingExperience: u.drivingExperience,
   role: u.role,
 });
