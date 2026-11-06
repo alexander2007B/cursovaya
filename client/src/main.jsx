@@ -1,4 +1,5 @@
-import RouteSculpture from "./RouteSculpture";
+import RentalHome from "./RentalHome";
+import useFavorites from "./useFavorites";
 import Brand from "./Brand";
 import ThemeToggle from "./ThemeToggle";
 import EligibilityFields, { eligibilityForm } from "./EligibilityFields";
@@ -23,6 +24,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import {
+  Heart,
   Sparkles,
   ArrowUpRight,
   ArrowRight,
@@ -64,6 +66,7 @@ import "./glass.css";
 import "./themes.css";
 import "./norde.css";
 import "./motion-edition.css";
+import "./rental-edition.css";
 import PhoneField from "./PhoneField";
 import { CarImage, PhotoField } from "./CarPhoto";
 const Context = createContext();
@@ -253,12 +256,22 @@ function AuthModal() {
   );
 }
 function Header() {
-  const { user, setAuth, logout } = useApp();
-  const [open, setOpen] = useState(false);
+  const { user, setAuth, logout, favorites } = useApp();
+  const [open, setOpen] = useState(false),
+    [searchOpen, setSearchOpen] = useState(false),
+    [cityOpen, setCityOpen] = useState(false),
+    [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const scroll = () => setScrolled(window.scrollY > 40);
+    scroll();
+    addEventListener("scroll", scroll, { passive: true });
+    return () => removeEventListener("scroll", scroll);
+  }, []);
   const location = useLocation();
   useEffect(() => setOpen(false), [location]);
   return (
-    <header className="header">
+    <header className={scrolled ? "header is-scrolled" : "header"}>
       <div className="header-inner">
         <Link className="brand" to="/">
           <Brand />
@@ -278,10 +291,35 @@ function Header() {
           )}
         </nav>
         <div className="header-actions">
+          {!location.pathname.startsWith("/admin") && (
+            <>
+              <button
+                className="icon-button header-search"
+                aria-label="Найти автомобиль"
+                onClick={() => setSearchOpen(true)}
+              >
+                <Search size={19} />
+              </button>
+              <Link
+                className="icon-button header-favorites"
+                to="/catalog?favorites=1"
+                aria-label={`Избранное: ${favorites.length}`}
+              >
+                <Heart size={19} />
+                {favorites.length > 0 && <span>{favorites.length}</span>}
+              </Link>
+            </>
+          )}
           <ThemeToggle />
-          <span className="location">
-            <MapPin size={15} /> Вологда
-          </span>
+          <button
+            type="button"
+            className="location header-city"
+            aria-label="Место получения: Вологда"
+            onClick={() => setCityOpen(true)}
+          >
+            <MapPin size={15} />
+            Вологда
+          </button>
           {user ? (
             <>
               <Link className="account-link" to="/account">
@@ -314,6 +352,62 @@ function Header() {
           </button>
         </div>
       </div>
+      {searchOpen && (
+        <Modal title="Какую машину ищем?" onClose={() => setSearchOpen(false)}>
+          <form
+            className="form-stack"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const value = new FormData(e.currentTarget).get("search").trim();
+              setSearchOpen(false);
+              navigate("/catalog?" + new URLSearchParams({ search: value }));
+            }}
+          >
+            <Field
+              label="Марка или модель"
+              name="search"
+              placeholder="Например, BMW или Mercedes"
+              autoFocus
+              maxLength={80}
+            />
+            <button className="button primary" type="submit">
+              Найти автомобиль <Search size={18} />
+            </button>
+          </form>
+          <div className="quick-search-links">
+            {["BMW", "Mercedes-Benz", "Ford"].map((brand) => (
+              <button
+                key={brand}
+                type="button"
+                onClick={() => {
+                  setSearchOpen(false);
+                  navigate(
+                    "/catalog?" + new URLSearchParams({ search: brand }),
+                  );
+                }}
+              >
+                {brand}
+                <ArrowUpRight size={14} />
+              </button>
+            ))}
+          </div>
+        </Modal>
+      )}
+      {cityOpen && (
+        <Modal title="Получение в Вологде" onClose={() => setCityOpen(false)}>
+          <p className="muted">
+            Место и время выдачи согласует менеджер после подтверждения заявки.
+            Возврат — в Вологде.
+          </p>
+          <Link
+            className="button primary"
+            to="/conditions"
+            onClick={() => setCityOpen(false)}
+          >
+            Условия получения <ArrowUpRight size={18} />
+          </Link>
+        </Modal>
+      )}
     </header>
   );
 }
@@ -325,7 +419,7 @@ function Footer() {
           <Link className="brand" to="/" aria-label="NORDÉ — главная">
             <Brand />
           </Link>
-          <p>Вологда. Дальше — куда захотите.</p>
+          <p>Прокат автомобилей в Вологде.</p>
         </div>
         <div className="norde-footer-bottom">
           <nav aria-label="Ссылки в подвале">
@@ -339,16 +433,37 @@ function Footer() {
     </footer>
   );
 }
-function CarCard({ car }) {
+function FavoriteButton({ car }) {
+  const { favorites, toggleFavorite } = useApp();
+  const saved = favorites.includes(car._id);
+  return (
+    <button
+      type="button"
+      className={saved ? "favorite-toggle saved" : "favorite-toggle"}
+      aria-label={`${saved ? "Убрать из избранного" : "Добавить в избранное"} ${car.brand} ${car.model}`}
+      aria-pressed={saved}
+      onClick={() => toggleFavorite(car._id)}
+    >
+      <Heart size={19} fill={saved ? "currentColor" : "none"} />
+    </button>
+  );
+}
+function CarCard({ car, dateQuery }) {
   const [params] = useSearchParams();
   const target =
     `/cars/${car._id}` +
-    (params.get("from") && params.get("to")
-      ? "?" +
-        new URLSearchParams({ from: params.get("from"), to: params.get("to") })
-      : "");
+    (dateQuery
+      ? "?" + dateQuery
+      : params.get("from") && params.get("to")
+        ? "?" +
+          new URLSearchParams({
+            from: params.get("from"),
+            to: params.get("to"),
+          })
+        : "");
   return (
-    <article className={`car-card ${car.category}`}>
+    <article className={`car-card ${car.category}`} data-car-id={car._id}>
+      <FavoriteButton car={car} />
       <Link className="car-visual" to={target}>
         <span className="car-category">{categories[car.category]}</span>
         <span className="car-year">{car.year}</span>
@@ -402,182 +517,18 @@ function CarCard({ car }) {
   );
 }
 function Home() {
-  const [cars, setCars] = useState([]);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  useEffect(() => {
-    api("/cars")
-      .then((r) =>
-        setCars(r.cars.filter((c) => c.status === "available").slice(0, 3)),
-      )
-      .catch(setError);
-  }, []);
-  function search(e) {
-    e.preventDefault();
-    navigate(
-      "/catalog?" +
-        new URLSearchParams(Object.fromEntries(new FormData(e.target))),
-    );
-  }
-  return (
-    <main className="norde-home">
-      <section className="motion-hero wrap" aria-labelledby="home-title">
-        <div className="motion-copy">
-          <div className="motion-location">
-            <span /> ВОЛОГДА <span className="motion-location-line" /> АРЕНДА
-            АВТО
-          </div>
-          <h1 id="home-title">
-            Больше
-            <br />
-            <span>свободы.</span>
-          </h1>
-          <p>
-            Город, работа или выходные за городом.
-            <br />
-            Автомобиль под ваши планы.
-          </p>
-          <div className="motion-actions">
-            <Link className="button primary" to="/catalog">
-              Выбрать автомобиль <ArrowUpRight size={20} />
-            </Link>
-            <a
-              className="motion-scroll"
-              href="#fleet"
-              aria-label="Перейти к автопарку"
-            >
-              <ArrowRight size={22} />
-            </a>
-          </div>
-          <div className="motion-proof">
-            <span>01—</span>
-            <span>
-              Без предоплаты на сайте.
-              <br />
-              <b>Просто выберите свой маршрут.</b>
-            </span>
-          </div>
-        </div>
-        <RouteSculpture />
-      </section>
-      <section
-        className="norde-booking wrap"
-        aria-label="Подобрать автомобиль по датам"
-      >
-        <div className="norde-booking-caption">
-          <span>01 / ВАША ПОЕЗДКА</span>
-          <span>От 2 400 ₽ в сутки</span>
-        </div>
-        <form className="search-bar" onSubmit={search}>
-          <div className="search-location">
-            <MapPin size={20} />
-            <div>
-              <small>Город получения</small>
-              <b>Вологда</b>
-            </div>
-          </div>
-          <Field label="Начало аренды">
-            <input
-              aria-label="Начало аренды"
-              name="from"
-              type="date"
-              min={day()}
-              defaultValue={day()}
-              required
-            />
-          </Field>
-          <Field label="Возврат">
-            <input
-              aria-label="Возврат"
-              name="to"
-              type="date"
-              min={day(1)}
-              defaultValue={day(3)}
-              required
-            />
-          </Field>
-          <button className="button primary" type="submit">
-            Найти автомобиль <ArrowUpRight size={20} />
-          </button>
-        </form>
-      </section>
-      <section
-        className="wrap motion-scenarios"
-        aria-label="Автомобиль под ваши планы"
-      >
-        <span>КУДА ОТПРАВИМСЯ?</span>
-        <Link to="/catalog?category=economy">
-          <CarFront size={20} />
-          <span>По городу</span>
-          <ArrowUpRight size={16} />
-        </Link>
-        <Link to="/catalog?category=suv">
-          <MapPin size={20} />
-          <span>За город</span>
-          <ArrowUpRight size={16} />
-        </Link>
-        <Link to="/catalog?category=business">
-          <Sparkles size={20} />
-          <span>Особый случай</span>
-          <ArrowUpRight size={16} />
-        </Link>
-      </section>
-      <section id="fleet" className="wrap section norde-fleet">
-        <div className="section-heading">
-          <div>
-            <div className="norde-kicker">02 / КОЛЛЕКЦИЯ</div>
-            <h2>
-              Ваш следующий{" "}
-              <span className="motion-heading-accent">автомобиль.</span>
-            </h2>
-          </div>
-          <Link className="text-link" to="/catalog">
-            Все автомобили <ArrowUpRight size={19} />
-          </Link>
-        </div>
-        <ErrorMessage error={error} />
-        <div className="car-grid">
-          {cars.map((c) => (
-            <CarCard key={c._id} car={c} />
-          ))}
-        </div>
-      </section>
-      <section className="wrap norde-principles" aria-label="Условия аренды">
-        {[
-          ["01", "Прозрачно", "Стоимость и залог видны до бронирования."],
-          ["02", "Просто", "От 21 года. Права и стаж от 1 года."],
-          ["03", "Под контролем", "Ваши заявки — в личном кабинете."],
-        ].map(([n, t, p]) => (
-          <article key={n}>
-            <span>{n}</span>
-            <h3>{t}</h3>
-            <p>{p}</p>
-          </article>
-        ))}
-      </section>
-      <section className="wrap norde-invitation">
-        <div>
-          <div className="norde-kicker">
-            МЕНЬШЕ ФОРМАЛЬНОСТЕЙ. БОЛЬШЕ ДОРОГ.
-          </div>
-          <h2>
-            Планы меняются.
-            <br />
-            <em>Свобода остаётся.</em>
-          </h2>
-        </div>
-        <Link className="button outline" to="/conditions">
-          Условия аренды <ArrowUpRight size={20} />
-        </Link>
-      </section>
-    </main>
-  );
+  return <RentalHome CarCard={CarCard} FavoriteButton={FavoriteButton} />;
 }
 function Catalog() {
   const [params, setParams] = useSearchParams();
   const [cars, setCars] = useState([]),
     [loading, setLoading] = useState(true),
     [error, setError] = useState(null);
+  const { favorites } = useApp();
+  const favoritesOnly = params.get("favorites") === "1";
+  const listedCars = favoritesOnly
+    ? cars.filter((c) => favorites.includes(c._id))
+    : cars;
   const key = params.toString();
   useEffect(() => {
     let live = true;
@@ -609,7 +560,7 @@ function Catalog() {
     <main className="wrap page">
       <div className="eyebrow">ВАШ СЛЕДУЮЩИЙ АВТОМОБИЛЬ</div>
       <div className="page-heading">
-        <h1>Автомобили.</h1>
+        <h1>{favoritesOnly ? "Избранное." : "Автомобили."}</h1>
         <p>Выберите свой маршрут — и автомобиль к нему.</p>
       </div>
       <form key={key} className="catalog-filters" onSubmit={filter}>
@@ -677,22 +628,28 @@ function Catalog() {
       ) : (
         <>
           <div className="results-caption">
-            Найдено автомобилей: {cars.length}
+            Найдено автомобилей: {listedCars.length}
             {(params.get("from") || params.get("search")) && (
               <button className="text-link" onClick={() => setParams({})}>
                 Сбросить фильтры <X size={14} />
               </button>
             )}
           </div>
-          {cars.length ? (
+          {listedCars.length ? (
             <div className="car-grid">
-              {cars.map((c) => (
+              {listedCars.map((c) => (
                 <CarCard key={c._id} car={c} />
               ))}
             </div>
           ) : (
-            <Empty title="Пока без совпадений">
-              Попробуйте другие даты или сбросьте фильтры.
+            <Empty
+              title={
+                favoritesOnly ? "В избранном пока пусто" : "Пока без совпадений"
+              }
+            >
+              {favoritesOnly
+                ? "Нажмите на сердечко возле машины — она появится здесь."
+                : "Попробуйте другие даты или сбросьте фильтры."}
             </Empty>
           )}
         </>
@@ -709,7 +666,8 @@ function CarDetail() {
     [error, setError] = useState(null),
     [quote, setQuote] = useState(null),
     [busy, setBusy] = useState(false),
-    [done, setDone] = useState(null);
+    [done, setDone] = useState(null),
+    [photoIndex, setPhotoIndex] = useState(0);
   const [form, setForm] = useState({
     from: params.get("from") || day(),
     to: params.get("to") || day(3),
@@ -780,6 +738,9 @@ function CarDetail() {
       </main>
     );
   const car = data.car;
+  const photos = [car.image, ...(car.gallery || [])].filter(
+    (v, i, a) => v && a.indexOf(v) === i,
+  );
   return (
     <main className="wrap page">
       <Link className="back-link" to="/catalog">
@@ -789,13 +750,32 @@ function CarDetail() {
         <div>
           <div className={`detail-visual ${car.category}`}>
             <span className="car-category">{categories[car.category]}</span>
-            <CarImage src={car.image} alt={`${car.brand} ${car.model}`} />
+            <CarImage
+              src={photos[photoIndex % photos.length]}
+              alt={`${car.brand} ${car.model} — фото ${photoIndex + 1}`}
+            />
+            <FavoriteButton car={car} />
             <span className="illustration-note">
               {car.image?.endsWith(".svg")
                 ? "Иллюстрация класса автомобиля"
                 : "Фотография автомобиля"}
             </span>
           </div>
+          {photos.length > 1 && (
+            <div className="car-gallery" aria-label="Фотографии автомобиля">
+              {photos.map((src, index) => (
+                <button
+                  type="button"
+                  key={src}
+                  aria-label={`Показать фото ${index + 1}`}
+                  aria-pressed={index === photoIndex}
+                  onClick={() => setPhotoIndex(index)}
+                >
+                  <CarImage src={src} alt="" />
+                </button>
+              ))}
+            </div>
+          )}
           <div className="detail-title">
             <div>
               <div className="eyebrow">
@@ -2221,6 +2201,7 @@ function Admin() {
   );
 }
 function App() {
+  const { favorites, toggleFavorite } = useFavorites();
   const [user, setUser] = useState(null),
     [ready, setReady] = useState(false),
     [auth, setAuth] = useState(null),
@@ -2254,7 +2235,16 @@ function App() {
   }
   return (
     <Context.Provider
-      value={{ user, setUser, auth, setAuth, notify: setToast, logout }}
+      value={{
+        user,
+        setUser,
+        auth,
+        setAuth,
+        notify: setToast,
+        logout,
+        favorites,
+        toggleFavorite,
+      }}
     >
       <div
         className={

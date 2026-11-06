@@ -46,6 +46,7 @@ export const categories = {
   economy: "Эконом",
   comfort: "Комфорт",
   business: "Бизнес",
+  premium: "Премиум",
   suv: "Кроссоверы",
 };
 export const statuses = {

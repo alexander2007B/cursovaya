@@ -23,7 +23,10 @@ const carSchema = new Schema(
     model: String,
     year: Number,
     plate: { type: String, unique: true },
-    category: { type: String, enum: ["economy", "comfort", "business", "suv"] },
+    category: {
+      type: String,
+      enum: ["economy", "comfort", "business", "premium", "suv"],
+    },
     dailyRate: Number,
     deposit: Number,
     mileage: Number,
@@ -31,6 +34,7 @@ const carSchema = new Schema(
     transmission: { type: String, enum: ["Автомат", "Механика"] },
     fuel: String,
     image: String,
+    gallery: [String],
     description: String,
     status: {
       type: String,

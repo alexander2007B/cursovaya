@@ -43,41 +43,7 @@ function initial() {
       drivingExperience: 3,
       demo: true,
     })),
-    cars: seed.map(
-      ([
-        brand,
-        model,
-        year,
-        plate,
-        category,
-        dailyRate,
-        deposit,
-        mileage,
-        seats,
-        transmission,
-        fuel,
-        image,
-        description,
-        status,
-      ]) => ({
-        _id: uid(),
-        brand,
-        model,
-        year,
-        plate,
-        category,
-        dailyRate,
-        deposit,
-        mileage,
-        seats,
-        transmission,
-        fuel,
-        image: `/images/${image}.svg`,
-        description,
-        status,
-        archived: false,
-      }),
-    ),
+    cars: seed.map((car) => ({ ...car, _id: uid(), archived: false })),
     rentals: [],
     records: [],
     events: [],
@@ -90,6 +56,12 @@ export function resetDemo() {
 }
 export async function demoApi(path, { method = "GET", body = {} } = {}) {
   const db = JSON.parse(localStorage.getItem(KEY) || "null") || initial();
+  if (!db.fleetEdition) {
+    for (const car of seed)
+      if (!db.cars.some((existing) => existing.plate === car.plate))
+        db.cars.push({ ...car, _id: uid(), archived: false });
+    db.fleetEdition = "business-2026";
+  }
   localStorage.setItem(KEY, JSON.stringify(db));
   const url = new URL(path, "http://demo"),
     p = url.pathname,

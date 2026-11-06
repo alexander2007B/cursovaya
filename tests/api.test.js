@@ -549,3 +549,40 @@ test("Старый профиль не бронирует до подтверж�
   const next = await mutation(other, "post", "/api/rentals", {});
   assert.equal(next.status, 400); // passes eligibility and reaches booking payload validation
 });
+
+test("Премиум: сохраняется, фильтруется по классу и доступен по датам", async () => {
+  const premium = await mutation(admin, "post", "/api/admin/cars", {
+    ...carData,
+    brand: "BMW",
+    model: "M4 Competition",
+    plate: "ПРЕМИУМ035",
+    category: "premium",
+    image: "/images/m4.jpg",
+  });
+  assert.equal(premium.status, 201);
+  const carId = premium.body.car._id;
+  try {
+    const list = await client.agent
+      .get("/api/cars")
+      .query({ category: "premium", from: today(), to: tomorrow() });
+    assert.equal(list.status, 200);
+    assert.ok(
+      list.body.cars.some(
+        (c) =>
+          c._id === carId &&
+          c.category === "premium" &&
+          c.image === "/images/m4.jpg",
+      ),
+    );
+    await mutation(admin, "patch", `/api/admin/cars/${carId}`, {
+      status: "maintenance",
+    });
+    const busy = await client.agent
+      .get("/api/cars")
+      .query({ category: "premium", from: today(), to: tomorrow() });
+    assert.equal(busy.status, 200);
+    assert.ok(!busy.body.cars.some((c) => c._id === carId));
+  } finally {
+    await Car.deleteOne({ _id: carId });
+  }
+});

@@ -68,7 +68,7 @@ const carInput = z
       .min(5)
       .max(15)
       .transform((s) => s.toUpperCase()),
-    category: z.enum(["economy", "comfort", "business", "suv"]),
+    category: z.enum(["economy", "comfort", "business", "premium", "suv"]),
     dailyRate: z.number().int().min(500).max(100000),
     deposit: z.number().int().min(0).max(500000),
     mileage: z.number().int().min(0).max(2000000),
@@ -259,7 +259,7 @@ export function createApp({ mongoUri, secret, production = false }) {
     const query = z
       .object({
         category: z
-          .enum(["all", "economy", "comfort", "business", "suv"])
+          .enum(["all", "economy", "comfort", "business", "premium", "suv"])
           .default("all"),
         search: z.string().max(80).default(""),
         sort: z.enum(["price", "price-desc", "year"]).default("price"),

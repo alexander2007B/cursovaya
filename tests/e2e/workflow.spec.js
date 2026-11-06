@@ -66,7 +66,7 @@ test("Каталог: фильтрация, поиск без результат
     page.getByRole("heading", { name: "Пока без совпадений" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Сбросить фильтры" }).click();
-  await expect(page.locator(".car-card")).toHaveCount(8);
+  await expect(page.locator(".car-card")).toHaveCount(12);
 });
 test("Администратор создаёт авто, редактирует и архивирует", async ({
   page,
