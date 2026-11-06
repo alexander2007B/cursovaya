@@ -1,0 +1,785 @@
+/* Motion edition: original road sculpture, expressive type and functional trip shortcuts. */
+.client-site {
+  --wash: #f0f5f8;
+  --ink: #15252d;
+  --line: #dce6ec;
+}
+[data-theme="dark"] .client-site {
+  --page: #0a1430;
+  --surface: #101f3c;
+  --wash: #142645;
+  --ink: #eff6fc;
+  --line: #293d59;
+  --muted: #a9bbd1;
+}
+.client-site .header {
+  border-bottom: 0;
+  height: 86px;
+}
+.client-site .header-inner {
+  max-width: 1440px;
+  padding: 0 56px;
+}
+.client-site .header .button.small {
+  border-radius: 50px;
+  padding: 12px 21px;
+}
+.client-site .header .nav a.active:after {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  left: calc(50% - 2px);
+  bottom: 15px;
+  background: var(--primary);
+}
+.client-site .wrap {
+  padding-left: 56px;
+  padding-right: 56px;
+}
+.client-site .button {
+  border-radius: 13px;
+  padding: 17px 24px;
+}
+.client-site .button.primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fcffff;
+}
+.client-site .button.primary:hover {
+  background: color-mix(in srgb, var(--primary) 82%, #0a1430);
+  border-color: transparent;
+}
+.client-site .button.outline {
+  border-radius: 50px;
+}
+.client-site .motion-hero {
+  display: grid;
+  grid-template-columns: 1.06fr 1fr;
+  gap: 45px;
+  align-items: center;
+  padding-top: 36px;
+  padding-bottom: 40px;
+  min-height: 570px;
+}
+.motion-copy {
+  padding: 20px 0 25px;
+  min-width: 0;
+}
+.motion-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+  color: var(--muted);
+}
+.motion-location > span:first-child {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.motion-location-line {
+  width: 20px;
+  height: 1px;
+  background: var(--line);
+}
+.client-site .motion-copy h1 {
+  font-size: clamp(64px, 7.4vw, 110px);
+  line-height: 0.99;
+  letter-spacing: -0.075em;
+  font-weight: 600;
+  margin: 32px 0 25px;
+}
+.motion-copy h1 > span {
+  color: var(--primary);
+}
+.motion-copy > p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0 0 30px;
+}
+.motion-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.motion-actions .button {
+  gap: 30px;
+}
+.motion-scroll {
+  width: 53px;
+  height: 53px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+}
+.motion-scroll svg {
+  transform: rotate(90deg);
+}
+.motion-scroll:hover {
+  background: var(--wash);
+}
+.motion-proof {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-top: 35px;
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.motion-proof > span:first-child {
+  font-size: 14px;
+  color: var(--accent);
+}
+.motion-proof b {
+  font-weight: 500;
+  color: var(--ink);
+}
+.route-sculpture {
+  position: relative;
+  aspect-ratio: 1.05;
+  border-radius: 30px;
+  background: #102440;
+  overflow: hidden;
+  isolation: isolate;
+  color: #cbe2f4;
+  border: 1px solid #204766;
+}
+.route-sculpture:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(#6db1e909 1px, transparent 1px),
+    linear-gradient(90deg, #6db1e909 1px, transparent 1px);
+  background-size: 32px 32px;
+  z-index: -1;
+}
+.route-sculpture:after {
+  content: "N";
+  position: absolute;
+  right: -35px;
+  bottom: -100px;
+  font-size: 440px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -30px;
+  color: #30598518;
+  z-index: -1;
+}
+.route-object {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.route-sculpture:hover .route-object {
+  transform: translateY(-5px) rotate(2deg);
+}
+.sculpture-coordinate {
+  position: absolute;
+  top: 26px;
+  left: 28px;
+  letter-spacing: 1.4px;
+  font-size: 9px;
+  color: #95adc5;
+}
+.sculpture-compass {
+  position: absolute;
+  right: 26px;
+  top: 20px;
+  font-size: 24px;
+  color: #91b1ce;
+}
+.sculpture-tag {
+  position: absolute;
+  left: 25px;
+  bottom: 53px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 14px;
+  border: 1px solid #59789670;
+  padding: 15px;
+  background: #132b48e8;
+  box-shadow: 0 10px 30px #00102030;
+  font-size: 8px;
+  letter-spacing: 1px;
+  line-height: 1.8;
+  backdrop-filter: blur(14px);
+}
+.sculpture-tag b {
+  font-size: 12px;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: #edf9ff;
+}
+.sculpture-tag-dot {
+  width: 7px;
+  height: 7px;
+  background: #fc734d;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px #fc734d17;
+}
+.sculpture-tag-arrow {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  margin-left: 20px;
+}
+.sculpture-caption {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 7px;
+  letter-spacing: 1.3px;
+  color: #95adc5;
+}
+.client-site .norde-booking {
+  padding-top: 6px;
+}
+.client-site .norde-booking-caption {
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.client-site .search-bar {
+  border-radius: 18px;
+  background: var(--wash);
+  padding: 23px 25px;
+  border-color: transparent;
+  gap: 24px;
+}
+.client-site .search-bar .button {
+  border-radius: 12px;
+}
+.client-site .search-location {
+  border-color: var(--line);
+}
+.client-site .motion-scenarios {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 24px;
+  padding-bottom: 16px;
+}
+.motion-scenarios > span {
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-right: auto;
+}
+.motion-scenarios > a {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border: 1px solid var(--line);
+  border-radius: 50px;
+  padding: 13px 18px;
+  font-size: 11px;
+  color: var(--ink);
+  transition: background 0.2s;
+}
+.motion-scenarios > a:hover {
+  background: var(--wash);
+}
+.motion-scenarios > a > svg:first-child {
+  color: var(--primary);
+}
+.motion-scenarios > a:nth-of-type(2) > svg:first-child {
+  color: var(--accent);
+}
+.motion-scenarios > a > svg:last-child {
+  margin-left: 15px;
+  color: var(--muted);
+}
+.client-site .norde-fleet {
+  padding-top: 65px;
+}
+.client-site .section-heading h2 {
+  font-size: 44px;
+  line-height: 1.15;
+  font-weight: 500;
+  max-width: 550px;
+  letter-spacing: -2px;
+}
+.motion-heading-accent {
+  color: var(--muted);
+}
+.client-site .section-heading .norde-kicker {
+  font-size: 8px;
+  color: var(--primary);
+}
+.client-site .section-heading > .text-link {
+  border: 1px solid var(--line);
+  border-radius: 50px;
+  padding: 12px 18px;
+  gap: 16px;
+  font-size: 10px;
+}
+.client-site .car-grid {
+  gap: 22px;
+}
+.client-site .car-card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface);
+}
+.client-site .car-card .car-visual {
+  height: 230px;
+  background: var(--wash);
+}
+.client-site .car-visual img[src$=".svg"] {
+  filter: grayscale(0.85);
+  padding: 35px 18px 8px;
+  opacity: 1;
+  transition: transform 0.3s;
+}
+.client-site .car-card:hover .car-visual img {
+  transform: scale(1.035);
+}
+.client-site .car-category {
+  font-size: 8px;
+  padding: 7px 10px;
+  top: 17px;
+  left: 17px;
+  border-radius: 50px;
+  background: var(--surface);
+  letter-spacing: 0;
+}
+.client-site .car-year {
+  top: 24px;
+  right: 20px;
+  font-size: 9px;
+}
+.client-site .car-info {
+  padding: 24px;
+}
+.client-site .car-title h3 {
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+}
+.client-site .car-bottom {
+  margin-top: 20px;
+  padding-top: 18px;
+}
+.client-site .round-link {
+  background: var(--wash);
+  border: 0;
+  color: var(--primary);
+}
+.client-site .car-bottom strong {
+  font-weight: 600;
+  font-size: 24px;
+}
+.client-site .norde-principles {
+  padding-top: 46px;
+  padding-bottom: 54px;
+  gap: 24px;
+}
+.norde-principles article {
+  background: var(--wash);
+  border: 0;
+  border-radius: 18px;
+  padding: 26px;
+}
+.norde-principles article > span {
+  top: 27px;
+  right: 25px;
+  color: var(--accent);
+}
+.norde-principles h3 {
+  font-weight: 600;
+  font-size: 19px;
+}
+.norde-principles p {
+  font-size: 11px;
+}
+.client-site .norde-invitation {
+  border: 0;
+  position: relative;
+  padding-top: 42px;
+  padding-bottom: 65px;
+}
+.norde-invitation h2 {
+  font-weight: 500;
+  font-size: 46px;
+  margin-top: 19px;
+}
+.norde-invitation .norde-kicker {
+  font-size: 8px;
+  letter-spacing: 1.2px;
+}
+.client-site footer.norde-footer {
+  background: var(--page);
+  border-color: var(--line);
+}
+.norde-footer-top {
+  padding-top: 37px;
+  padding-bottom: 32px;
+}
+.norde-footer-bottom {
+  padding: 22px 0;
+}
+.client-site .catalog-filters,
+.client-site .booking-panel,
+.client-site .profile-card,
+.client-site .conditions-grid article,
+.client-site .rental-card {
+  border-radius: 18px;
+}
+.client-site .catalog-filters {
+  background: var(--wash);
+  border: 0;
+}
+.client-site .chip {
+  border-radius: 50px;
+}
+.client-site .chip.selected {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fcffff;
+}
+.client-site .search-input,
+.client-site .field input,
+.client-site .field select,
+.client-site .field textarea,
+.client-site .catalog-toolbar > select {
+  border-radius: 9px;
+}
+.client-site .modal {
+  border-radius: 22px;
+}
+.client-site .detail-visual {
+  border-radius: 22px;
+}
+.client-site .page-heading h1 {
+  font-weight: 500;
+}
+@media (max-width: 1100px) {
+  .client-site .header-inner {
+    padding: 0 32px;
+  }
+  .client-site .wrap {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .client-site .motion-hero {
+    gap: 25px;
+    min-height: 510px;
+  }
+  .client-site .motion-copy h1 {
+    font-size: 78px;
+  }
+  .motion-copy > p {
+    font-size: 12px;
+  }
+  .motion-proof {
+    margin-top: 25px;
+  }
+  .sculpture-tag {
+    padding: 11px;
+    left: 18px;
+    bottom: 42px;
+  }
+  .sculpture-caption {
+    bottom: 17px;
+    left: 20px;
+    right: 20px;
+  }
+  .client-site .section-heading h2 {
+    font-size: 39px;
+    max-width: 480px;
+  }
+  .motion-scenarios > a {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .motion-scenarios > a > svg:last-child {
+    margin-left: 0;
+  }
+}
+@media (max-width: 850px) {
+  .client-site .motion-hero {
+    gap: 20px;
+    padding-top: 20px;
+    min-height: 0;
+  }
+  .client-site .motion-copy h1 {
+    font-size: 65px;
+  }
+  .motion-location {
+    font-size: 7px;
+    gap: 7px;
+  }
+  .motion-proof {
+    font-size: 9px;
+  }
+  .motion-actions .button {
+    padding: 15px 18px;
+    gap: 15px;
+    font-size: 10px;
+  }
+  .motion-scroll {
+    width: 45px;
+    height: 45px;
+  }
+  .route-sculpture {
+    aspect-ratio: 0.85;
+    border-radius: 24px;
+  }
+  .route-object {
+    width: 120%;
+    max-width: none;
+    left: -10%;
+  }
+  .sculpture-tag {
+    font-size: 7px;
+    gap: 8px;
+  }
+  .sculpture-tag b {
+    font-size: 10px;
+  }
+  .sculpture-tag-arrow {
+    margin-left: 7px;
+  }
+  .sculpture-coordinate {
+    top: 20px;
+    left: 20px;
+    font-size: 8px;
+  }
+  .client-site .motion-scenarios {
+    flex-wrap: wrap;
+  }
+  .motion-scenarios > span {
+    width: 100%;
+    font-size: 8px;
+    margin-bottom: 3px;
+  }
+  .motion-scenarios > a {
+    flex: 1;
+    justify-content: space-between;
+    font-size: 10px;
+  }
+  .client-site .norde-fleet {
+    padding-top: 45px;
+  }
+  .client-site .norde-principles {
+    gap: 14px;
+  }
+  .norde-principles article {
+    padding: 20px;
+  }
+  .norde-principles article > span {
+    right: 18px;
+    top: 22px;
+  }
+  .norde-principles h3 {
+    font-size: 17px;
+  }
+  .norde-invitation h2 {
+    font-size: 39px;
+  }
+}
+@media (max-width: 640px) {
+  .client-site .header {
+    height: 72px;
+  }
+  .client-site .header-inner {
+    padding: 0 20px;
+  }
+  .client-site .wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .client-site .header .button.small {
+    padding: 9px 13px;
+  }
+  .client-site .motion-hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 23px;
+    padding-bottom: 25px;
+    gap: 24px;
+  }
+  .motion-copy {
+    padding: 0;
+  }
+  .motion-location {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .client-site .motion-copy h1 {
+    font-size: clamp(62px, 17.8vw, 92px);
+    letter-spacing: -0.075em;
+    margin: 25px 0 18px;
+  }
+  .motion-copy > p {
+    font-size: 12px;
+    margin-bottom: 23px;
+  }
+  .motion-actions .button {
+    font-size: 11px;
+    padding: 17px 21px;
+    gap: 24px;
+  }
+  .motion-scroll {
+    width: 50px;
+    height: 50px;
+  }
+  .motion-proof {
+    margin-top: 22px;
+    font-size: 9px;
+  }
+  .route-sculpture {
+    aspect-ratio: 1.28;
+    border-radius: 24px;
+  }
+  .route-object {
+    width: 100%;
+    left: 0;
+    inset-block: 0;
+    height: 100%;
+  }
+  .sculpture-tag {
+    left: 17px;
+    bottom: 36px;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+  .sculpture-caption {
+    font-size: 6px;
+    left: 18px;
+    right: 18px;
+    bottom: 14px;
+  }
+  .sculpture-coordinate {
+    top: 18px;
+    left: 19px;
+    font-size: 7px;
+  }
+  .sculpture-compass {
+    top: 12px;
+    right: 18px;
+  }
+  .client-site .norde-booking {
+    padding-top: 0;
+  }
+  .client-site .search-bar {
+    padding: 18px;
+    gap: 16px;
+    border-radius: 18px;
+  }
+  .client-site .search-bar .field input {
+    font-size: 12px;
+  }
+  .client-site .norde-booking-caption {
+    font-size: 8px;
+    letter-spacing: 0.4px;
+  }
+  .client-site .motion-scenarios {
+    gap: 8px;
+    padding-top: 20px;
+  }
+  .motion-scenarios > a {
+    font-size: 9px;
+    min-width: 0;
+    flex-basis: calc(50% - 8px);
+    padding: 12px 14px;
+  }
+  .motion-scenarios > a:last-child {
+    flex-basis: 100%;
+  }
+  .motion-scenarios > a > svg:first-child {
+    width: 17px;
+  }
+  .motion-scenarios > a > svg:last-child {
+    width: 13px;
+  }
+  .client-site .section-heading h2 {
+    font-size: 32px;
+    letter-spacing: -1.5px;
+    max-width: 220px;
+  }
+  .client-site .section-heading > .text-link {
+    font-size: 8px;
+    padding: 10px 12px;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .client-site .section-heading > .text-link svg {
+    width: 12px;
+  }
+  .client-site .norde-fleet {
+    padding-top: 34px;
+  }
+  .client-site .car-card .car-visual {
+    height: 230px;
+  }
+  .client-site .car-info {
+    padding: 23px;
+  }
+  .client-site .norde-principles {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    gap: 12px;
+  }
+  .norde-principles article {
+    padding: 23px;
+  }
+  .norde-principles article > span {
+    top: 25px;
+    right: 23px;
+  }
+  .norde-principles h3 {
+    font-size: 18px;
+  }
+  .norde-principles p {
+    font-size: 11px;
+  }
+  .client-site .norde-invitation {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    gap: 22px;
+  }
+  .norde-invitation h2 {
+    font-size: 34px;
+    letter-spacing: -1.5px;
+  }
+  .norde-invitation .norde-kicker {
+    font-size: 7px;
+    letter-spacing: 0.7px;
+  }
+  .norde-footer-top {
+    padding: 29px 0;
+  }
+  .norde-footer-bottom {
+    font-size: 8px;
+  }
+  .client-site .page-heading h1 {
+    font-size: 43px;
+  }
+  .client-site .modal {
+    padding: 24px 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-object,
+  .client-site .car-visual img {
+    transition: none !important;
+  }
+  .route-sculpture:hover .route-object {
+    transform: none;
+  }
+  .client-site .car-card:hover .car-visual img {
+    transform: none;
+  }
+}

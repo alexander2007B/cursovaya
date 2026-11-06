@@ -57,7 +57,7 @@ await page.getByRole("button", { name: "Изменить Kia Rio" }).click();
 dialog = page.getByRole("dialog");
 await dialog
   .getByLabel("Фотография автомобиля")
-  .setInputFiles("client/public/images/hero-road.jpg");
+  .setInputFiles("tests/fixtures/upload-car.jpg");
 await page.waitForFunction(() =>
   document
     .querySelector("input[name=image]")

@@ -1,3 +1,4 @@
+import RouteSculpture from "./RouteSculpture";
 import Brand from "./Brand";
 import ThemeToggle from "./ThemeToggle";
 import EligibilityFields, { eligibilityForm } from "./EligibilityFields";
@@ -22,6 +23,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import {
+  Sparkles,
   ArrowUpRight,
   ArrowRight,
   ArrowLeft,
@@ -61,6 +63,7 @@ import "./styles.css";
 import "./glass.css";
 import "./themes.css";
 import "./norde.css";
+import "./motion-edition.css";
 import PhoneField from "./PhoneField";
 import { CarImage, PhotoField } from "./CarPhoto";
 const Context = createContext();
@@ -418,38 +421,44 @@ function Home() {
   }
   return (
     <main className="norde-home">
-      <section className="norde-hero" aria-labelledby="home-title">
-        <img
-          className="norde-hero-image"
-          src="/images/hero-road.jpg"
-          alt="Чёрный автомобиль на открытой дороге"
-          fetchPriority="high"
-        />
-        <div className="norde-hero-shade" />
-        <div className="norde-hero-top">
-          <span>CAR RENTAL / VOLOGDA</span>
-          <span>59°13′ N · 39°53′ E</span>
-        </div>
-        <div className="norde-hero-copy">
-          <span className="norde-kicker">ВАШ РИТМ. ВАШ МАРШРУТ.</span>
+      <section className="motion-hero wrap" aria-labelledby="home-title">
+        <div className="motion-copy">
+          <div className="motion-location">
+            <span /> ВОЛОГДА <span className="motion-location-line" /> АРЕНДА
+            АВТО
+          </div>
           <h1 id="home-title">
-            Дорога.
+            Больше
             <br />
-            По вашим
-            <br />
-            <em>правилам.</em>
+            <span>свободы.</span>
           </h1>
-          <p>Аренда автомобилей в Вологде.</p>
-          <Link className="button norde-hero-cta" to="/catalog">
-            Выбрать автомобиль <ArrowUpRight size={20} />
-          </Link>
+          <p>
+            Город, работа или выходные за городом.
+            <br />
+            Автомобиль под ваши планы.
+          </p>
+          <div className="motion-actions">
+            <Link className="button primary" to="/catalog">
+              Выбрать автомобиль <ArrowUpRight size={20} />
+            </Link>
+            <a
+              className="motion-scroll"
+              href="#fleet"
+              aria-label="Перейти к автопарку"
+            >
+              <ArrowRight size={22} />
+            </a>
+          </div>
+          <div className="motion-proof">
+            <span>01—</span>
+            <span>
+              Без предоплаты на сайте.
+              <br />
+              <b>Просто выберите свой маршрут.</b>
+            </span>
+          </div>
         </div>
-        <div className="norde-hero-bottom">
-          <span>СВОБОДА НАЧИНАЕТСЯ С ВЫБОРА</span>
-          <a href="#fleet" aria-label="Перейти к автопарку">
-            Листайте дальше <ArrowRight size={17} />
-          </a>
-        </div>
+        <RouteSculpture />
       </section>
       <section
         className="norde-booking wrap"
@@ -492,11 +501,35 @@ function Home() {
           </button>
         </form>
       </section>
+      <section
+        className="wrap motion-scenarios"
+        aria-label="Автомобиль под ваши планы"
+      >
+        <span>КУДА ОТПРАВИМСЯ?</span>
+        <Link to="/catalog?category=economy">
+          <CarFront size={20} />
+          <span>По городу</span>
+          <ArrowUpRight size={16} />
+        </Link>
+        <Link to="/catalog?category=suv">
+          <MapPin size={20} />
+          <span>За город</span>
+          <ArrowUpRight size={16} />
+        </Link>
+        <Link to="/catalog?category=business">
+          <Sparkles size={20} />
+          <span>Особый случай</span>
+          <ArrowUpRight size={16} />
+        </Link>
+      </section>
       <section id="fleet" className="wrap section norde-fleet">
         <div className="section-heading">
           <div>
             <div className="norde-kicker">02 / КОЛЛЕКЦИЯ</div>
-            <h2>Под ваш характер.</h2>
+            <h2>
+              Ваш следующий{" "}
+              <span className="motion-heading-accent">автомобиль.</span>
+            </h2>
           </div>
           <Link className="text-link" to="/catalog">
             Все автомобили <ArrowUpRight size={19} />
@@ -528,9 +561,9 @@ function Home() {
             МЕНЬШЕ ФОРМАЛЬНОСТЕЙ. БОЛЬШЕ ДОРОГ.
           </div>
           <h2>
-            Ваш следующий
+            Планы меняются.
             <br />
-            <em>маршрут — здесь.</em>
+            <em>Свобода остаётся.</em>
           </h2>
         </div>
         <Link className="button outline" to="/conditions">
