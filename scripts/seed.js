@@ -12,7 +12,7 @@ await connectDatabase(process.env.MONGODB_URI);
 const passwordHash = await bcrypt.hash("Avtobaza2026!", 12);
 for (const [name, email, role] of [
   ["Администратор", "admin@avtobaza.test", "admin"],
-  ["Анна Миронова", "manager@avtobaza.test", "manager"],
+  ["Дмитрий", "manager@avtobaza.test", "manager"],
   ["Александр Баев", "client@avtobaza.test", "client"],
 ]) {
   await User.updateOne(
@@ -32,6 +32,10 @@ for (const [name, email, role] of [
     { upsert: true },
   );
 }
+await User.updateOne(
+  { email: "manager@avtobaza.test", role: "manager", name: "Анна Миронова" },
+  { $set: { name: "Дмитрий" } },
+);
 for (const car of fleet) {
   await Car.updateOne(
     { plate: car.plate },

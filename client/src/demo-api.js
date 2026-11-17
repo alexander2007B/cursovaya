@@ -2,7 +2,7 @@ import { photoUpgrade } from "../../shared/fleet.js";
 import { eligibilitySchema, canRent } from "../../shared/eligibility.js";
 import { normalizeRussianPhone } from "../../shared/phone.js";
 // Local UI sandbox only. The server remains authoritative in normal mode.
-import { cars as seed } from "./demo-cars";
+import { cars as seed } from "./demo-cars.js";
 import {
   calculateQuote,
   validateTransition,
@@ -31,7 +31,7 @@ function initial() {
   return {
     users: [
       ["admin", "Администратор"],
-      ["manager", "Анна Миронова"],
+      ["manager", "Дмитрий"],
       ["client", "Александр Баев"],
     ].map(([role, name]) => ({
       id: uid(),
@@ -57,6 +57,13 @@ export function resetDemo() {
 }
 export async function demoApi(path, { method = "GET", body = {} } = {}) {
   const db = JSON.parse(localStorage.getItem(KEY) || "null") || initial();
+  const manager = db.users.find(
+    (u) =>
+      u.demo === true &&
+      u.email === "manager@avtobaza.test" &&
+      u.name === "Анна Миронова",
+  );
+  if (manager) manager.name = "Дмитрий";
   if (!db.fleetEdition) {
     for (const car of seed)
       if (!db.cars.some((existing) => existing.plate === car.plate))
