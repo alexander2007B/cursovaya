@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-18",
+  "pages_total": 30,
+  "pages_before_appendices": 28,
+  "figures": 10,
+  "tables": 8,
+  "toc_entries": 27,
+  "font": [
+    "BAAAAA+XOThames-Regular",
+    "CAAAAA+XOThames-Bold"
+  ],
+  "margins_mm": {
+    "left": 30,
+    "right": 15,
+    "top": 20,
+    "bottom": 20
+  },
+  "font_size_pt": 12,
+  "line_spacing": 1.5,
+  "geometry_issues": [],
+  "manual_pages": {
+    "Defense_Plan.pdf": 3,
+    "Admin_Guide.pdf": 4,
+    "User_Guide.pdf": 3
+  },
+  "current_checks": "10 tests without MongoDB, passed; see current-unit-tests.txt",
+  "historical_checks": "32 unit/API and 5 E2E from 2026-11-06; no new full API/E2E/load run",
+  "original_methodology_files": "Not available; formatting based on prior FORMAT_COMPLIANCE.md",
+  "title_missing_fields": [
+    "Группа",
+    "Специальность",
+    "Руководитель",
+    "Нормоконтролёр",
+    "Подписи"
+  ]
+}
