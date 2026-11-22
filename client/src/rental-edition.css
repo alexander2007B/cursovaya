@@ -152,7 +152,7 @@
   left: 27px;
   right: 27px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 .stock-badge {

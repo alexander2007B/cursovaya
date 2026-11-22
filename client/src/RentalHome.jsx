@@ -158,10 +158,6 @@ export default function RentalHome({ CarCard, FavoriteButton }) {
               </div>
               <div className="stage-shade" />
               <div className="stage-top">
-                <span className="stock-badge">
-                  <span />
-                  Свободен на выбранные даты
-                </span>
                 <FavoriteButton car={car} />
               </div>
               <div className="stage-information">
@@ -329,12 +325,7 @@ export default function RentalHome({ CarCard, FavoriteButton }) {
       <section id="fleet" className="wrap section rental-fleet">
         <div className="section-heading">
           <div>
-            <h2>Что сейчас свободно</h2>
-            <p>
-              {valid
-                ? "Автомобили на выбранные даты"
-                : "Выберите даты выше, чтобы проверить наличие"}
-            </p>
+            <h2>Популярные предложения</h2>
           </div>
           <Link
             className="text-link"
