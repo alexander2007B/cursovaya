@@ -1,4 +1,4 @@
-digraph G {graph [fontname="DejaVu Sans",bgcolor="white",pad="0.3",ranksep="0.65",nodesep="0.35"]; node [fontname="DejaVu Sans",fontsize=11,shape=box,style="filled",fillcolor="white",color="#181818",margin="0.15"]; edge [fontname="DejaVu Sans",fontsize=9,color="#181818"];start[label="Начало",shape=circle,width=.3];auth[label="Вход и ввод дат"];valid[label="Входные данные
+digraph G {graph [fontname="DejaVu Sans",bgcolor="white",pad="0.3",ranksep="0.65",nodesep="0.35"]; node [fontname="DejaVu Sans",fontsize=11,shape=box,style="rounded,filled",fillcolor="#edf2f7",color="#425a70",margin="0.15"]; edge [fontname="DejaVu Sans",fontsize=9,color="#60768a"];start[label="Начало",shape=circle,width=.3];auth[label="Вход и ввод дат"];valid[label="Входные данные
 корректны?",shape=diamond];tx[label="Начать транзакцию
 записать lockVersion"];free[label="Исправен и нет
 пересечений?",shape=diamond];save[label="Сохранить заявку и событие
