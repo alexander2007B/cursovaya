@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "concurrently -k -n server,client \"node --watch server/index.js\" \"vite --host 0.0.0.0\"",
     "build": "vite build",
+    "build:demo": "vite build --mode demo",
     "start": "node server/index.js",
     "db:up": "docker compose up -d --wait mongo",
     "db:down": "docker compose down",

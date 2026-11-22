@@ -2229,19 +2229,6 @@ function App() {
           location.pathname.startsWith("/admin") ? "staff-site" : "client-site"
         }
       >
-        {import.meta.env.MODE === "demo" && (
-          <div className="demo-banner">
-            <span>Деморежим · данные сохраняются в этом браузере</span>
-            <button
-              onClick={async () => {
-                if (confirm("Сбросить все учебные изменения?"))
-                  (await import("./demo-api")).resetDemo();
-              }}
-            >
-              Сбросить демо
-            </button>
-          </div>
-        )}
         <Header />
         {connectionError ? (
           <main className="wrap page">
