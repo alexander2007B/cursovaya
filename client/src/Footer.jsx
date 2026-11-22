@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, ArrowUp, MapPin, Phone, Mail } from "lucide-react";
+import { Headphones, MapPin, Phone, Mail } from "lucide-react";
 import Brand from "./Brand";
 export default function Footer() {
   return (
@@ -11,50 +11,54 @@ export default function Footer() {
               <Brand />
             </Link>
             <p>
-              Автомобили в аренду
-              <br />в Вологде.
+              Аренда автомобилей в Вологде.
+              <br />
+              Для ваших планов и новых маршрутов.
             </p>
-            <a className="footer-email" href="mailto:viperr@angel.com">
-              Написать нам <ArrowUpRight size={16} />
-            </a>
-          </div>
-          <nav className="footer-navigation" aria-label="Ссылки в подвале">
-            <h2>На сайте</h2>
-            <Link to="/catalog">
-              Все автомобили <ArrowUpRight size={15} />
-            </Link>
-            <Link to="/catalog?category=business">Бизнес-класс</Link>
-            <Link to="/catalog?category=premium">Премиум</Link>
-            <Link to="/conditions">Условия аренды</Link>
-            <Link to="/account">Личный кабинет</Link>
-          </nav>
-          <address className="footer-contacts">
-            <h2>Контакты</h2>
-            <a className="footer-phone" href="tel:+79218287767">
-              <Phone size={18} />
-              <span>+7 (921)-828-77-67</span>
-            </a>
-            <a href="mailto:viperr@angel.com">
-              <Mail size={17} />
-              <span>viperr@angel.com</span>
-            </a>
             <a
+              className="footer-map"
               href="https://yandex.ru/maps/?text=%D0%92%D0%BE%D0%BB%D0%BE%D0%B3%D0%B4%D0%B0%20%D0%9F%D0%B5%D1%80%D0%B2%D0%BE%D0%BC%D0%B0%D0%B9%D1%81%D0%BA%D0%B0%D1%8F%2042"
               target="_blank"
               rel="noreferrer"
             >
               <MapPin size={18} />
-              <span>
-                Вологда, ул. Первомайская, 42<small>Открыть на карте</small>
-              </span>
+              <span>Вологда, ул. Первомайская, 42</span>
+            </a>
+          </div>
+          <nav className="footer-navigation" aria-label="Ссылки в подвале">
+            <h2>Всё об аренде</h2>
+            <Link to="/catalog">Все автомобили</Link>
+            <Link to="/conditions">Условия аренды</Link>
+            <Link to="/account">Личный кабинет</Link>
+          </nav>
+          <nav className="footer-categories" aria-label="Классы автомобилей">
+            <h2>Автомобиль под ваши планы</h2>
+            <div className="footer-category-links">
+              <Link to="/catalog?category=economy">На каждый день</Link>
+              <Link to="/catalog?category=business">Бизнес-класс</Link>
+              <Link to="/catalog?category=premium">Премиум</Link>
+              <Link to="/catalog?category=suv">За город</Link>
+            </div>
+          </nav>
+          <address className="footer-contacts">
+            <h2>Мы на связи</h2>
+            <a className="footer-support" href="mailto:viperr@angel.com">
+              <Headphones size={20} /> Связаться с нами
+            </a>
+            <a className="footer-phone" href="tel:+79218287767">
+              <Phone size={18} />
+              <span>+7 (921)-828-77-67</span>
+            </a>
+            <a className="footer-email" href="mailto:viperr@angel.com">
+              <Mail size={18} />
+              <span>viperr@angel.com</span>
             </a>
           </address>
         </div>
         <div className="footer-owner">
-          <div>
-            <span>Владелец проекта</span>
-            <p>Баев Александр Павлович</p>
-          </div>
+          <p>
+            <span>Владелец проекта</span> Баев Александр Павлович
+          </p>
           <button
             type="button"
             className="footer-top-button"
@@ -67,13 +71,18 @@ export default function Footer() {
               })
             }
           >
-            Наверх <ArrowUp size={17} />
+            Наверх
           </button>
         </div>
         <div className="footer-legal">
           <span>© {new Date().getFullYear()} NORDÉ</span>
-          <p>Учебный проект. Контактные данные демонстрационные.</p>
-          <Link to="/conditions">Условия аренды</Link>
+          <p>
+            Учебный проект. Контактные данные демонстрационные. Стоимость аренды
+            и залог указаны в карточке автомобиля.
+          </p>
+        </div>
+        <div className="footer-signature" aria-hidden="true">
+          NORDÉ
         </div>
       </div>
     </footer>

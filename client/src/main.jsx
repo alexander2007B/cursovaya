@@ -68,6 +68,7 @@ import "./norde.css";
 import "./motion-edition.css";
 import "./rental-edition.css";
 import "./contact-footer.css";
+import "./navigation-edition.css";
 import PhoneField from "./PhoneField";
 import { CarImage, PhotoField } from "./CarPhoto";
 const Context = createContext();
@@ -319,7 +320,8 @@ function Header() {
                 aria-label="Найти автомобиль"
                 onClick={() => setSearchOpen(true)}
               >
-                <Search size={19} />
+                <Search size={20} />
+                <span>Найти машину</span>
               </button>
               <Link
                 className="icon-button header-favorites"
@@ -359,7 +361,7 @@ function Header() {
               className="button small outline"
               onClick={() => setAuth("login")}
             >
-              Войти <ArrowUpRight size={16} />
+              <UserRound size={18} /> Войти
             </button>
           )}
           <button
