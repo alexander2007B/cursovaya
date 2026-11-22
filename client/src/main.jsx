@@ -120,6 +120,18 @@ function Field({ label, children, ...props }) {
 }
 function Modal({ title, children, onClose, wide = false }) {
   const ref = useRef();
+  const backdropPress = useRef(false);
+  const isBackdrop = (event) => {
+    const dialog = ref.current;
+    if (event.target !== dialog) return false;
+    const rect = dialog.getBoundingClientRect();
+    return (
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom
+    );
+  };
   useEffect(() => {
     const dialog = ref.current;
     dialog.showModal();
@@ -130,8 +142,16 @@ function Modal({ title, children, onClose, wide = false }) {
       ref={ref}
       className={`modal ${wide ? "wide" : ""}`}
       onCancel={onClose}
-      onClick={(e) => {
-        if (e.target === ref.current) onClose();
+      onPointerDown={(event) => {
+        backdropPress.current = event.button === 0 && isBackdrop(event);
+      }}
+      onPointerCancel={() => {
+        backdropPress.current = false;
+      }}
+      onClick={(event) => {
+        const close = backdropPress.current && isBackdrop(event);
+        backdropPress.current = false;
+        if (close) onClose();
       }}
     >
       <div className="modal-head">
