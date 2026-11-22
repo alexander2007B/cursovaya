@@ -1,6 +1,6 @@
 # HTTP API
 
-Сначала `GET /api/auth/session`. Сохраните cookie и `csrfToken`. Для POST/PATCH/DELETE отправляйте заголовок `X-CSRF-Token`. После входа используйте новый токен. Все тела — JSON. Формат ошибки: `{message, fields?}`; типичные коды 400/401/403/404/409.
+Сначала `GET /api/auth/session`. Сохраните cookie и `csrfToken`. Для POST/PATCH/DELETE отправляйте заголовок `X-CSRF-Token`. После входа используйте новый токен. Все тела - JSON. Формат ошибки: `{message, fields?}`; типичные коды 400/401/403/404/409.
 
 | Метод и адрес | Доступ | Назначение |
 |---|---|---|
@@ -9,13 +9,13 @@
 | POST /api/auth/register | Все | name, email, phone, password, ageConfirmed, licenseConfirmed, drivingExperience |
 | POST /api/auth/login | Все | email, password |
 | POST /api/auth/logout | Все | Завершить сессию |
-| PATCH /api/profile | Пользователь | name, phone; при изменении допуска — ageConfirmed, licenseConfirmed, drivingExperience |
+| PATCH /api/profile | Пользователь | name, phone; при изменении допуска - ageConfirmed, licenseConfirmed, drivingExperience |
 | GET /api/cars | Все | category, search, sort, from, to |
 | GET /api/cars/:id | Все | Характеристики и занятые периоды без личных данных |
 | POST /api/quote | Все | Расчёт и доступность |
 | POST /api/rentals | Пользователь | Создать заявку |
 | GET /api/rentals | Пользователь | Только свои заявки |
-| PATCH /api/rentals/:id/status | Владелец/сотрудник | Владелец — только отмена new/confirmed |
+| PATCH /api/rentals/:id/status | Владелец/сотрудник | Владелец - только отмена new/confirmed |
 | GET /api/admin/overview | Сотрудник | Машины, заявки, агрегаты, события |
 | POST /api/admin/photos | Администратор | Проверка и загрузка изображения в uploads/ |
 | POST /api/admin/cars | Администратор | Добавление автомобиля |

@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-18",
+  "date": "2026-11-22",
   "pages_total": 30,
   "pages_before_appendices": 28,
   "figures": 10,
@@ -19,11 +19,11 @@
   "line_spacing": 1.5,
   "geometry_issues": [],
   "manual_pages": {
-    "Defense_Plan.pdf": 3,
+    "Defense_Plan.pdf": 2,
     "Admin_Guide.pdf": 4,
     "User_Guide.pdf": 3
   },
-  "current_checks": "10 tests without MongoDB, passed; see current-unit-tests.txt",
+  "current_checks": "Existing protocol: 10 tests without MongoDB passed on 2026-11-18; no new run for this formatting revision",
   "historical_checks": "32 unit/API and 5 E2E from 2026-11-06; no new full API/E2E/load run",
   "original_methodology_files": "Not available; formatting based on prior FORMAT_COMPLIANCE.md",
   "title_missing_fields": [

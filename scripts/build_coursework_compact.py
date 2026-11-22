@@ -9,12 +9,12 @@ from docx.oxml.ns import qn
 from PIL import Image
 from lxml import etree as ET
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs/coursework-30';OUT.mkdir(exist_ok=True)
-FONT='XO Thames';source=(OUT/'coursework.md').read_text()
+FONT='XO Thames';source=(OUT/'coursework.md').read_text().translate(str.maketrans({'—':'-','–':'-','−':'-','‑':'-'}))
 versions=json.loads((ROOT/'docs/reports/norde-final/versions.json').read_text())['dependencies']
 selected=['express','mongoose','react','vite','@playwright/test','zod','autocannon','sharp','react-imask']
 rows='| Компонент | Версия |\n|---|---|\n| Node.js | 24.22.1 |\n| MongoDB | '+json.loads((ROOT/'docs/reports/norde-final/environment.json').read_text())['mongodb']+' |\n'
 rows+='\n'.join('| '+name+' | '+versions[name]['version']+' |' for name in selected)
-source=source.replace('{{VERSIONS}}',rows).replace('→','—')
+source=source.replace('{{VERSIONS}}',rows).replace('→','->')
 
 # Number figures in reading order and supply the required first textual references.
 figures=[];lines=[]
@@ -131,6 +131,8 @@ while i<len(lines):
  # A bibliography entry retains its actual number, independent of list autoformat.
  para(line);i+=1
 props=doc.core_properties;props.title='Разработка и обеспечение качества веб-приложения для аренды автомобилей и учёта состояния автопарка NORDÉ';props.author='Баев Александр';props.subject='Курсовой проект · ВКСИИТ';props.language='ru-RU'
+for node in doc.element.iter(qn('w:t')):
+ if node.text:node.text=node.text.translate(str.maketrans({'—':'-','–':'-','−':'-','‑':'-'}))
 path=OUT/'Baev_NORDE_25-30.docx';doc.save(path)
 # Embed the actual unrestricted-embedding XO Thames font files (OS/2 fsType=0).
 # Fonts come from the official MyOffice distribution, never from a substitute face.
