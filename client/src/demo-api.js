@@ -1,3 +1,7 @@
+import {
+  createConsentRecord,
+  registrationConsentSchema,
+} from "../../shared/registration-consent.js";
 import { photoUpgrade } from "../../shared/fleet.js";
 import { eligibilitySchema, canRent } from "../../shared/eligibility.js";
 import { normalizeRussianPhone } from "../../shared/phone.js";
@@ -138,6 +142,9 @@ export async function demoApi(path, { method = "GET", body = {} } = {}) {
       .trim()
       .toLowerCase();
     if (p.endsWith("register")) {
+      const consent = registrationConsentSchema.safeParse(body);
+      if (!consent.success) fail(consent.error.issues[0].message);
+      const legal = createConsentRecord(consent.data);
       if (db.users.some((u) => u.email === email))
         fail("Email уже используется", 409);
       if (
@@ -149,6 +156,7 @@ export async function demoApi(path, { method = "GET", body = {} } = {}) {
         fail("Проверьте заполнение полей");
       user = {
         ...eligibilitySchema.parse(body),
+        legal,
         id: uid(),
         name: body.name.trim(),
         phone: normalizeRussianPhone(body.phone),

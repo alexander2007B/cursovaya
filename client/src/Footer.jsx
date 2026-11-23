@@ -30,6 +30,9 @@ export default function Footer() {
             <Link to="/catalog">Все автомобили</Link>
             <Link to="/conditions">Условия аренды</Link>
             <Link to="/account">Личный кабинет</Link>
+            <a href="/privacy.html">Политика конфиденциальности</a>
+            <a href="/terms.html">Пользовательское соглашение</a>
+            <a href="/consent.html">Согласие на обработку данных</a>
           </nav>
           <nav className="footer-categories" aria-label="Классы автомобилей">
             <h2>Автомобиль под ваши планы</h2>

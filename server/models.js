@@ -8,6 +8,13 @@ const userSchema = new Schema(
     ageConfirmed: { type: Boolean, default: false },
     licenseConfirmed: { type: Boolean, default: false },
     drivingExperience: { type: Number, min: 1, max: 80 },
+    legal: {
+      termsVersion: String,
+      termsAcceptedAt: Date,
+      privacyVersion: String,
+      consentVersion: String,
+      consentAcceptedAt: Date,
+    },
     passwordHash: { type: String, required: true, select: false },
     role: {
       type: String,

@@ -1,4 +1,6 @@
 import Footer from "./Footer";
+import RegistrationConsent from "./RegistrationConsent";
+import { LEGAL_VERSION } from "../../shared/registration-consent.js";
 import RentalHome from "./RentalHome";
 import useFavorites from "./useFavorites";
 import Brand from "./Brand";
@@ -173,6 +175,10 @@ function Modal({ title, children, onClose, wide = false }) {
 function AuthModal() {
   const { auth, setAuth, setUser, notify } = useApp();
   const [mode, setMode] = useState(auth === "register" ? "register" : "login");
+  const [consents, setConsents] = useState({
+    termsAccepted: false,
+    personalDataConsent: false,
+  });
   const [error, setError] = useState(null);
   const [busy, setBusy] = useState(false);
   async function submit(e) {
@@ -182,7 +188,11 @@ function AuthModal() {
     try {
       const data =
         mode === "register"
-          ? eligibilityForm(e.target)
+          ? {
+              ...eligibilityForm(e.target),
+              ...consents,
+              legalVersion: LEGAL_VERSION,
+            }
           : Object.fromEntries(new FormData(e.target));
       const result = await api(`/auth/${mode}`, { method: "POST", body: data });
       setUser(result.user);
@@ -263,7 +273,17 @@ function AuthModal() {
           required
           placeholder="Не менее 8 символов"
         />
-        <button className="button primary full" disabled={busy}>
+        {mode === "register" && (
+          <RegistrationConsent value={consents} onChange={setConsents} />
+        )}
+        <button
+          className="button primary full"
+          disabled={
+            busy ||
+            (mode === "register" &&
+              !(consents.termsAccepted && consents.personalDataConsent))
+          }
+        >
           {busy ? (
             <Loader2 className="spin" />
           ) : mode === "login" ? (

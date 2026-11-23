@@ -1,3 +1,7 @@
+import {
+  registrationConsentFields,
+  createConsentRecord,
+} from "../shared/registration-consent.js";
 import { eligibilityFields, canRent } from "../shared/eligibility.js";
 import sharp from "sharp";
 import { mkdir, writeFile } from "node:fs/promises";
@@ -51,6 +55,7 @@ const registration = credentials
     name: z.string().trim().min(2).max(80),
     phone,
     ...eligibilityFields,
+    ...registrationConsentFields,
   })
   .strict();
 const carInput = z
@@ -209,6 +214,7 @@ export function createApp({ mongoUri, secret, production = false }) {
     const data = registration.parse(req.body);
     const user = await User.create({
       name: data.name,
+      legal: createConsentRecord(data),
       email: data.email,
       phone: data.phone,
       ageConfirmed: data.ageConfirmed,

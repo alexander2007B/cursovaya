@@ -1,7 +1,11 @@
 import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "./tests/e2e",
-  testMatch: ["modal.spec.js", "photos.spec.js"],
+  testMatch: [
+    "modal.spec.js",
+    "photos.spec.js",
+    "registration-consent.spec.js",
+  ],
   webServer: {
     command: "npm run demo",
     url: "http://127.0.0.1:5173",

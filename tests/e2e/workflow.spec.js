@@ -135,6 +135,10 @@ test("Регистрация, изменение профиля и отмена 
   await dialog.getByLabel("Стаж вождения, лет").fill("1");
   await dialog.getByLabel("Мне исполнился 21 год").check();
   await dialog.getByLabel("У меня есть действующие водительские права").check();
+  await dialog.getByLabel("Я принимаю пользовательское соглашение").check();
+  await dialog
+    .getByLabel("Я даю согласие на обработку персональных данных")
+    .check();
   await dialog.getByRole("button", { name: "Создать аккаунт" }).click();
   await expect(dialog).not.toBeVisible();
   await page.goto("/account");

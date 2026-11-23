@@ -1,3 +1,9 @@
+import { LEGAL_VERSION } from "../shared/registration-consent.js";
+const legalFixture = {
+  termsAccepted: true,
+  personalDataConsent: true,
+  legalVersion: LEGAL_VERSION,
+};
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
 import mongoose from "mongoose";
@@ -51,7 +57,9 @@ async function actor(email, role) {
   return { agent, token: r.body.csrfToken };
 }
 const mutation = (actor, method, url, data) =>
-  actor.agent[method](url).set("X-CSRF-Token", actor.token).send(data);
+  actor.agent[method](url)
+    .set("X-CSRF-Token", actor.token)
+    .send(url === "/api/auth/register" ? { ...legalFixture, ...data } : data);
 before(async () => {
   await connectDatabase(uri);
   app = createApp({
@@ -86,6 +94,7 @@ test("Регистрация: пароль хешируется, роль наз
     .post("/api/auth/register")
     .set("X-CSRF-Token", r.body.csrfToken)
     .send({
+      ...legalFixture,
       name: "Новый клиент",
       email: "NEW@test.ru",
       phone: "+79001112233",
@@ -102,6 +111,10 @@ test("Регистрация: пароль хешируется, роль наз
   );
   assert.notEqual(u.passwordHash, "Testpass2026!");
   assert.ok(await bcrypt.compare("Testpass2026!", u.passwordHash));
+  assert.equal(u.legal.termsVersion, LEGAL_VERSION);
+  assert.equal(u.legal.consentVersion, LEGAL_VERSION);
+  assert.ok(u.legal.termsAcceptedAt instanceof Date);
+  assert.ok(u.legal.consentAcceptedAt instanceof Date);
 });
 test("Самостоятельное назначение роли администратора запрещено", async () => {
   const r = await mutation(other, "post", "/api/auth/register", {
@@ -418,6 +431,7 @@ test("Пароль длиннее 72 байт отклоняется до хеш
     .post("/api/auth/register")
     .set("X-CSRF-Token", session.body.csrfToken)
     .send({
+      ...legalFixture,
       name: "Проверка пароля",
       email: "unicode@test.ru",
       phone: "+79001234567",
@@ -497,6 +511,7 @@ test("Регистрация требует возраст, права и пол
   const agent = request.agent(app);
   const session = await agent.get("/api/auth/session");
   const valid = {
+    ...legalFixture,
     name: "Проверка условий",
     email: "eligibility@test.ru",
     phone: "+79001234567",
@@ -585,4 +600,33 @@ test("Премиум: сохраняется, фильтруется по кла
   } finally {
     await Car.deleteOne({ _id: carId });
   }
+});
+
+test("API не регистрирует без двух отдельных согласий", async () => {
+  const agent = request.agent(app);
+  const session = await agent.get("/api/auth/session");
+  const base = {
+    name: "Согласия",
+    email: "consent@test.ru",
+    phone: "+79001234567",
+    password: "Testpass2026!",
+    ageConfirmed: true,
+    licenseConfirmed: true,
+    drivingExperience: 1,
+    ...legalFixture,
+  };
+  for (const invalid of [
+    { termsAccepted: false },
+    { personalDataConsent: false },
+    { personalDataConsent: "true" },
+    { termsAccepted: undefined },
+    { legalVersion: "old" },
+  ]) {
+    const r = await agent
+      .post("/api/auth/register")
+      .set("X-CSRF-Token", session.body.csrfToken)
+      .send({ ...base, ...invalid });
+    assert.equal(r.status, 400);
+  }
+  assert.equal(await User.countDocuments({ email: base.email }), 0);
 });
