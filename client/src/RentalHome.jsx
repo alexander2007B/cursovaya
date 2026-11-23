@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { api, money, day, categories } from "./api";
 import { CarImage } from "./CarPhoto";
+import { selectHomeOffers } from "./home-offers.js";
 export default function RentalHome({ CarCard, FavoriteButton }) {
   const [from, setFrom] = useState(day()),
     [to, setTo] = useState(day(3)),
@@ -57,18 +58,7 @@ export default function RentalHome({ CarCard, FavoriteButton }) {
           signal: controller.signal,
         });
         if (live) {
-          const available = result.cars.filter(
-            (c) =>
-              c.status === "available" &&
-              c.displayStatus !== "rented" &&
-              !c.archived,
-          );
-          available.sort(
-            (a, b) =>
-              Number(b.image?.endsWith(".jpg")) -
-                Number(a.image?.endsWith(".jpg")) || b.dailyRate - a.dailyRate,
-          );
-          setCars(available);
+          setCars(selectHomeOffers(result.cars));
           setError("");
         }
       } catch (e) {
