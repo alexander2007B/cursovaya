@@ -80,6 +80,16 @@ const carInput = z
       .regex(
         /^\/(?:images\/[a-zA-Z0-9_/-]+\.(?:svg|jpg|jpeg|png|webp)|uploads\/[a-f0-9]{32}\.webp)$/,
       ),
+    gallery: z
+      .array(
+        z
+          .string()
+          .regex(
+            /^\/(?:images\/[a-zA-Z0-9_/-]+\.(?:svg|jpg|jpeg|png|webp)|uploads\/[a-f0-9]{32}\.webp)$/,
+          ),
+      )
+      .max(3)
+      .optional(),
     description: z.string().trim().min(10).max(1500),
     status: z.enum(["available", "maintenance", "broken"]),
   })

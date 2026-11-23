@@ -1275,9 +1275,11 @@ function Admin() {
   async function saveCar(e) {
     e.preventDefault();
     const values = Object.fromEntries(new FormData(e.target));
-    if (user.role === "admin")
+    if (user.role === "admin") {
       for (const k of ["year", "dailyRate", "deposit", "mileage", "seats"])
         values[k] = Number(values[k]);
+      values.gallery = JSON.parse(values.gallery || "[]");
+    }
     await action(
       "/admin/cars" + (modal.car ? "/" + modal.car._id : ""),
       modal.car ? "PATCH" : "POST",
@@ -1965,7 +1967,10 @@ function Admin() {
                           ))}
                         </select>
                       </Field>
-                      <PhotoField defaultValue={modal.car?.image} />
+                      <PhotoField
+                        defaultValue={modal.car?.image}
+                        defaultGallery={modal.car?.gallery}
+                      />
                     </div>
                     <div className="form-row">
                       <Field
