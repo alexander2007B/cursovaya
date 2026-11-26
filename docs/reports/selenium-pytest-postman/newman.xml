@@ -1,97 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="NORDE automated API acceptance tests" tests="27" time="1.989">
-  <testsuite name="01 Health" id="a5a848e6-90b7-4443-a3d1-a18f91fc652f" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.023">
-    <testcase name="HTTP 200" time="0.023" classname="01Health"/>
+<testsuites name="NORDE automated API acceptance tests" tests="15" time="1.346">
+  <testsuite name="01 Health" id="4e2199c5-c47b-402f-bf2a-f5cf5a2f3fe5" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.021">
+    <testcase name="HTTP 200" time="0.021" classname="01Health"/>
   </testsuite>
-  <testsuite name="02 Session" id="86ba8fa7-c6b1-494c-865f-e5248ce2211e" timestamp="2026-11-26T12:02:09.121Z" tests="2" failures="0" errors="0" time="0.008">
-    <testcase name="HTTP 200" time="0.008" classname="02Session"/>
-    <testcase name="CSRF present" time="0.008" classname="02Session"/>
+  <testsuite name="02 Session" id="721bc787-66a9-46e8-83e5-3b541f5ff1c6" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.009">
+    <testcase name="HTTP 200" time="0.009" classname="02Session"/>
   </testsuite>
-  <testsuite name="03 Catalog" id="af727590-a5b4-4688-9dd2-13e9a156a661" timestamp="2026-11-26T12:02:09.121Z" tests="2" failures="0" errors="0" time="0.023">
-    <testcase name="HTTP 200" time="0.023" classname="03Catalog"/>
-    <testcase name="12 cars" time="0.023" classname="03Catalog"/>
+  <testsuite name="03 Catalog" id="480cf44b-cddf-4929-9bdd-75ac62a8c631" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.027">
+    <testcase name="HTTP 200" time="0.027" classname="03Catalog"/>
   </testsuite>
-  <testsuite name="04 Invalid dates" id="24799789-0064-4a57-881f-cfed3bc7c661" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.032">
-    <testcase name="HTTP 400" time="0.032" classname="04InvalidDates"/>
+  <testsuite name="04 Invalid dates" id="40facfa6-50b6-41d6-ab0c-e32ec9ea6790" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.035">
+    <testcase name="HTTP 400" time="0.035" classname="04InvalidDates"/>
   </testsuite>
-  <testsuite name="05 Quote" id="80cab40a-da4d-40c7-9f9d-e497f22721c6" timestamp="2026-11-26T12:02:09.121Z" tests="2" failures="0" errors="0" time="0.012">
-    <testcase name="HTTP 200" time="0.012" classname="05Quote"/>
-    <testcase name="one day" time="0.012" classname="05Quote"/>
+  <testsuite name="05 Quote" id="8ba3f587-0871-49ae-9de1-03b386438722" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.015">
+    <testcase name="HTTP 200" time="0.015" classname="05Quote"/>
   </testsuite>
-  <testsuite name="06 Missing consent" id="6386457d-6576-4943-a212-62df05dbb3c1" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.012">
-    <testcase name="HTTP 400" time="0.012" classname="06MissingConsent"/>
+  <testsuite name="06 Missing consent" id="b2ae21ef-863b-4967-b0e5-cbb4ccff8154" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.013">
+    <testcase name="HTTP 400" time="0.013" classname="06MissingConsent"/>
   </testsuite>
-  <testsuite name="07 Registration" id="149d51f3-26c5-4cbe-a01b-3b9e06dd45a6" timestamp="2026-11-26T12:02:09.121Z" tests="4" failures="0" errors="0" time="0.396">
-    <testcase name="HTTP 201" time="0.396" classname="07Registration"/>
-    <testcase name="CSRF present" time="0.396" classname="07Registration"/>
-    <testcase name="client role" time="0.396" classname="07Registration"/>
-    <testcase name="password hidden" time="0.396" classname="07Registration"/>
+  <testsuite name="07 Registration" id="2790a5d5-f617-4a87-a356-4d09dc3e48d8" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.344">
+    <testcase name="HTTP 201" time="0.344" classname="07Registration"/>
   </testsuite>
-  <testsuite name="08 Client cannot manage users" id="e843ea9f-2018-4b98-9b6d-483e387cb20f" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.011">
-    <testcase name="HTTP 403" time="0.011" classname="08ClientCannotManageUsers"/>
+  <testsuite name="08 Client cannot manage users" id="07edc0ab-a8cf-41c7-8f17-fb345409f472" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.012">
+    <testcase name="HTTP 403" time="0.012" classname="08ClientCannotManageUsers"/>
   </testsuite>
-  <testsuite name="09 Booking" id="30c107a5-9bab-4822-961c-26d7346b6f8a" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.025">
-    <testcase name="HTTP 201" time="0.025" classname="09Booking"/>
+  <testsuite name="09 Booking" id="fa48850b-385c-44c1-be0c-b6baad7cb93c" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.030">
+    <testcase name="HTTP 201" time="0.030" classname="09Booking"/>
   </testsuite>
-  <testsuite name="10 Client cannot confirm" id="399b757d-568a-4935-a922-720b8a99c428" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.016">
-    <testcase name="HTTP 409" time="0.016" classname="10ClientCannotConfirm"/>
+  <testsuite name="10 Client cannot confirm" id="e0d5c4ad-553d-4657-b5d5-18bbfa46aea7" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.021">
+    <testcase name="HTTP 409" time="0.021" classname="10ClientCannotConfirm"/>
   </testsuite>
-  <testsuite name="11 Cancel" id="7ce94744-73bf-4d12-93da-b5a19981491a" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.024">
-    <testcase name="HTTP 200" time="0.024" classname="11Cancel"/>
+  <testsuite name="11 Cancel" id="d1fa5d04-b037-4fdb-90a6-d3fcc7841103" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.027">
+    <testcase name="HTTP 200" time="0.027" classname="11Cancel"/>
   </testsuite>
-  <testsuite name="12 Logout" id="bdc3f577-9c14-4735-98ea-a8f9806aaab8" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.010">
-    <testcase name="HTTP 200" time="0.010" classname="12Logout"/>
+  <testsuite name="12 Logout" id="abd99545-75e0-4b06-8c36-f3ea43d180c5" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.011">
+    <testcase name="HTTP 200" time="0.011" classname="12Logout"/>
   </testsuite>
-  <testsuite name="13 New session" id="2441e47c-75dd-479b-816b-d6f2479f7579" timestamp="2026-11-26T12:02:09.121Z" tests="2" failures="0" errors="0" time="0.005">
-    <testcase name="HTTP 200" time="0.005" classname="13NewSession"/>
-    <testcase name="CSRF present" time="0.005" classname="13NewSession"/>
+  <testsuite name="13 New session" id="5feb48a3-a1f4-4a76-b24d-9f93e440b9a3" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.006">
+    <testcase name="HTTP 200" time="0.006" classname="13NewSession"/>
   </testsuite>
-  <testsuite name="14 Wrong password" id="02c87fd7-f08a-42c8-a283-ad58d6956fe2" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.305">
-    <testcase name="HTTP 401" time="0.305" classname="14WrongPassword"/>
+  <testsuite name="14 Wrong password" id="c4f7bdf2-dd2e-481d-8bbf-f12ac09b45d7" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.410">
+    <testcase name="HTTP 401" time="0.410" classname="14WrongPassword"/>
   </testsuite>
-  <testsuite name="15 Admin login" id="2780ffad-ccad-423c-a04c-4bbe86b3ff1e" timestamp="2026-11-26T12:02:09.121Z" tests="3" failures="0" errors="0" time="0.313">
-    <testcase name="HTTP 200" time="0.313" classname="15AdminLogin"/>
-    <testcase name="CSRF present" time="0.313" classname="15AdminLogin"/>
-    <testcase name="admin role" time="0.313" classname="15AdminLogin"/>
-  </testsuite>
-  <testsuite name="16 Overview" id="9882882a-6755-447e-88d6-ccf8284b7713" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.022">
-    <testcase name="HTTP 200" time="0.022" classname="16Overview"/>
-  </testsuite>
-  <testsuite name="17 Invalid photo" id="cb10a613-7e82-4aa0-944b-ff17f7eb7701" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.012">
-    <testcase name="HTTP 400" time="0.012" classname="17InvalidPhoto"/>
-  </testsuite>
-  <testsuite name="18 Photo upload" id="b1c52653-043a-4fe5-9d11-aa108b4f3532" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.190">
-    <testcase name="HTTP 201" time="0.190" classname="18PhotoUpload"/>
-  </testsuite>
-  <testsuite name="19 Add car" id="d00f4515-f131-4d71-a507-e037d6b6606b" timestamp="2026-11-26T12:02:09.121Z" tests="2" failures="0" errors="0" time="0.018">
-    <testcase name="HTTP 201" time="0.018" classname="19AddCar"/>
-    <testcase name="gallery saved" time="0.018" classname="19AddCar"/>
-  </testsuite>
-  <testsuite name="20 Edit car" id="898ab405-8e38-42a4-9150-46b544e14132" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.022">
-    <testcase name="HTTP 200" time="0.022" classname="20EditCar"/>
-  </testsuite>
-  <testsuite name="21 Archive car" id="3a641678-23be-4495-a3c0-9b092de8665b" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.054">
-    <testcase name="HTTP 200" time="0.054" classname="21ArchiveCar"/>
-  </testsuite>
-  <testsuite name="22 Export" id="7d138728-8101-46e6-81ef-54648331c262" timestamp="2026-11-26T12:02:09.121Z" tests="2" failures="0" errors="0" time="0.016">
-    <testcase name="HTTP 200" time="0.016" classname="22Export"/>
-    <testcase name="CSV" time="0.016" classname="22Export"/>
-  </testsuite>
-  <testsuite name="23 Logout" id="dc86a707-7893-4d9b-881f-6d2fdc83b79d" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.013">
-    <testcase name="HTTP 200" time="0.013" classname="23Logout"/>
-  </testsuite>
-  <testsuite name="24 Session" id="015483b1-c426-4040-b43a-b4207c7180fa" timestamp="2026-11-26T12:02:09.121Z" tests="2" failures="0" errors="0" time="0.020">
-    <testcase name="HTTP 200" time="0.020" classname="24Session"/>
-    <testcase name="CSRF present" time="0.020" classname="24Session"/>
-  </testsuite>
-  <testsuite name="25 Manager" id="abaeeb82-c2e6-4265-ba15-889c28b688a6" timestamp="2026-11-26T12:02:09.121Z" tests="2" failures="0" errors="0" time="0.379">
-    <testcase name="HTTP 200" time="0.379" classname="25Manager"/>
-    <testcase name="CSRF present" time="0.379" classname="25Manager"/>
-  </testsuite>
-  <testsuite name="26 Manager cannot add cars" id="5933f479-90f1-4015-acd1-24ef2af8afcc" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.011">
-    <testcase name="HTTP 403" time="0.011" classname="26ManagerCannotAddCars"/>
-  </testsuite>
-  <testsuite name="27 Maintenance" id="ae597756-9af5-4d22-a1b1-470df587c211" timestamp="2026-11-26T12:02:09.121Z" tests="1" failures="0" errors="0" time="0.017">
-    <testcase name="HTTP 201" time="0.017" classname="27Maintenance"/>
+  <testsuite name="15 Admin login" id="edf41399-5432-426a-93e2-c97d30f5527e" timestamp="2026-11-26T12:16:59.325Z" tests="1" failures="0" errors="0" time="0.365">
+    <testcase name="HTTP 200" time="0.365" classname="15AdminLogin"/>
   </testsuite>
 </testsuites>

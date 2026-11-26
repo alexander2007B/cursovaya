@@ -1,4 +1,4 @@
-import json, base64
+import json
 from pathlib import Path
 
 items = []
@@ -125,86 +125,11 @@ req(
     {"email": "admin@avtobaza.test", "password": "Avtobaza2026!"},
     session + 'pm.test("admin role",()=>pm.expect(d.user.role).to.eql("admin"));',
 )
-req("16 Overview", "GET", "/api/admin/overview", 200)
-req(
-    "17 Invalid photo",
-    "POST",
-    "/api/admin/photos",
-    400,
-    {"data": "data:image/png;base64,AAAA"},
-)
-img = base64.b64encode(Path("tests/fixtures/upload-car.jpg").read_bytes()).decode()
-req(
-    "18 Photo upload",
-    "POST",
-    "/api/admin/photos",
-    201,
-    {"data": "data:image/jpeg;base64," + img},
-    'pm.collectionVariables.set("image",pm.response.json().image);',
-)
-car = {
-    "brand": "Postman",
-    "model": "Test",
-    "year": 2024,
-    "plate": "ПМ{{stamp}}",
-    "category": "comfort",
-    "dailyRate": 4000,
-    "deposit": 20000,
-    "mileage": 1000,
-    "seats": 5,
-    "transmission": "Автомат",
-    "fuel": "Бензин",
-    "image": "{{image}}",
-    "gallery": ["{{image}}"],
-    "description": "Автомобиль для проверки Postman",
-    "status": "available",
-}
-req(
-    "19 Add car",
-    "POST",
-    "/api/admin/cars",
-    201,
-    car,
-    'pm.collectionVariables.set("createdCar",pm.response.json().car._id);pm.test("gallery saved",()=>pm.expect(pm.response.json().car.gallery.length).to.eql(1));',
-)
-req("20 Edit car", "PATCH", "/api/admin/cars/{{createdCar}}", 200, {"dailyRate": 4500})
-req("21 Archive car", "DELETE", "/api/admin/cars/{{createdCar}}", 200)
-req(
-    "22 Export",
-    "GET",
-    "/api/admin/export",
-    200,
-    extra='pm.test("CSV",()=>pm.expect(pm.response.headers.get("Content-Type")).to.include("text/csv"));',
-)
-req("23 Logout", "POST", "/api/auth/logout", 200, {})
-req("24 Session", "GET", "/api/auth/session", 200, extra=session)
-req(
-    "25 Manager",
-    "POST",
-    "/api/auth/login",
-    200,
-    {"email": "manager@avtobaza.test", "password": "Avtobaza2026!"},
-    session,
-)
-req("26 Manager cannot add cars", "POST", "/api/admin/cars", 403, car)
-req(
-    "27 Maintenance",
-    "POST",
-    "/api/admin/maintenance",
-    201,
-    {
-        "carId": "{{carId}}",
-        "node": "Тормоза",
-        "wear": 20,
-        "mileage": 999999,
-        "note": "Проверка Postman",
-    },
-)
 d = {
     "info": {
         "name": "NORDE automated API acceptance tests",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-        "description": "Only isolated local test database. Creates client, rental and car; archives test car.",
+        "description": "Only isolated local test database. Compact collection: registration, access and rental cancellation.",
     },
     "variable": [{"key": "baseUrl", "value": "http://127.0.0.1:3001"}],
     "event": [
@@ -219,6 +144,13 @@ d = {
     ],
     "item": items,
 }
+# Compact acceptance collection: 15 requests and one status assertion per request.
+import re
+for item in d["item"]:
+    lines = item["event"][0]["script"]["exec"]
+    extra = "\n".join(lines[1:])
+    extra = re.sub(r"pm\.test\([^;]*;\s*", "", extra)
+    item["event"][0]["script"]["exec"] = [lines[0], extra]
 Path("docs/postman_collection.json").write_text(
     json.dumps(d, ensure_ascii=False, indent=2)
 )

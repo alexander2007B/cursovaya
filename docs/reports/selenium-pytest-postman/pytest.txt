@@ -3,11 +3,12 @@ platform linux -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0
 rootdir: /workspace/testing-migration
 configfile: pytest.ini
 testpaths: tests/python
-collected 31 items / 4 deselected / 27 selected
+plugins: platformdirs-4.14.8
+collected 19 items / 4 deselected / 15 selected
 
-tests/python/test_api.py .....                                           [ 18%]
-tests/python/test_browser.py ....                                        [ 33%]
-tests/python/test_domain.py ..................                           [100%]
+tests/python/test_api.py .....                                           [ 33%]
+tests/python/test_browser.py ....                                        [ 60%]
+tests/python/test_domain.py ......                                       [100%]
 
 - generated xml file: /workspace/testing-migration/docs/reports/selenium-pytest-postman/pytest.xml -
-====================== 27 passed, 4 deselected in 32.86s =======================
+====================== 15 passed, 4 deselected in 36.68s =======================

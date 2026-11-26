@@ -2,149 +2,88 @@
 > avtobaza@1.0.0 test:api
 > newman run docs/postman_collection.json --reporters cli,json,junit --reporter-json-export docs/reports/selenium-pytest-postman/newman.json --reporter-junit-export docs/reports/selenium-pytest-postman/newman.xml
 
-(node:17751) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+(node:31341) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
 (Use `node --trace-deprecation ...` to show where the warning was created)
 newman
 
 NORDE automated API acceptance tests
 
 → 01 Health
-  GET http://127.0.0.1:3001/api/health [200 OK, 635B, 23ms]
+  GET http://127.0.0.1:3001/api/health [200 OK, 635B, 21ms]
   ✓  HTTP 200
 
 → 02 Session
-  GET http://127.0.0.1:3001/api/auth/session [200 OK, 894B, 8ms]
+  GET http://127.0.0.1:3001/api/auth/session [200 OK, 894B, 9ms]
   ✓  HTTP 200
-  ✓  CSRF present
 
 → 03 Catalog
-  GET http://127.0.0.1:3001/api/cars [200 OK, 6.98kB, 23ms]
+  GET http://127.0.0.1:3001/api/cars [200 OK, 6.98kB, 27ms]
   ✓  HTTP 200
-  ✓  12 cars
 
 → 04 Invalid dates
-  POST http://127.0.0.1:3001/api/quote [400 Bad Request, 690B, 32ms]
+  POST http://127.0.0.1:3001/api/quote [400 Bad Request, 690B, 35ms]
   ✓  HTTP 400
 
 → 05 Quote
-  POST http://127.0.0.1:3001/api/quote [200 OK, 746B, 12ms]
+  POST http://127.0.0.1:3001/api/quote [200 OK, 746B, 15ms]
   ✓  HTTP 200
-  ✓  one day
 
 → 06 Missing consent
-  POST http://127.0.0.1:3001/api/auth/register [400 Bad Request, 931B, 12ms]
+  POST http://127.0.0.1:3001/api/auth/register [400 Bad Request, 931B, 13ms]
   ✓  HTTP 400
 
 → 07 Registration
-  POST http://127.0.0.1:3001/api/auth/register [201 Created, 1.21kB, 396ms]
+  POST http://127.0.0.1:3001/api/auth/register [201 Created, 1.21kB, 344ms]
   ✓  HTTP 201
-  ✓  CSRF present
-  ✓  client role
-  ✓  password hidden
 
 → 08 Client cannot manage users
-  GET http://127.0.0.1:3001/api/admin/users [403 Forbidden, 698B, 11ms]
+  GET http://127.0.0.1:3001/api/admin/users [403 Forbidden, 698B, 12ms]
   ✓  HTTP 403
 
 → 09 Booking
-  POST http://127.0.0.1:3001/api/rentals [201 Created, 1.23kB, 25ms]
+  POST http://127.0.0.1:3001/api/rentals [201 Created, 1.23kB, 30ms]
   ✓  HTTP 201
 
 → 10 Client cannot confirm
-  PATCH http://127.0.0.1:3001/api/rentals/6b081fc11b7379871a996952/status [409 Conflict, 701B, 16ms]
+  PATCH http://127.0.0.1:3001/api/rentals/6b08233b997c9b1fb79e24ac/status [409 Conflict, 701B, 21ms]
   ✓  HTTP 409
 
 → 11 Cancel
-  PATCH http://127.0.0.1:3001/api/rentals/6b081fc11b7379871a996952/status [200 OK, 1.35kB, 24ms]
+  PATCH http://127.0.0.1:3001/api/rentals/6b08233b997c9b1fb79e24ac/status [200 OK, 1.35kB, 27ms]
   ✓  HTTP 200
 
 → 12 Logout
-  POST http://127.0.0.1:3001/api/auth/logout [200 OK, 706B, 10ms]
+  POST http://127.0.0.1:3001/api/auth/logout [200 OK, 706B, 11ms]
   ✓  HTTP 200
 
 → 13 New session
-  GET http://127.0.0.1:3001/api/auth/session [200 OK, 892B, 5ms]
+  GET http://127.0.0.1:3001/api/auth/session [200 OK, 896B, 6ms]
   ✓  HTTP 200
-  ✓  CSRF present
 
 → 14 Wrong password
-  POST http://127.0.0.1:3001/api/auth/login [401 Unauthorized, 796B, 305ms]
+  POST http://127.0.0.1:3001/api/auth/login [401 Unauthorized, 796B, 410ms]
   ✓  HTTP 401
 
 → 15 Admin login
-  POST http://127.0.0.1:3001/api/auth/login [200 OK, 1.21kB, 313ms]
+  POST http://127.0.0.1:3001/api/auth/login [200 OK, 1.21kB, 365ms]
   ✓  HTTP 200
-  ✓  CSRF present
-  ✓  admin role
-
-→ 16 Overview
-  GET http://127.0.0.1:3001/api/admin/overview [200 OK, 8.66kB, 22ms]
-  ✓  HTTP 200
-
-→ 17 Invalid photo
-  POST http://127.0.0.1:3001/api/admin/photos [400 Bad Request, 706B, 12ms]
-  ✓  HTTP 400
-
-→ 18 Photo upload
-  POST http://127.0.0.1:3001/api/admin/photos [201 Created, 685B, 190ms]
-  ✓  HTTP 201
-
-→ 19 Add car
-  POST http://127.0.0.1:3001/api/admin/cars [201 Created, 1.2kB, 18ms]
-  ✓  HTTP 201
-  ✓  gallery saved
-
-→ 20 Edit car
-  PATCH http://127.0.0.1:3001/api/admin/cars/6b081fc21b7379871a996977 [200 OK, 1.19kB, 22ms]
-  ✓  HTTP 200
-
-→ 21 Archive car
-  DELETE http://127.0.0.1:3001/api/admin/cars/6b081fc21b7379871a996977 [200 OK, 632B, 54ms]
-  ✓  HTTP 200
-
-→ 22 Export
-  GET http://127.0.0.1:3001/api/admin/export [200 OK, 917B, 16ms]
-  ✓  HTTP 200
-  ✓  CSV
-
-→ 23 Logout
-  POST http://127.0.0.1:3001/api/auth/logout [200 OK, 706B, 13ms]
-  ✓  HTTP 200
-
-→ 24 Session
-  GET http://127.0.0.1:3001/api/auth/session [200 OK, 896B, 20ms]
-  ✓  HTTP 200
-  ✓  CSRF present
-
-→ 25 Manager
-  POST http://127.0.0.1:3001/api/auth/login [200 OK, 1.21kB, 379ms]
-  ✓  HTTP 200
-  ✓  CSRF present
-
-→ 26 Manager cannot add cars
-  POST http://127.0.0.1:3001/api/admin/cars [403 Forbidden, 704B, 11ms]
-  ✓  HTTP 403
-
-→ 27 Maintenance
-  POST http://127.0.0.1:3001/api/admin/maintenance [201 Created, 914B, 17ms]
-  ✓  HTTP 201
 
 ┌─────────────────────────┬───────────────────┬───────────────────┐
 │                         │          executed │            failed │
 ├─────────────────────────┼───────────────────┼───────────────────┤
 │              iterations │                 1 │                 0 │
 ├─────────────────────────┼───────────────────┼───────────────────┤
-│                requests │                27 │                 0 │
+│                requests │                15 │                 0 │
 ├─────────────────────────┼───────────────────┼───────────────────┤
-│            test-scripts │                27 │                 0 │
+│            test-scripts │                15 │                 0 │
 ├─────────────────────────┼───────────────────┼───────────────────┤
-│      prerequest-scripts │                27 │                 0 │
+│      prerequest-scripts │                15 │                 0 │
 ├─────────────────────────┼───────────────────┼───────────────────┤
-│              assertions │                40 │                 0 │
+│              assertions │                15 │                 0 │
 ├─────────────────────────┴───────────────────┴───────────────────┤
-│ total run duration: 2.4s                                        │
+│ total run duration: 1631ms                                      │
 ├─────────────────────────────────────────────────────────────────┤
-│ total data received: 19.32kB (approx)                           │
+│ total data received: 9.01kB (approx)                            │
 ├─────────────────────────────────────────────────────────────────┤
-│ average response time: 73ms [min: 5ms, max: 396ms, s.d.: 120ms] │
+│ average response time: 89ms [min: 6ms, max: 410ms, s.d.: 142ms] │
 └─────────────────────────────────────────────────────────────────┘

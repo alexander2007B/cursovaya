@@ -8,4 +8,4 @@ Cars (first 4):
 Last completed rental:
 {"carName":"Audi A5","from":"2026-11-26","to":"2026-11-27","status":"completed","history":[{"status":"new"},{"status":"confirmed"},{"status":"active"},{"status":"completed"}],"returnMileage":18010}
 Latest registration consent (no personal fields):
-{"legal":{"termsVersion":"2026-11-23.1","termsAcceptedAt":"2026-11-26T12:08:52.209Z","privacyVersion":"2026-11-23.1","consentVersion":"2026-11-23.1","consentAcceptedAt":"2026-11-26T12:08:52.209Z"},"role":"client"}
+{"legal":{"termsVersion":"2026-11-23.1","termsAcceptedAt":"2026-11-26T12:17:20.665Z","privacyVersion":"2026-11-23.1","consentVersion":"2026-11-23.1","consentAcceptedAt":"2026-11-26T12:17:20.665Z"},"role":"client"}

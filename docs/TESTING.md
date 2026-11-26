@@ -4,10 +4,10 @@
 
 | Инструмент | Что проверяет | Файл | Итог нового прогона |
 |---|---|---|---|
-| pytest + Node.js адаптер | Цена, даты, статусы, телефон | [test_domain.py](../tests/python/test_domain.py) | 18 случаев |
+| pytest + Node.js адаптер | Цена, даты, статусы, телефон | [test_domain.py](../tests/python/test_domain.py) | 6 случаев |
 | pytest + Requests + MongoDB | Согласия, пароль, аренда, гонка, фото, доступ | [test_api.py](../tests/python/test_api.py) | 5 сценариев |
 | Selenium WebDriver + pytest | Страницы, регистрация, профиль, админка, модальные окна, 4 фото, адаптивность | [test_browser.py](../tests/python/test_browser.py) | 4 сценария |
-| Postman / Newman | HTTP-последовательности и ожидаемые отказы | [postman_collection.json](postman_collection.json) | 27 запросов, 40 утверждений |
+| Postman / Newman | HTTP-последовательности и ожидаемые отказы | [postman_collection.json](postman_collection.json) | 15 запросов, 15 утверждений |
 | pytest + Requests + ThreadPoolExecutor | GET /api/cars, identity/gzip, 10/50 соединений | [test_load.py](../tests/python/test_load.py) | 4 режима по 3 повтора |
 
 Это разные единицы: число HTTP-запросов нельзя складывать с числом функций и называть общим числом тестов. Итоговые протоколы находятся в [reports/selenium-pytest-postman](reports/selenium-pytest-postman/).
@@ -46,12 +46,11 @@ npm run test:load
 
 ## Протоколы и изображения
 
-- pytest.txt / pytest.xml - 27 функциональных случаев, включая Selenium.
+- pytest.txt / pytest.xml - 15 функциональных случаев, включая Selenium.
 - newman.txt / newman.xml / newman-summary.json - запросы и утверждения Postman.
 - load.txt / load.xml / load-*.json - четыре режима, все 12 измерений.
 - environment.json / exit-codes.json - версии и коды завершения.
 - screenshots.json - время, URL, размер окна и SHA-256 новых снимков.
-- development-rate-limit.txt - отдельная неуспешная попытка до исправления запуска; не итоговый протокол.
 
 Снимки обновляет Selenium. `scripts/refresh-coursework-evidence.py` строит диаграмму нагрузки из JSON и иллюстрацию из реального вывода mongosh; нужен контейнер MongoDB (MONGO_CONTAINER задаёт его имя при отличии). Продуктовая схема обновляется scripts/diagrams.py. Все актуальные изображения показаны в отдельном атласе интерфейса в комплекте курсовой.
 

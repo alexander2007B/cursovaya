@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-26T12:03:45.852740+00:00",
+  "at": "2026-11-26T12:18:38.989889+00:00",
   "endpoint": "http://127.0.0.1:3001/api/cars",
   "connections": 50,
   "encoding": "gzip",
@@ -7,36 +7,36 @@
   "rounds": [
     {
       "repeat": 1,
-      "duration_s": 5.06,
-      "requests": 2783,
-      "rps": 549.98,
-      "mean_ms": 90.37,
-      "p99_ms": 222.84,
+      "duration_s": 5.047,
+      "requests": 2837,
+      "rps": 562.11,
+      "mean_ms": 88.38,
+      "p99_ms": 218.42,
       "errors": 0,
-      "wire_body_bytes": 3718088,
-      "bytes_per_response": 1336.0
+      "wire_body_bytes": 3770373,
+      "bytes_per_response": 1329.0
     },
     {
       "repeat": 2,
-      "duration_s": 5.055,
-      "requests": 2917,
-      "rps": 577.05,
-      "mean_ms": 86.11,
-      "p99_ms": 251.44,
+      "duration_s": 5.053,
+      "requests": 2792,
+      "rps": 552.59,
+      "mean_ms": 89.91,
+      "p99_ms": 204.94,
       "errors": 0,
-      "wire_body_bytes": 3897112,
-      "bytes_per_response": 1336.0
+      "wire_body_bytes": 3710568,
+      "bytes_per_response": 1329.0
     },
     {
       "repeat": 3,
-      "duration_s": 5.053,
-      "requests": 2907,
-      "rps": 575.27,
-      "mean_ms": 86.34,
-      "p99_ms": 220.88,
+      "duration_s": 5.046,
+      "requests": 3039,
+      "rps": 602.25,
+      "mean_ms": 82.51,
+      "p99_ms": 184.84,
       "errors": 0,
-      "wire_body_bytes": 3883752,
-      "bytes_per_response": 1336.0
+      "wire_body_bytes": 4038831,
+      "bytes_per_response": 1329.0
     }
   ],
   "notes": "Python threads and server share host; wire body bytes exclude HTTP headers; not public-site load or booking stress"

@@ -44,7 +44,7 @@ archive = root / "NORDE_coursework_30_pages.zip"
 with ZipFile(archive, "w", ZIP_DEFLATED) as z:
     z.writestr(
         "ОТКРОЙТЕ_СНАЧАЛА.txt",
-        "Курсовой проект NORDÉ. Новые тесты и иллюстрации, 26.11.2026.\nОсновная записка Word/PDF - docs/coursework-30/Baev_NORDE_25-30.*, 30 страниц.\nРуководства пользователя, администратора, план защиты и атлас 15 экранов - docs/coursework-30/manuals/.\nТесты: Selenium + pytest, Postman/Newman; 27 функциональных случаев, 40 API-утверждений, 12 нагрузочных повторов.\nКарта файлов и порядок запуска - docs/TESTING.md.\nПротоколы XML/JSON/TXT - docs/reports/selenium-pytest-postman/.\nСхемы PNG/SVG - docs/diagrams/.\nДля запуска тестов скачайте полный исходный код из https://github.com/alexander2007B/cursovaya, ветка main; этот архив содержит документацию и тестовые материалы.\nТитул: нормоконтролёр, подписи и даты сдачи уточняются.\n",
+        "Курсовой проект NORDÉ. Новые тесты и иллюстрации, 26.11.2026.\nОсновная записка Word/PDF - docs/coursework-30/Baev_NORDE_25-30.*, 30 страниц.\nРуководства пользователя, администратора, план защиты и атлас 15 экранов - docs/coursework-30/manuals/.\nТесты: Selenium + pytest, Postman/Newman; 15 функциональных случаев, 15 API-утверждений, 12 нагрузочных повторов.\nКарта файлов и порядок запуска - docs/TESTING.md.\nПротоколы XML/JSON/TXT - docs/reports/selenium-pytest-postman/.\nСхемы PNG/SVG - docs/diagrams/.\nДля запуска тестов скачайте полный исходный код из https://github.com/alexander2007B/cursovaya, ветка main; этот архив содержит документацию и тестовые материалы.\nТитул: нормоконтролёр, подписи и даты сдачи уточняются.\n",
     )
     for p in sorted(set(files)):
         if p.is_file() and p.name != "newman.json":

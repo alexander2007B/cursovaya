@@ -1,208 +1,144 @@
 {
   "home": {
-    "at": "2026-11-26T12:02:18.915991+00:00",
-    "url": "http://127.0.0.1:3001/",
-    "viewport": {
-      "width": 1440,
-      "height": 1000
-    },
-    "sha256": "a121e4cabfb77c8f3944d5f24c1f03c62047795c6684069efe5a2823d32aec34",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
-  },
-  "catalog": {
-    "at": "2026-11-26T12:02:20.124344+00:00",
-    "url": "http://127.0.0.1:3001/catalog",
-    "viewport": {
-      "width": 1440,
-      "height": 1000
-    },
-    "sha256": "fd7730e01cca6a19340ba66e17d1f866a704c7a28dc71bae1ae4b59f1da773bd",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
-  },
-  "car": {
-    "at": "2026-11-26T12:02:21.428703+00:00",
-    "url": "http://127.0.0.1:3001/cars/6b081fbfc87a308ca370cc48",
-    "viewport": {
-      "width": 1440,
-      "height": 1000
-    },
-    "sha256": "f58fe2483bf5b71f0199c0c6fa22c44ff6285f34f067ae340e03a871db27cf69",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
-  },
-  "footer": {
-    "at": "2026-11-26T12:02:22.882612+00:00",
-    "url": "http://127.0.0.1:3001/",
-    "viewport": {
-      "width": 1440,
-      "height": 1000
-    },
-    "sha256": "c93a514f3c6003cac3031215c79da903da3e2de2638cf70610b1a3e8d0f34e28",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
-  },
-  "mobile": {
-    "at": "2026-11-26T12:02:26.107506+00:00",
-    "url": "http://127.0.0.1:3001/",
-    "viewport": {
-      "width": 390,
-      "height": 900
-    },
-    "sha256": "ddb9fd2379f0ce21027d54f735f21c7fdd0b74b651b739caa7d70f67aae3f976",
-    "image_pixels": {
-      "width": 390,
-      "height": 757
-    }
-  },
-  "registration": {
-    "at": "2026-11-26T12:08:50.465282+00:00",
+    "at": "2026-11-26T12:17:08.734364+00:00",
     "url": "http://127.0.0.1:3001/",
     "viewport": {
       "height": 857,
       "width": 1440
     },
-    "sha256": "e465e6812956f0e0d0b05d7c46d4ba64b669f5aa243941310bec8a26fb186365",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
+    "sha256": "a121e4cabfb77c8f3944d5f24c1f03c62047795c6684069efe5a2823d32aec34"
+  },
+  "catalog": {
+    "at": "2026-11-26T12:17:10.000769+00:00",
+    "url": "http://127.0.0.1:3001/catalog",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "fd7730e01cca6a19340ba66e17d1f866a704c7a28dc71bae1ae4b59f1da773bd"
+  },
+  "car": {
+    "at": "2026-11-26T12:17:11.163980+00:00",
+    "url": "http://127.0.0.1:3001/cars/6b082339c87a308ca370cc57",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "f58fe2483bf5b71f0199c0c6fa22c44ff6285f34f067ae340e03a871db27cf69"
+  },
+  "footer": {
+    "at": "2026-11-26T12:17:13.811757+00:00",
+    "url": "http://127.0.0.1:3001/",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "c93a514f3c6003cac3031215c79da903da3e2de2638cf70610b1a3e8d0f34e28"
+  },
+  "mobile": {
+    "at": "2026-11-26T12:17:16.894129+00:00",
+    "url": "http://127.0.0.1:3001/",
+    "viewport": {
+      "height": 757,
+      "width": 390
+    },
+    "sha256": "ddb9fd2379f0ce21027d54f735f21c7fdd0b74b651b739caa7d70f67aae3f976"
+  },
+  "registration": {
+    "at": "2026-11-26T12:17:18.850203+00:00",
+    "url": "http://127.0.0.1:3001/",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "b4185f85f2b8bf5629624daa67c9404f6810e6bb00adada76cc3e5b041d5142f"
   },
   "account": {
-    "at": "2026-11-26T12:08:53.838488+00:00",
+    "at": "2026-11-26T12:17:22.321394+00:00",
     "url": "http://127.0.0.1:3001/account",
     "viewport": {
       "height": 857,
       "width": 1440
     },
-    "sha256": "48a7999b82dfec313f7a5734da04b411e4fb7b01241308dc1dcad49f053abc73",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
+    "sha256": "48a7999b82dfec313f7a5734da04b411e4fb7b01241308dc1dcad49f053abc73"
   },
   "admin": {
-    "at": "2026-11-26T12:02:34.007055+00:00",
+    "at": "2026-11-26T12:17:26.631703+00:00",
     "url": "http://127.0.0.1:3001/admin?tab=overview",
     "viewport": {
-      "width": 1440,
-      "height": 1000
+      "height": 857,
+      "width": 1440
     },
-    "sha256": "86ba6eb86166cb9d049958af97d13e29f50769a0ef633cb4be45d65713cfd8d6",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
+    "sha256": "099727a6e26380f425e06a56ce2b22b5a7dbe62baf517e9d095519668f8aa4a4"
   },
   "fleet": {
-    "at": "2026-11-26T12:02:34.763668+00:00",
-    "url": "http://127.0.0.1:3001/admin?tab=fleet",
-    "viewport": {
-      "width": 1440,
-      "height": 1000
-    },
-    "sha256": "e31fde76b180c10cb3e9a63c703312a881729ca06203dd230ac0ab620fbc1430",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
-  },
-  "maintenance": {
-    "at": "2026-11-26T12:02:35.364737+00:00",
-    "url": "http://127.0.0.1:3001/admin?tab=maintenance",
-    "viewport": {
-      "width": 1440,
-      "height": 1000
-    },
-    "sha256": "94746ab00cf26c71ad7cc292aa1be8c15d7433e89f391ecb5305f9eab0fd4299",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
-  },
-  "photos": {
-    "at": "2026-11-26T12:09:01.247264+00:00",
+    "at": "2026-11-26T12:17:27.266059+00:00",
     "url": "http://127.0.0.1:3001/admin?tab=fleet",
     "viewport": {
       "height": 857,
       "width": 1440
     },
-    "sha256": "863f5a3516fd694eb5f6e3345fd6ce561b6d2824f3bf83363a6d1eb3a4e20f44",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
+    "sha256": "7d41c37ace1d74f8ee1c2f136a95d50510dd5f79497476af6b16b469d090fd01"
+  },
+  "maintenance": {
+    "at": "2026-11-26T12:17:28.348746+00:00",
+    "url": "http://127.0.0.1:3001/admin?tab=maintenance",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "0c21c09b036f8228d2127b9a878e59980dc0d3ffa746973b88e0c2b12b3c6216"
+  },
+  "photos": {
+    "at": "2026-11-26T12:17:36.010628+00:00",
+    "url": "http://127.0.0.1:3001/admin?tab=fleet",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "960f36a7ffa609cc6787d18def8b86fd1b90949546d48f750d5a14c081261ee0"
   },
   "database": {
-    "at": "2026-11-26T12:09:56.897786+00:00",
+    "at": "2026-11-26T12:18:54.494818+00:00",
     "source": "mongosh.txt",
     "kind": "Typeset genuine mongosh stdout, not browser screenshot",
     "query": "mongosh-query.js",
-    "sha256": "aebc2e359baaa07ce47789d1adf731c5bc88f05fc856dcd9ea2e766c8a50b94d",
-    "image_pixels": {
-      "width": 1686,
-      "height": 878
-    }
+    "sha256": "5164ffdc1f5a23cb7b911a319584fe1cbbe62fc9a835878a811f49c3e9c13fc2"
   },
   "consents": {
-    "at": "2026-11-26T12:08:51.142599+00:00",
+    "at": "2026-11-26T12:17:19.527040+00:00",
     "url": "http://127.0.0.1:3001/",
     "viewport": {
       "height": 857,
       "width": 1440
     },
-    "sha256": "2a3789ae342e5827481ac4a15addd4ebe1363be143200fcf5f15349b13731883",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
+    "sha256": "2a3789ae342e5827481ac4a15addd4ebe1363be143200fcf5f15349b13731883"
   },
   "privacy": {
-    "at": "2026-11-26T12:05:05.982881+00:00",
+    "at": "2026-11-26T12:17:11.948843+00:00",
     "url": "http://127.0.0.1:3001/privacy.html",
     "viewport": {
       "height": 857,
       "width": 1440
     },
-    "sha256": "ebeb6faa03401674fe0065e18418f05f29951a000efe00a04babdc2515b35f79",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
+    "sha256": "ebeb6faa03401674fe0065e18418f05f29951a000efe00a04babdc2515b35f79"
   },
   "terms": {
-    "at": "2026-11-26T12:05:06.588006+00:00",
+    "at": "2026-11-26T12:17:12.622403+00:00",
     "url": "http://127.0.0.1:3001/terms.html",
     "viewport": {
       "height": 857,
       "width": 1440
     },
-    "sha256": "1361e38950dc8af2d3b808853834732b6db306e8609760334510717a2553274b",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
+    "sha256": "1361e38950dc8af2d3b808853834732b6db306e8609760334510717a2553274b"
   },
   "consent": {
-    "at": "2026-11-26T12:05:07.149314+00:00",
+    "at": "2026-11-26T12:17:13.190753+00:00",
     "url": "http://127.0.0.1:3001/consent.html",
     "viewport": {
       "height": 857,
       "width": 1440
     },
-    "sha256": "b107057c5925e74120643e12d8d2885bddea9a8e9696f2aba1646e084813cf09",
-    "image_pixels": {
-      "width": 1440,
-      "height": 857
-    }
+    "sha256": "b107057c5925e74120643e12d8d2885bddea9a8e9696f2aba1646e084813cf09"
   }
 }

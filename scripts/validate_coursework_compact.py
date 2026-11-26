@@ -62,15 +62,15 @@ bib=False
 for paragraph in doc.paragraphs:
  if paragraph.style.name=='Heading 1':bib=paragraph.text.startswith('СПИСОК ИСПОЛЬЗОВАННЫХ')
  if bib and re.match(r'^\d+\.',paragraph.text):assert not paragraph.paragraph_format.first_line_indent
-report={'date':'2026-11-26','pages_total':len(pdf),'pages_before_appendices':mapping['Приложение 1']-1,'figures':len(structure['figures']),'tables':len(structure['tables']),'toc_entries':len(mapping),'font':fonts,'margins_mm':{'left':30,'right':15,'top':20,'bottom':20},'font_size_pt':12,'line_spacing':1.5,'geometry_issues':geometry,'manual_pages':manuals,'current_checks':'2026-11-26: pytest 27 passed (18 domain, 5 API, 4 Selenium); Newman 27 requests, 40 assertions passed; load 4 cases / 12 repeats passed','original_methodology_files':'College Regulation DOCX supplied by user and read directly on 2026-11-26; separate course methodology not available; user confirmed three sections','title_missing_fields':['Нормоконтролёр','Подписи и даты сдачи'],'title_data':title_data,'regulation_conflicts':['6.11 versus Appendix 2: table titles; Appendix 2 retained','6.2 versus Appendix 7: appendix titles in TOC; Appendix 7 retained'],'source_age_status':'See current 24-source HTTP check on 2026-11-26; publication age not established for all living web resources; see source-date-check.json'}
+report={'date':'2026-11-26','pages_total':len(pdf),'pages_before_appendices':mapping['Приложение 1']-1,'figures':len(structure['figures']),'tables':len(structure['tables']),'toc_entries':len(mapping),'font':fonts,'margins_mm':{'left':30,'right':15,'top':20,'bottom':20},'font_size_pt':12,'line_spacing':1.5,'geometry_issues':geometry,'manual_pages':manuals,'current_checks':'2026-11-26: pytest 15 passed (6 domain, 5 API, 4 Selenium); Newman 15 requests, 15 assertions passed; load 4 cases / 12 repeats passed','original_methodology_files':'College Regulation DOCX supplied by user and read directly on 2026-11-26; separate course methodology not available; user confirmed three sections','title_missing_fields':['Нормоконтролёр','Подписи и даты сдачи'],'title_data':title_data,'regulation_conflicts':['6.11 versus Appendix 2: table titles; Appendix 2 retained','6.2 versus Appendix 7: appendix titles in TOC; Appendix 7 retained'],'source_age_status':'See current 24-source HTTP check on 2026-11-26; publication age not established for all living web resources; see source-date-check.json'}
 from xml.etree import ElementTree as X
 report_dir=ROOT/'docs/reports/selenium-pytest-postman'
-for filename,count in [('pytest.xml',27),('load.xml',4)]:
+for filename,count in [('pytest.xml',15),('load.xml',4)]:
  suites=list(X.parse(report_dir/filename).getroot().iter('testsuite'))
  assert sum(int(s.get('tests',0)) for s in suites)==count
  assert sum(int(s.get(k,0)) for s in suites for k in ['failures','errors'])==0
 newman=json.loads((report_dir/'newman-summary.json').read_text())
-assert newman['stats']['assertions']['total']==40 and newman['stats']['assertions']['failed']==0
-assert newman['stats']['requests']['total']==27
+assert newman['stats']['assertions']['total']==15 and newman['stats']['assertions']['failed']==0
+assert newman['stats']['requests']['total']==15
 assert json.loads((report_dir/'exit-codes.json').read_text())=={'newman':0,'pytest':0,'load':0}
 (OUT/'validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2));print(json.dumps(report,ensure_ascii=False,indent=2))

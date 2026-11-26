@@ -24,7 +24,7 @@
     "User_Guide.pdf": 3,
     "UI_Atlas.pdf": 10
   },
-  "current_checks": "2026-11-26: pytest 27 passed (18 domain, 5 API, 4 Selenium); Newman 27 requests, 40 assertions passed; load 4 cases / 12 repeats passed",
+  "current_checks": "2026-11-26: pytest 15 passed (6 domain, 5 API, 4 Selenium); Newman 15 requests, 15 assertions passed; load 4 cases / 12 repeats passed",
   "original_methodology_files": "College Regulation DOCX supplied by user and read directly on 2026-11-26; separate course methodology not available; user confirmed three sections",
   "title_missing_fields": [
     "Нормоконтролёр",
