@@ -1,0 +1,176 @@
+{
+  "checked_at": "2026-11-26",
+  "note": "Access date and HTTP modification date do not establish original publication year. No unverified years added to bibliography.",
+  "sources": [
+    {
+      "author": "Новые облачные технологии",
+      "title": "МойОфис: шрифты XO",
+      "url": "https://myoffice.ru/products/fonts/",
+      "status": 200,
+      "last_modified": null,
+      "explicit_dates": []
+    },
+    {
+      "author": "Яндекс",
+      "title": "Яндекс Прокат: аренда автомобилей",
+      "url": "https://rentacar.yandex.ru/russia/moscow",
+      "status": 200,
+      "last_modified": null,
+      "explicit_dates": []
+    },
+    {
+      "author": "Automattic and contributors",
+      "title": "Mongoose 8: Schemas",
+      "url": "https://mongoosejs.com/docs/guide.html",
+      "status": 200,
+      "last_modified": "Mon, 23 Nov 2026 18:32:40 GMT",
+      "explicit_dates": []
+    },
+    {
+      "author": "Collina, M. and contributors",
+      "title": "Autocannon: HTTP/1.1 benchmarking tool",
+      "url": "https://github.com/mcollina/autocannon",
+      "status": 200,
+      "last_modified": null,
+      "explicit_dates": []
+    },
+    {
+      "author": "dcodeIO and contributors",
+      "title": "bcrypt.js: Optimized bcrypt in JavaScript",
+      "url": "https://github.com/dcodeIO/bcrypt.js",
+      "status": 200,
+      "last_modified": null,
+      "explicit_dates": []
+    },
+    {
+      "author": "Desboeufs, J. and contributors",
+      "title": "connect-mongo: MongoDB session store",
+      "url": "https://github.com/jdesboeufs/connect-mongo",
+      "status": 200,
+      "last_modified": null,
+      "explicit_dates": []
+    },
+    {
+      "author": "Docker Inc.",
+      "title": "Docker Compose: How Compose works",
+      "url": "https://docs.docker.com/compose/intro/compose-application-model/",
+      "status": 200,
+      "last_modified": "Thu, 26 Nov 2026 10:53:14 GMT",
+      "explicit_dates": [
+        "2026-11-17T14:15:51Z"
+      ]
+    },
+    {
+      "author": "Express contributors",
+      "title": "express-session: Session middleware",
+      "url": "https://github.com/expressjs/session",
+      "status": 200,
+      "last_modified": null,
+      "explicit_dates": []
+    },
+    {
+      "author": "Helmet contributors",
+      "title": "Helmet: HTTP security headers",
+      "url": "https://helmetjs.github.io/",
+      "status": 200,
+      "last_modified": "Fri, 16 Oct 2026 13:07:12 GMT",
+      "explicit_dates": []
+    },
+    {
+      "author": "IMask contributors",
+      "title": "IMask: JavaScript input mask",
+      "url": "https://imask.js.org/guide.html",
+      "status": 200,
+      "last_modified": "Fri, 11 Oct 2024 15:11:59 GMT",
+      "explicit_dates": []
+    },
+    {
+      "author": "Lovell, L. and contributors",
+      "title": "sharp: High performance Node.js image processing",
+      "url": "https://sharp.pixelplumbing.com/",
+      "status": 200,
+      "last_modified": "Sun, 27 Sep 2026 14:45:09 GMT",
+      "explicit_dates": []
+    },
+    {
+      "author": "McDonnell, C. and contributors",
+      "title": "Zod 3: Schema validation",
+      "url": "https://v3.zod.dev/",
+      "status": 200,
+      "last_modified": "Mon, 23 Nov 2026 00:49:38 GMT",
+      "explicit_dates": []
+    },
+    {
+      "author": "Meta Platforms, Inc.",
+      "title": "React 19: Reference",
+      "url": "https://react.dev/reference/react",
+      "status": 200,
+      "last_modified": null,
+      "explicit_dates": []
+    },
+    {
+      "author": "Microsoft",
+      "title": "Playwright: Writing tests",
+      "url": "https://playwright.dev/docs/writing-tests",
+      "status": 200,
+      "last_modified": "Fri, 20 Nov 2026 01:09:32 GMT",
+      "explicit_dates": []
+    },
+    {
+      "author": "MongoDB, Inc.",
+      "title": "MongoDB 8.0: Transactions",
+      "url": "https://www.mongodb.com/docs/v8.0/core/transactions/",
+      "status": 200,
+      "last_modified": null,
+      "explicit_dates": []
+    },
+    {
+      "author": "Node.js contributors",
+      "title": "Node.js 24: Test runner",
+      "url": "https://nodejs.org/docs/latest-v24.x/api/test.html",
+      "status": 200,
+      "last_modified": "Wed, 11 Nov 2026 00:48:47 GMT",
+      "explicit_dates": []
+    },
+    {
+      "author": "OpenJS Foundation",
+      "title": "Express 5: Web framework for Node.js",
+      "url": "https://expressjs.com/en/5x/api.html",
+      "status": 200,
+      "last_modified": "Tue, 24 Nov 2026 11:51:25 GMT",
+      "explicit_dates": []
+    },
+    {
+      "author": "OWASP Foundation",
+      "title": "Authorization Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+      "status": 200,
+      "last_modified": "Thu, 26 Nov 2026 10:31:01 GMT",
+      "explicit_dates": []
+    },
+    {
+      "author": "SIXT SE",
+      "title": "SIXT: Car rental",
+      "url": "https://www.sixt.com/",
+      "status": 200,
+      "last_modified": "Thu, 26 Nov 2026 11:04:32 GMT",
+      "explicit_dates": []
+    },
+    {
+      "author": "Turo Inc.",
+      "title": "Turo: Car rental marketplace",
+      "url": "https://turo.com/",
+      "status": 200,
+      "last_modified": null,
+      "explicit_dates": []
+    },
+    {
+      "author": "Vite contributors",
+      "title": "Vite: Getting Started",
+      "url": "https://vite.dev/guide/",
+      "status": 200,
+      "last_modified": null,
+      "explicit_dates": []
+    }
+  ]
+}

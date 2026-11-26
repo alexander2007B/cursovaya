@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-22",
+  "date": "2026-11-26",
   "pages_total": 30,
   "pages_before_appendices": 28,
   "figures": 10,
@@ -19,18 +19,29 @@
   "line_spacing": 1.5,
   "geometry_issues": [],
   "manual_pages": {
-    "Defense_Plan.pdf": 2,
+    "Defense_Plan.pdf": 3,
     "Admin_Guide.pdf": 4,
     "User_Guide.pdf": 3
   },
   "current_checks": "Existing protocol: 10 tests without MongoDB passed on 2026-11-18; no new run for this formatting revision",
   "historical_checks": "32 unit/API and 5 E2E from 2026-11-06; no new full API/E2E/load run",
-  "original_methodology_files": "Not available; formatting based on prior FORMAT_COMPLIANCE.md",
+  "original_methodology_files": "College Regulation DOCX supplied by user and read directly on 2026-11-26; separate course methodology not available; user confirmed three sections",
   "title_missing_fields": [
-    "Группа",
-    "Специальность",
-    "Руководитель",
     "Нормоконтролёр",
-    "Подписи"
-  ]
+    "Подписи и даты сдачи"
+  ],
+  "title_data": {
+    "author": "Баев Александр Павлович",
+    "group": "ИСП-423Т",
+    "specialty": "09.02.07 «Информационные системы и программирование / специалист по тестированию в области информационных технологий»",
+    "mdk": "Поддержка и тестирование программных модулей",
+    "supervisor": "Мартяков Дмитрий Сергеевич",
+    "reviewer": "",
+    "mdk_code": "МДК.10.3"
+  },
+  "regulation_conflicts": [
+    "6.11 versus Appendix 2: table titles; Appendix 2 retained",
+    "6.2 versus Appendix 7: appendix titles in TOC; Appendix 7 retained"
+  ],
+  "source_age_status": "All 21 URLs reachable on 2026-11-26; publication age not established for all living web resources; see source-date-check.json"
 }

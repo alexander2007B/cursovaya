@@ -38,5 +38,28 @@ assert not geometry,geometry[:10]
 manuals={}
 for p in (OUT/'manuals').glob('*.pdf'):
  m=fitz.open(p);assert all(page.get_text().strip() for page in m);assert not any(c in ''.join(page.get_text() for page in m) for c in ['—','–','−','‑']);manuals[p.name]=len(m)
-report={'date':'2026-11-22','pages_total':len(pdf),'pages_before_appendices':mapping['Приложение 1']-1,'figures':len(structure['figures']),'tables':len(structure['tables']),'toc_entries':len(mapping),'font':fonts,'margins_mm':{'left':30,'right':15,'top':20,'bottom':20},'font_size_pt':12,'line_spacing':1.5,'geometry_issues':geometry,'manual_pages':manuals,'current_checks':'Existing protocol: 10 tests without MongoDB passed on 2026-11-18; no new run for this formatting revision','historical_checks':'32 unit/API and 5 E2E from 2026-11-06; no new full API/E2E/load run','original_methodology_files':'Not available; formatting based on prior FORMAT_COMPLIANCE.md','title_missing_fields':['Группа','Специальность','Руководитель','Нормоконтролёр','Подписи']}
+title_data=json.loads((OUT/'title-data.json').read_text())
+source=(OUT/'coursework.md').read_text()
+body=source.split('# СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ')[0]
+for n in (1,2):assert f'приложении {n}' in body.lower()
+assert 'Вывод по первому разделу:' in body
+assert 'https://github.com/alexander2007B/cursovaya' in body.split('# ЗАКЛЮЧЕНИЕ')[1]
+assert title_data['group'] in pdf[0].get_text()
+assert 'МДК.10.3' in pdf[0].get_text()
+assert 'А.П. Баев' in pdf[0].get_text() and 'Д.С. Мартяков' in pdf[0].get_text()
+assert pdf[0].get_text().count('2026 г.')==4
+cited={int(n) for token in re.findall(r'\[([0-9, ]+)\]',body) for n in re.findall(r'\d+',token)}
+assert set(range(1,22))<=cited
+for table in doc.tables:
+ for row in table.rows:
+  for cell in row.cells:
+   for paragraph in cell.paragraphs:
+    assert paragraph.paragraph_format.line_spacing==1
+    assert not paragraph.paragraph_format.first_line_indent
+    for run in paragraph.runs:assert run.font.name=='XO Thames' and run.font.size.pt==12
+bib=False
+for paragraph in doc.paragraphs:
+ if paragraph.style.name=='Heading 1':bib=paragraph.text.startswith('СПИСОК ИСПОЛЬЗОВАННЫХ')
+ if bib and re.match(r'^\d+\.',paragraph.text):assert not paragraph.paragraph_format.first_line_indent
+report={'date':'2026-11-26','pages_total':len(pdf),'pages_before_appendices':mapping['Приложение 1']-1,'figures':len(structure['figures']),'tables':len(structure['tables']),'toc_entries':len(mapping),'font':fonts,'margins_mm':{'left':30,'right':15,'top':20,'bottom':20},'font_size_pt':12,'line_spacing':1.5,'geometry_issues':geometry,'manual_pages':manuals,'current_checks':'Existing protocol: 10 tests without MongoDB passed on 2026-11-18; no new run for this formatting revision','historical_checks':'32 unit/API and 5 E2E from 2026-11-06; no new full API/E2E/load run','original_methodology_files':'College Regulation DOCX supplied by user and read directly on 2026-11-26; separate course methodology not available; user confirmed three sections','title_missing_fields':['Нормоконтролёр','Подписи и даты сдачи'],'title_data':title_data,'regulation_conflicts':['6.11 versus Appendix 2: table titles; Appendix 2 retained','6.2 versus Appendix 7: appendix titles in TOC; Appendix 7 retained'],'source_age_status':'All 21 URLs reachable on 2026-11-26; publication age not established for all living web resources; see source-date-check.json'}
 (OUT/'validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2));print(json.dumps(report,ensure_ascii=False,indent=2))

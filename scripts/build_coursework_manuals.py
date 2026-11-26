@@ -1,5 +1,5 @@
 from pathlib import Path
-import re,zipfile
+import re,zipfile,json
 from docx import Document
 from docx.shared import Cm,Pt,RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH as A
@@ -25,7 +25,7 @@ for source in (OUT/'manuals').glob('*.md'):
   if block.startswith('# '):d.add_heading(block[2:],level=1)
   elif block.startswith('## '):d.add_heading(block[3:],level=2)
   else:d.add_paragraph(block)
- d.core_properties.author='Баев Александр';d.core_properties.title=source.read_text().splitlines()[0][2:]
+ d.core_properties.author=json.loads((OUT/'title-data.json').read_text())['author'];d.core_properties.title=source.read_text().splitlines()[0][2:]
  dest=source.with_suffix('.docx');d.save(dest)
  # Reuse the font embedding already validated in the principal document.
  with zipfile.ZipFile(OUT/'Baev_NORDE_25-30.docx') as z:fonts={n:z.read(n) for n in z.namelist() if n=='word/fontTable.xml' or n=='word/_rels/fontTable.xml.rels' or n.startswith('word/fonts/')}

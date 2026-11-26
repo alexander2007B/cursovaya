@@ -9,6 +9,7 @@ from docx.oxml.ns import qn
 from PIL import Image
 from lxml import etree as ET
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs/coursework-30';OUT.mkdir(exist_ok=True)
+title_data=json.loads((OUT/'title-data.json').read_text())
 FONT='XO Thames';source=(OUT/'coursework.md').read_text().translate(str.maketrans({'—':'-','–':'-','−':'-','‑':'-'}))
 versions=json.loads((ROOT/'docs/reports/norde-final/versions.json').read_text())['dependencies']
 selected=['express','mongoose','react','vite','@playwright/test','zod','autocannon','sharp','react-imask']
@@ -54,13 +55,16 @@ def para(text='',align=None,indent=1.25,before=0,after=0,spacing=1.5,bold=False,
 # Title follows the college's supplied example; missing information stays blank.
 para('автономное профессиональное образовательное учреждение\nВологодской области\n«Вологодский колледж связи и информационных технологий»',A.CENTER,0,after=38)
 para('КУРСОВОЙ ПРОЕКТ',A.CENTER,0,after=18)
-para('по МДК «Поддержка и тестирование\nпрограммных модулей»',A.CENTER,0,after=24)
+para('по '+title_data.get('mdk_code','МДК')+' «'+title_data['mdk']+'»',A.CENTER,0,after=24)
 para('РАЗРАБОТКА И ОБЕСПЕЧЕНИЕ КАЧЕСТВА\nВЕБ-ПРИЛОЖЕНИЯ ДЛЯ АРЕНДЫ АВТОМОБИЛЕЙ\nИ УЧЁТА СОСТОЯНИЯ АВТОПАРКА «NORDÉ»',A.CENTER,0,after=30)
-para('Группа: ____________________\nСпециальность: __________________________________________',A.LEFT,0,after=20)
-for t in ['Студент: _______________ (Баев Александр)','Руководитель: __________________________','Нормоконтролёр: ________________________']:
- p=para(t,A.LEFT,0,after=8);p.paragraph_format.left_indent=Cm(5.5)
-para('«_____» __________________ 2026 г.',A.RIGHT,0,after=30)
-para('Вологда\n2026 г.',A.CENTER,0,before=25)
+para('Группа: '+(title_data['group'] or '____________________')+'\nСпециальность: '+(title_data['specialty'] or '__________________________________________'),A.LEFT,0,after=20)
+def initials(name):
+ parts=name.split()
+ return ''.join(p[0]+'.' for p in parts[1:])+' '+parts[0] if parts else '________________'
+for role,key in [('Студент','author'),('Руководитель','supervisor'),('Нормоконтролёр','reviewer')]:
+ p=para(role+': __________ ('+initials(title_data[key])+')\t«____» __________ 2026 г.',A.LEFT,0,after=10)
+ p.paragraph_format.tab_stops.add_tab_stop(Cm(16.5),WD_TAB_ALIGNMENT.RIGHT)
+para('Вологда\n2026 г.',A.CENTER,0,before=30)
 # TOC field with a usable cached result. Appendix names are excluded.
 p=para('СОДЕРЖАНИЕ',A.CENTER,0,after=18);p.paragraph_format.page_break_before=True
 first_toc=True;last_toc=None
@@ -96,12 +100,13 @@ def table(group):
   trPr=t.rows[-1]._tr.get_or_add_trPr();trPr.append(OxmlElement('w:cantSplit'))
   if ri==0:trPr.append(OxmlElement('w:tblHeader'))
  para('',indent=0,spacing=1,after=6)
-lines=source.splitlines();i=0
+lines=source.splitlines();i=0;in_bibliography=False
 while i<len(lines):
  line=lines[i].strip()
  if not line:i+=1;continue
  if line.startswith('#'):
   m=re.match(r'^(#{1,3}) (.+)$',line);level=len(m[1]);title=m[2]
+  if level==1:in_bibliography=title.startswith('СПИСОК ИСПОЛЬЗОВАННЫХ')
   if title.startswith('Приложение '):p=doc.add_paragraph(title,style='Appendix Number');p.paragraph_format.page_break_before=True
   else:
    p=doc.add_heading(title,level=level)
@@ -129,8 +134,8 @@ while i<len(lines):
    p=para(lines[i],A.LEFT,0,spacing=1);p.paragraph_format.keep_with_next=i+1<len(lines) and not lines[i+1].startswith('```');i+=1
   i+=1;continue
  # A bibliography entry retains its actual number, independent of list autoformat.
- para(line);i+=1
-props=doc.core_properties;props.title='Разработка и обеспечение качества веб-приложения для аренды автомобилей и учёта состояния автопарка NORDÉ';props.author='Баев Александр';props.subject='Курсовой проект · ВКСИИТ';props.language='ru-RU'
+ para(line,indent=0 if in_bibliography else 1.25);i+=1
+props=doc.core_properties;props.title='Разработка и обеспечение качества веб-приложения для аренды автомобилей и учёта состояния автопарка NORDÉ';props.author=title_data['author'];props.subject='Курсовой проект · ВКСИИТ';props.language='ru-RU'
 for node in doc.element.iter(qn('w:t')):
  if node.text:node.text=node.text.translate(str.maketrans({'—':'-','–':'-','−':'-','‑':'-'}))
 path=OUT/'Baev_NORDE_25-30.docx';doc.save(path)
