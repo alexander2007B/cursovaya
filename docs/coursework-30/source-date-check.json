@@ -1,0 +1,198 @@
+{
+  "checked_at": "2026-11-26",
+  "note": "New numbered bibliography; HTTP availability is not evidence of publication year. No invented years.",
+  "sources": [
+    {
+      "number": 1,
+      "title": "Новые облачные технологии. МойОфис: шрифты XO",
+      "url": "https://myoffice.ru/products/fonts/",
+      "status": 200,
+      "last_modified": null,
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 2,
+      "title": "Яндекс. Яндекс Прокат: аренда автомобилей",
+      "url": "https://rentacar.yandex.ru/russia/moscow",
+      "status": 200,
+      "last_modified": null,
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 3,
+      "title": "Automattic and contributors. Mongoose 8: Schemas",
+      "url": "https://mongoosejs.com/docs/guide.html",
+      "status": 200,
+      "last_modified": "Mon, 23 Nov 2026 18:32:40 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 4,
+      "title": "dcodeIO and contributors. bcrypt.js: Optimized bcrypt in JavaScript",
+      "url": "https://github.com/dcodeIO/bcrypt.js",
+      "status": 200,
+      "last_modified": null,
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 5,
+      "title": "Desboeufs, J. and contributors. connect-mongo: MongoDB session store",
+      "url": "https://github.com/jdesboeufs/connect-mongo",
+      "status": 200,
+      "last_modified": null,
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 6,
+      "title": "Docker Inc.. Docker Compose: How Compose works",
+      "url": "https://docs.docker.com/compose/intro/compose-application-model/",
+      "status": 200,
+      "last_modified": "Thu, 26 Nov 2026 10:53:14 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 7,
+      "title": "Express contributors. express-session: Session middleware",
+      "url": "https://github.com/expressjs/session",
+      "status": 200,
+      "last_modified": null,
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 8,
+      "title": "Helmet contributors. Helmet: HTTP security headers",
+      "url": "https://helmetjs.github.io/",
+      "status": 200,
+      "last_modified": "Fri, 16 Oct 2026 13:07:12 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 9,
+      "title": "IMask contributors. IMask: JavaScript input mask",
+      "url": "https://imask.js.org/guide.html",
+      "status": 200,
+      "last_modified": "Fri, 11 Oct 2024 15:11:59 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 10,
+      "title": "Lovell, L. and contributors. sharp: High performance Node.js image processing",
+      "url": "https://sharp.pixelplumbing.com/",
+      "status": 200,
+      "last_modified": "Sun, 27 Sep 2026 14:45:09 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 11,
+      "title": "McDonnell, C. and contributors. Zod 3: Schema validation",
+      "url": "https://v3.zod.dev/",
+      "status": 200,
+      "last_modified": "Mon, 23 Nov 2026 00:49:38 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 12,
+      "title": "Meta Platforms, Inc.. React 19: Reference",
+      "url": "https://react.dev/reference/react",
+      "status": 200,
+      "last_modified": null,
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 13,
+      "title": "MongoDB, Inc.. MongoDB 8.0: Transactions",
+      "url": "https://www.mongodb.com/docs/v8.0/core/transactions/",
+      "status": 200,
+      "last_modified": null,
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 14,
+      "title": "Node.js contributors. Node.js 24: Documentation",
+      "url": "https://nodejs.org/docs/latest-v24.x/api/",
+      "status": 200,
+      "last_modified": "Wed, 11 Nov 2026 00:48:44 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 15,
+      "title": "OpenJS Foundation. Express 5: Web framework for Node.js",
+      "url": "https://expressjs.com/en/5x/api.html",
+      "status": 200,
+      "last_modified": "Tue, 24 Nov 2026 11:51:24 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 16,
+      "title": "OWASP Foundation. Authorization Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+      "status": 200,
+      "last_modified": "Thu, 26 Nov 2026 10:31:01 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 17,
+      "title": "Postman, Inc.. Newman: Command-line collection runner",
+      "url": "https://learning.postman.com/docs/collections/using-newman-cli/command-line-integration-with-newman/",
+      "status": 200,
+      "last_modified": "Wed, 25 Nov 2026 21:44:52 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 18,
+      "title": "pytest developers. pytest: How to parametrize fixtures and test functions",
+      "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+      "status": 200,
+      "last_modified": "Tue, 27 Oct 2026 21:36:00 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 19,
+      "title": "Python Software Foundation. concurrent.futures: ThreadPoolExecutor",
+      "url": "https://docs.python.org/3/library/concurrent.futures.html",
+      "status": 200,
+      "last_modified": "Thu, 26 Nov 2026 07:12:20 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 20,
+      "title": "Requests contributors. Requests: Advanced Usage",
+      "url": "https://requests.readthedocs.io/en/latest/user/advanced/",
+      "status": 200,
+      "last_modified": "Mon, 26 Oct 2026 17:15:36 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 21,
+      "title": "Selenium project. Selenium WebDriver",
+      "url": "https://www.selenium.dev/documentation/webdriver/",
+      "status": 200,
+      "last_modified": "Wed, 25 Nov 2026 18:58:50 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 22,
+      "title": "SIXT SE. SIXT: Car rental",
+      "url": "https://www.sixt.com/",
+      "status": 200,
+      "last_modified": "Thu, 26 Nov 2026 11:56:07 GMT",
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 23,
+      "title": "Turo Inc.. Turo: Car rental marketplace",
+      "url": "https://turo.com/",
+      "status": 200,
+      "last_modified": null,
+      "publication_year": "not established by HTTP status or Last-Modified"
+    },
+    {
+      "number": 24,
+      "title": "Vite contributors. Vite: Getting Started",
+      "url": "https://vite.dev/guide/",
+      "status": 200,
+      "last_modified": null,
+      "publication_year": "not established by HTTP status or Last-Modified"
+    }
+  ]
+}

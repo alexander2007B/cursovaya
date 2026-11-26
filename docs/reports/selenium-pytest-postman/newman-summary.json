@@ -1,0 +1,403 @@
+{
+  "started": 1795694529121,
+  "completed": 1795694531599,
+  "stats": {
+    "iterations": {
+      "total": 1,
+      "pending": 0,
+      "failed": 0
+    },
+    "items": {
+      "total": 27,
+      "pending": 0,
+      "failed": 0
+    },
+    "scripts": {
+      "total": 54,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequests": {
+      "total": 27,
+      "pending": 0,
+      "failed": 0
+    },
+    "requests": {
+      "total": 27,
+      "pending": 0,
+      "failed": 0
+    },
+    "tests": {
+      "total": 27,
+      "pending": 0,
+      "failed": 0
+    },
+    "assertions": {
+      "total": 40,
+      "pending": 0,
+      "failed": 0
+    },
+    "testScripts": {
+      "total": 27,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequestScripts": {
+      "total": 27,
+      "pending": 0,
+      "failed": 0
+    }
+  },
+  "requests": [
+    {
+      "name": "01 Health",
+      "status": 200,
+      "duration_ms": 23,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "02 Session",
+      "status": 200,
+      "duration_ms": 8,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        },
+        {
+          "name": "CSRF present",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "03 Catalog",
+      "status": 200,
+      "duration_ms": 23,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        },
+        {
+          "name": "12 cars",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "04 Invalid dates",
+      "status": 400,
+      "duration_ms": 32,
+      "assertions": [
+        {
+          "name": "HTTP 400",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "05 Quote",
+      "status": 200,
+      "duration_ms": 12,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        },
+        {
+          "name": "one day",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "06 Missing consent",
+      "status": 400,
+      "duration_ms": 12,
+      "assertions": [
+        {
+          "name": "HTTP 400",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "07 Registration",
+      "status": 201,
+      "duration_ms": 396,
+      "assertions": [
+        {
+          "name": "HTTP 201",
+          "error": null
+        },
+        {
+          "name": "CSRF present",
+          "error": null
+        },
+        {
+          "name": "client role",
+          "error": null
+        },
+        {
+          "name": "password hidden",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "08 Client cannot manage users",
+      "status": 403,
+      "duration_ms": 11,
+      "assertions": [
+        {
+          "name": "HTTP 403",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "09 Booking",
+      "status": 201,
+      "duration_ms": 25,
+      "assertions": [
+        {
+          "name": "HTTP 201",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "10 Client cannot confirm",
+      "status": 409,
+      "duration_ms": 16,
+      "assertions": [
+        {
+          "name": "HTTP 409",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "11 Cancel",
+      "status": 200,
+      "duration_ms": 24,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "12 Logout",
+      "status": 200,
+      "duration_ms": 10,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "13 New session",
+      "status": 200,
+      "duration_ms": 5,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        },
+        {
+          "name": "CSRF present",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "14 Wrong password",
+      "status": 401,
+      "duration_ms": 305,
+      "assertions": [
+        {
+          "name": "HTTP 401",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "15 Admin login",
+      "status": 200,
+      "duration_ms": 313,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        },
+        {
+          "name": "CSRF present",
+          "error": null
+        },
+        {
+          "name": "admin role",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "16 Overview",
+      "status": 200,
+      "duration_ms": 22,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "17 Invalid photo",
+      "status": 400,
+      "duration_ms": 12,
+      "assertions": [
+        {
+          "name": "HTTP 400",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "18 Photo upload",
+      "status": 201,
+      "duration_ms": 190,
+      "assertions": [
+        {
+          "name": "HTTP 201",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "19 Add car",
+      "status": 201,
+      "duration_ms": 18,
+      "assertions": [
+        {
+          "name": "HTTP 201",
+          "error": null
+        },
+        {
+          "name": "gallery saved",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "20 Edit car",
+      "status": 200,
+      "duration_ms": 22,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "21 Archive car",
+      "status": 200,
+      "duration_ms": 54,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "22 Export",
+      "status": 200,
+      "duration_ms": 16,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        },
+        {
+          "name": "CSV",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "23 Logout",
+      "status": 200,
+      "duration_ms": 13,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "24 Session",
+      "status": 200,
+      "duration_ms": 20,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        },
+        {
+          "name": "CSRF present",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "25 Manager",
+      "status": 200,
+      "duration_ms": 379,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "error": null
+        },
+        {
+          "name": "CSRF present",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "26 Manager cannot add cars",
+      "status": 403,
+      "duration_ms": 11,
+      "assertions": [
+        {
+          "name": "HTTP 403",
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "27 Maintenance",
+      "status": 201,
+      "duration_ms": 17,
+      "assertions": [
+        {
+          "name": "HTTP 201",
+          "error": null
+        }
+      ]
+    }
+  ],
+  "failures": []
+}

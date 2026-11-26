@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-26T12:03:30.656864+00:00",
+  "endpoint": "http://127.0.0.1:3001/api/cars",
+  "connections": 50,
+  "encoding": "identity",
+  "planned_duration_s": 5,
+  "rounds": [
+    {
+      "repeat": 1,
+      "duration_s": 5.076,
+      "requests": 3018,
+      "rps": 594.61,
+      "mean_ms": 82.87,
+      "p99_ms": 210.72,
+      "errors": 0,
+      "wire_body_bytes": 19010382,
+      "bytes_per_response": 6299.0
+    },
+    {
+      "repeat": 2,
+      "duration_s": 5.057,
+      "requests": 3116,
+      "rps": 616.22,
+      "mean_ms": 80.2,
+      "p99_ms": 190.43,
+      "errors": 0,
+      "wire_body_bytes": 19627684,
+      "bytes_per_response": 6299.0
+    },
+    {
+      "repeat": 3,
+      "duration_s": 5.037,
+      "requests": 3240,
+      "rps": 643.18,
+      "mean_ms": 77.28,
+      "p99_ms": 215.35,
+      "errors": 0,
+      "wire_body_bytes": 20408760,
+      "bytes_per_response": 6299.0
+    }
+  ],
+  "notes": "Python threads and server share host; wire body bytes exclude HTTP headers; not public-site load or booking stress"
+}

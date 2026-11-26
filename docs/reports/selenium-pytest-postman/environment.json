@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-26T12:02:05.716879+00:00",
+  "sourceCommit": "1c13fa72ccaa56287076c109db7d50e474b71a39",
+  "workingTree": "Test and documentation migration; application source unchanged from sourceCommit",
+  "python": "3.12.14",
+  "pytest": "9.2.0",
+  "selenium": "4.54.0",
+  "requests": "2.34.2",
+  "node": "v24.22.1",
+  "newman": "6.2.3",
+  "chromium": "Chromium 156.0.8078.79 built on Debian GNU/Linux 13 (trixie)",
+  "mongodb": "8.0.38",
+  "database": "avtobaza_e2e",
+  "endpoint": "http://127.0.0.1:3001",
+  "os": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "cpus": 3
+}

@@ -1,0 +1,26 @@
+{
+  "identity-10": {
+    "rps": 632.81,
+    "mean_ms": 15.74,
+    "p99_ms": 61.08,
+    "bytes_per_response": 6299.0
+  },
+  "identity-50": {
+    "rps": 616.22,
+    "mean_ms": 80.2,
+    "p99_ms": 210.72,
+    "bytes_per_response": 6299.0
+  },
+  "gzip-10": {
+    "rps": 537.8,
+    "mean_ms": 18.57,
+    "p99_ms": 70.51,
+    "bytes_per_response": 1336.0
+  },
+  "gzip-50": {
+    "rps": 575.27,
+    "mean_ms": 86.34,
+    "p99_ms": 222.84,
+    "bytes_per_response": 1336.0
+  }
+}
