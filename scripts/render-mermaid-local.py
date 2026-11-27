@@ -1,6 +1,6 @@
 """Export the project's Mermaid source through a normal local HTTP application.
 Use an activated requirements-test.txt environment. Set MERMAID_DIST to the
-installed mermaid/dist directory, or use the npm-exec cache discovered below.
+downloaded browser-only mermaid/dist directory.
 No browser policies are changed.
 """
 from pathlib import Path
@@ -9,9 +9,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 root=Path(__file__).resolve().parents[1];os.chdir(root)
-candidates=list((Path.home()/'.npm/_npx').glob('*/node_modules/mermaid/dist'))
-dist=Path(os.environ['MERMAID_DIST']) if os.environ.get('MERMAID_DIST') else (candidates[0] if candidates else None)
-if dist is None:raise SystemExit('Install Mermaid and set MERMAID_DIST to its dist directory')
+dist=Path(os.environ['MERMAID_DIST']) if os.environ.get('MERMAID_DIST') else None
+if dist is None:raise SystemExit('Export .mmd in Mermaid Live, or set MERMAID_DIST to downloaded browser-only Mermaid assets.')
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
  def log_message(self,*args):pass
 with tempfile.TemporaryDirectory(prefix='norde-mermaid-') as directory:

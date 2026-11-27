@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checks": [
+    "dates",
+    "comment",
+    "insurance",
+    "no automatic booking after login"
+  ]
+}

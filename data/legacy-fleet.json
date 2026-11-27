@@ -1,0 +1,42 @@
+[
+  {
+    "plate": "А101АА52",
+    "brand": "Kia",
+    "model": "Rio"
+  },
+  {
+    "plate": "А202АА52",
+    "brand": "Hyundai",
+    "model": "Solaris"
+  },
+  {
+    "plate": "В303ВВ52",
+    "brand": "Škoda",
+    "model": "Octavia"
+  },
+  {
+    "plate": "В404ВВ52",
+    "brand": "Toyota",
+    "model": "Camry"
+  },
+  {
+    "plate": "Е505ЕЕ52",
+    "brand": "Kia",
+    "model": "Sportage"
+  },
+  {
+    "plate": "Е606ЕЕ52",
+    "brand": "Hyundai",
+    "model": "Tucson"
+  },
+  {
+    "plate": "К707КК52",
+    "brand": "BMW",
+    "model": "320i"
+  },
+  {
+    "plate": "К808КК52",
+    "brand": "Renault",
+    "model": "Duster"
+  }
+]

@@ -147,7 +147,7 @@ def test_staff_and_modal(browser):
         ("maintenance", "maintenance"),
     ]:
         d.get(BASE + "/admin?tab=" + tab)
-        find(d, ".admin-content")
+        find(d, "#admin-body table")
         shot(d, name)
     d.get(BASE + "/admin?tab=fleet")
     click(d, ".panel-heading button.primary")
@@ -171,7 +171,7 @@ def test_upload_four_photos(browser):
     d.get(BASE + "/admin?tab=fleet")
     click(d, ".panel-heading button.primary")
     paths = [
-        str((Path("client/public/images") / n).resolve())
+        str((Path("static/images") / n).resolve())
         for n in ["bmw520.jpg", "bmw520-0.jpg", "bmw520-2.jpg", "cls-0.jpg"]
     ]
     upload = d.find_element(By.CSS_SELECTOR, "dialog input[type=file]")

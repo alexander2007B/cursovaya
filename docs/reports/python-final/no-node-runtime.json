@@ -1,0 +1,13 @@
+{
+  "PATH": "virtualenv only; no node or npm command available",
+  "checks": {
+    "/": 200,
+    "/catalog": 200,
+    "/admin": 200,
+    "/conditions": 200,
+    "/static/js/app.js": 200,
+    "/static/css/styles.css": 200,
+    "/api/health": 200
+  },
+  "passed": true
+}

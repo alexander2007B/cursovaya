@@ -9,9 +9,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 root = Path(__file__).resolve().parents[1]
-report = root / "docs/reports/selenium-pytest-postman"
+report = root / "docs/reports/python-final"
 shots = root / "docs/screenshots/coursework"
-query = """const d=db.getSiblingDB("avtobaza_e2e");
+query = """const d=db.getSiblingDB("norde_python_test");
 print("DATABASE: "+d.getName()+" | MongoDB "+db.version());
 print("Active cars: "+d.cars.countDocuments({archived:false}));
 print("Cars (first 4):");

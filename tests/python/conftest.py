@@ -4,12 +4,12 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-BASE = os.environ.get("TEST_BASE_URL", "http://127.0.0.1:3001")
+BASE = os.environ.get("TEST_BASE_URL", "http://127.0.0.1:3101")
 from urllib.parse import urlparse
 
 if urlparse(BASE).hostname not in {"127.0.0.1", "localhost"}:
     raise RuntimeError("Test mutations and load require the isolated local server")
-REPORT = Path("docs/reports/selenium-pytest-postman")
+REPORT = Path("docs/reports/python-final")
 REPORT.mkdir(parents=True, exist_ok=True)
 
 

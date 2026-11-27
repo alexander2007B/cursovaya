@@ -1,25 +1,16 @@
-import json, subprocess
 import pytest
+from norde.domain import calculate_quote, validate_transition, normalize_phone, AppError
 
 
-def node(expression):
-    code = (
-        'import {calculateQuote,validateTransition} from "./server/domain.js";import {normalizeRussianPhone} from "./shared/phone.js";try{console.log(JSON.stringify('
-        + expression
-        + "))}catch(e){console.log(JSON.stringify({error:e.message}))}"
-    )
-    return json.loads(
-        subprocess.check_output(["node", "--input-type=module", "-e", code], text=True)
-    )
-
-
-@pytest.mark.parametrize(
-    "days,total", [(3, 14700), (7, 31500)]
-)
+@pytest.mark.parametrize("days,total", [(3, 14700), (7, 31500)])
 def test_price(days, total):
     end = f"2026-12-{days+1:02}" if days < 30 else "2026-12-31"
-    q = node(
-        f'calculateQuote({{dailyRate:4000,deposit:20000}},"2026-12-01","{end}",{{insurance:true,childSeat:true}},"2026-12-01")'
+    q = calculate_quote(
+        {"dailyRate": 4000, "deposit": 20000},
+        "2026-12-01",
+        end,
+        {"insurance": True, "childSeat": True},
+        "2026-12-01",
     )
     assert q["total"] == total and q["deposit"] == 20000
 
@@ -31,9 +22,8 @@ def test_price(days, total):
     ],
 )
 def test_invalid_dates(start, end):
-    assert "error" in node(
-        f'calculateQuote({{dailyRate:4000,deposit:0}},"{start}","{end}",{{}},"2026-12-01")'
-    )
+    with pytest.raises(AppError):
+        calculate_quote({"dailyRate": 4000, "deposit": 0}, start, end, {}, "2026-12-01")
 
 
 @pytest.mark.parametrize(
@@ -43,8 +33,11 @@ def test_invalid_dates(start, end):
     ],
 )
 def test_transitions(old, new, role, allowed):
-    result = node(f'(validateTransition("{old}","{new}","{role}"),true)')
-    assert (result is True) == allowed
+    if allowed:
+        validate_transition(old, new, role)
+    else:
+        with pytest.raises(AppError):
+            validate_transition(old, new, role)
 
 
 @pytest.mark.parametrize(
@@ -55,5 +48,8 @@ def test_transitions(old, new, role, allowed):
     ],
 )
 def test_phone(value, expected):
-    r = node("normalizeRussianPhone(" + json.dumps(value) + ")")
-    assert (r == expected) if expected else ("error" in r)
+    if expected:
+        assert normalize_phone(value) == expected
+    else:
+        with pytest.raises(AppError):
+            normalize_phone(value)

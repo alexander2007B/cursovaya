@@ -1,7 +1,7 @@
 sequenceDiagram
 actor C as Клиент
-participant R as React
-participant E as Express
+participant R as HTML + JavaScript
+participant E as Flask
 participant D as MongoDB
 C->>R: Забронировать автомобиль
 R->>E: POST /api/rentals + CSRF

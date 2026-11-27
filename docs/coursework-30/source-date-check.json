@@ -1,198 +1,180 @@
 {
-  "checked_at": "2026-11-26",
-  "note": "New numbered bibliography; HTTP availability is not evidence of publication year. No invented years.",
+  "checked_at": "2026-11-27",
+  "note": "HTTP status checks only, not publication-age or legal-currentness certification. Bibliographic access dates are user-assigned illustrative dates, not these check events.",
   "sources": [
     {
       "number": 1,
-      "title": "Новые облачные технологии. МойОфис: шрифты XO",
-      "url": "https://myoffice.ru/products/fonts/",
-      "status": 200,
-      "last_modified": null,
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "entry": "Вологодский колледж связи и информационных технологий. Положение: документ по курсовому проектированию и оформлению. - Электронный документ, предоставленный для нормоконтроля: Polozhenie_kursovye_VKSIIT 2.docx. - Дата утверждения в библиографической записи не уточнена.",
+      "source": "user supplied Regulation DOCX",
+      "availability": "local provided document"
     },
     {
       "number": 2,
-      "title": "Яндекс. Яндекс Прокат: аренда автомобилей",
-      "url": "https://rentacar.yandex.ru/russia/moscow",
+      "entry": "Российская Федерация. О персональных данных: Федеральный закон от 27.07.2006 № 152-ФЗ : сайт. - URL: https://www.consultant.ru/document/cons_doc_LAW_61801/ (дата обращения: 17.09.2026). - Текст : электронный.",
+      "url": "https://www.consultant.ru/document/cons_doc_LAW_61801/",
       "status": 200,
-      "last_modified": null,
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": null
     },
     {
       "number": 3,
-      "title": "Automattic and contributors. Mongoose 8: Schemas",
-      "url": "https://mongoosejs.com/docs/guide.html",
+      "entry": "Яндекс. Яндекс Прокат: аренда автомобилей : сайт. - URL: https://rentacar.yandex.ru/russia/moscow (дата обращения: 22.09.2026). - Текст : электронный.",
+      "url": "https://rentacar.yandex.ru/russia/moscow",
       "status": 200,
-      "last_modified": "Mon, 23 Nov 2026 18:32:40 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": null
     },
     {
       "number": 4,
-      "title": "dcodeIO and contributors. bcrypt.js: Optimized bcrypt in JavaScript",
-      "url": "https://github.com/dcodeIO/bcrypt.js",
+      "entry": "Docker Inc.. Docker Compose : сайт. - URL: https://docs.docker.com/compose/ (дата обращения: 08.10.2026). - Текст : электронный.",
+      "url": "https://docs.docker.com/compose/",
       "status": 200,
-      "last_modified": null,
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Fri, 27 Nov 2026 08:38:50 GMT"
     },
     {
       "number": 5,
-      "title": "Desboeufs, J. and contributors. connect-mongo: MongoDB session store",
-      "url": "https://github.com/jdesboeufs/connect-mongo",
+      "entry": "Gunicorn contributors. Gunicorn: Python WSGI HTTP Server : сайт. - URL: https://gunicorn.org/ (дата обращения: 06.11.2026). - Текст : электронный.",
+      "url": "https://gunicorn.org/",
       "status": 200,
-      "last_modified": null,
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Thu, 12 Nov 2026 22:29:30 GMT"
     },
     {
       "number": 6,
-      "title": "Docker Inc.. Docker Compose: How Compose works",
-      "url": "https://docs.docker.com/compose/intro/compose-application-model/",
+      "entry": "MDN contributors. Fetch API : сайт. - URL: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API (дата обращения: 27.10.2026). - Текст : электронный.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
       "status": 200,
-      "last_modified": "Thu, 26 Nov 2026 10:53:14 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Fri, 27 Nov 2026 00:46:23 GMT"
     },
     {
       "number": 7,
-      "title": "Express contributors. express-session: Session middleware",
-      "url": "https://github.com/expressjs/session",
+      "entry": "MDN contributors. HTML dialog element : сайт. - URL: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog (дата обращения: 28.10.2026). - Текст : электронный.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog",
       "status": 200,
-      "last_modified": null,
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Fri, 27 Nov 2026 00:47:20 GMT"
     },
     {
       "number": 8,
-      "title": "Helmet contributors. Helmet: HTTP security headers",
-      "url": "https://helmetjs.github.io/",
+      "entry": "MongoDB, Inc.. MongoDB: Transactions : сайт. - URL: https://www.mongodb.com/docs/manual/core/transactions/ (дата обращения: 06.10.2026). - Текст : электронный.",
+      "url": "https://www.mongodb.com/docs/manual/core/transactions/",
       "status": 200,
-      "last_modified": "Fri, 16 Oct 2026 13:07:12 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": null
     },
     {
       "number": 9,
-      "title": "IMask contributors. IMask: JavaScript input mask",
-      "url": "https://imask.js.org/guide.html",
+      "entry": "MongoDB, Inc.. PyMongo: Transactions : сайт. - URL: https://www.mongodb.com/docs/languages/python/pymongo-driver/current/crud/transactions/ (дата обращения: 07.10.2026). - Текст : электронный.",
+      "url": "https://www.mongodb.com/docs/languages/python/pymongo-driver/current/crud/transactions/",
       "status": 200,
-      "last_modified": "Fri, 11 Oct 2024 15:11:59 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": null
     },
     {
       "number": 10,
-      "title": "Lovell, L. and contributors. sharp: High performance Node.js image processing",
-      "url": "https://sharp.pixelplumbing.com/",
+      "entry": "OWASP Foundation. Authorization Cheat Sheet : сайт. - URL: https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html (дата обращения: 15.10.2026). - Текст : электронный.",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
       "status": 200,
-      "last_modified": "Sun, 27 Sep 2026 14:45:09 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Thu, 26 Nov 2026 10:31:01 GMT"
     },
     {
       "number": 11,
-      "title": "McDonnell, C. and contributors. Zod 3: Schema validation",
-      "url": "https://v3.zod.dev/",
+      "entry": "Pallets Projects. Flask: Quickstart : сайт. - URL: https://flask.palletsprojects.com/en/stable/quickstart/ (дата обращения: 20.10.2026). - Текст : электронный.",
+      "url": "https://flask.palletsprojects.com/en/stable/quickstart/",
       "status": 200,
-      "last_modified": "Mon, 23 Nov 2026 00:49:38 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Thu, 19 Feb 2026 05:02:22 GMT"
     },
     {
       "number": 12,
-      "title": "Meta Platforms, Inc.. React 19: Reference",
-      "url": "https://react.dev/reference/react",
+      "entry": "Pallets Projects. Flask: Security Considerations : сайт. - URL: https://flask.palletsprojects.com/en/stable/web-security/ (дата обращения: 30.10.2026). - Текст : электронный.",
+      "url": "https://flask.palletsprojects.com/en/stable/web-security/",
       "status": 200,
-      "last_modified": null,
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Thu, 19 Feb 2026 05:02:23 GMT"
     },
     {
       "number": 13,
-      "title": "MongoDB, Inc.. MongoDB 8.0: Transactions",
-      "url": "https://www.mongodb.com/docs/v8.0/core/transactions/",
+      "entry": "Pallets Projects. Flask: Session Interface : сайт. - URL: https://flask.palletsprojects.com/en/stable/api/#session-interface (дата обращения: 24.10.2026). - Текст : электронный.",
+      "url": "https://flask.palletsprojects.com/en/stable/api/#session-interface",
       "status": 200,
-      "last_modified": null,
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Tue, 11 Aug 2026 19:03:47 GMT"
     },
     {
       "number": 14,
-      "title": "Node.js contributors. Node.js 24: Documentation",
-      "url": "https://nodejs.org/docs/latest-v24.x/api/",
+      "entry": "Pallets Projects. Jinja: Template Designer Documentation : сайт. - URL: https://jinja.palletsprojects.com/en/stable/templates/ (дата обращения: 21.10.2026). - Текст : электронный.",
+      "url": "https://jinja.palletsprojects.com/en/stable/templates/",
       "status": 200,
-      "last_modified": "Wed, 11 Nov 2026 00:48:44 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Thu, 12 Jun 2025 21:00:04 GMT"
     },
     {
       "number": 15,
-      "title": "OpenJS Foundation. Express 5: Web framework for Node.js",
-      "url": "https://expressjs.com/en/5x/api.html",
+      "entry": "Pillow contributors. Pillow: Image module : сайт. - URL: https://pillow.readthedocs.io/en/stable/reference/Image.html (дата обращения: 05.11.2026). - Текст : электронный.",
+      "url": "https://pillow.readthedocs.io/en/stable/reference/Image.html",
       "status": 200,
-      "last_modified": "Tue, 24 Nov 2026 11:51:24 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Fri, 16 Oct 2026 20:11:56 GMT"
     },
     {
       "number": 16,
-      "title": "OWASP Foundation. Authorization Cheat Sheet",
-      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+      "entry": "Postman, Inc.. Postman: Writing tests : сайт. - URL: https://learning.postman.com/docs/tests-and-scripts/write-scripts/test-scripts/ (дата обращения: 18.11.2026). - Текст : электронный.",
+      "url": "https://learning.postman.com/docs/tests-and-scripts/write-scripts/test-scripts/",
       "status": 200,
-      "last_modified": "Thu, 26 Nov 2026 10:31:01 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Wed, 25 Nov 2026 21:44:52 GMT"
     },
     {
       "number": 17,
-      "title": "Postman, Inc.. Newman: Command-line collection runner",
-      "url": "https://learning.postman.com/docs/collections/using-newman-cli/command-line-integration-with-newman/",
+      "entry": "pytest developers. pytest: Parametrization : сайт. - URL: https://docs.pytest.org/en/stable/how-to/parametrize.html (дата обращения: 12.11.2026). - Текст : электронный.",
+      "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
       "status": 200,
-      "last_modified": "Wed, 25 Nov 2026 21:44:52 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Tue, 27 Oct 2026 21:36:00 GMT"
     },
     {
       "number": 18,
-      "title": "pytest developers. pytest: How to parametrize fixtures and test functions",
-      "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+      "entry": "Python Cryptographic Authority. bcrypt : сайт. - URL: https://pypi.org/project/bcrypt/ (дата обращения: 29.10.2026). - Текст : электронный.",
+      "url": "https://pypi.org/project/bcrypt/",
       "status": 200,
-      "last_modified": "Tue, 27 Oct 2026 21:36:00 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": null
     },
     {
       "number": 19,
-      "title": "Python Software Foundation. concurrent.futures: ThreadPoolExecutor",
+      "entry": "Python Software Foundation. concurrent.futures: ThreadPoolExecutor : сайт. - URL: https://docs.python.org/3/library/concurrent.futures.html (дата обращения: 25.11.2026). - Текст : электронный.",
       "url": "https://docs.python.org/3/library/concurrent.futures.html",
       "status": 200,
-      "last_modified": "Thu, 26 Nov 2026 07:12:20 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Fri, 27 Nov 2026 07:09:37 GMT"
     },
     {
       "number": 20,
-      "title": "Requests contributors. Requests: Advanced Usage",
-      "url": "https://requests.readthedocs.io/en/latest/user/advanced/",
+      "entry": "Python Software Foundation. csv: CSV File Reading and Writing : сайт. - URL: https://docs.python.org/3/library/csv.html (дата обращения: 31.10.2026). - Текст : электронный.",
+      "url": "https://docs.python.org/3/library/csv.html",
       "status": 200,
-      "last_modified": "Mon, 26 Oct 2026 17:15:36 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Fri, 27 Nov 2026 07:09:37 GMT"
     },
     {
       "number": 21,
-      "title": "Selenium project. Selenium WebDriver",
-      "url": "https://www.selenium.dev/documentation/webdriver/",
+      "entry": "Python Software Foundation. datetime: Basic date and time types : сайт. - URL: https://docs.python.org/3/library/datetime.html (дата обращения: 16.10.2026). - Текст : электронный.",
+      "url": "https://docs.python.org/3/library/datetime.html",
       "status": 200,
-      "last_modified": "Wed, 25 Nov 2026 18:58:50 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Fri, 27 Nov 2026 07:09:37 GMT"
     },
     {
       "number": 22,
-      "title": "SIXT SE. SIXT: Car rental",
-      "url": "https://www.sixt.com/",
+      "entry": "Requests contributors. Requests: Advanced Usage : сайт. - URL: https://requests.readthedocs.io/en/latest/user/advanced/ (дата обращения: 22.11.2026). - Текст : электронный.",
+      "url": "https://requests.readthedocs.io/en/latest/user/advanced/",
       "status": 200,
-      "last_modified": "Thu, 26 Nov 2026 11:56:07 GMT",
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Mon, 26 Oct 2026 17:15:36 GMT"
     },
     {
       "number": 23,
-      "title": "Turo Inc.. Turo: Car rental marketplace",
-      "url": "https://turo.com/",
+      "entry": "Selenium project. Selenium WebDriver : сайт. - URL: https://www.selenium.dev/documentation/webdriver/ (дата обращения: 14.11.2026). - Текст : электронный.",
+      "url": "https://www.selenium.dev/documentation/webdriver/",
       "status": 200,
-      "last_modified": null,
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Wed, 25 Nov 2026 18:58:50 GMT"
     },
     {
       "number": 24,
-      "title": "Vite contributors. Vite: Getting Started",
-      "url": "https://vite.dev/guide/",
+      "entry": "SIXT SE. SIXT: Car rental : сайт. - URL: https://www.sixt.com/ (дата обращения: 24.09.2026). - Текст : электронный.",
+      "url": "https://www.sixt.com/",
       "status": 200,
-      "last_modified": null,
-      "publication_year": "not established by HTTP status or Last-Modified"
+      "last_modified": "Fri, 27 Nov 2026 08:16:34 GMT"
+    },
+    {
+      "number": 25,
+      "entry": "Turo Inc.. Turo: Car rental marketplace : сайт. - URL: https://turo.com/ (дата обращения: 23.09.2026). - Текст : электронный.",
+      "url": "https://turo.com/",
+      "status": 200,
+      "last_modified": null
     }
   ]
 }

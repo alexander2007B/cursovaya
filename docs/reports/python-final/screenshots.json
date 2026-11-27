@@ -1,0 +1,143 @@
+{
+  "home": {
+    "at": "2026-11-27T08:44:43.852071+00:00",
+    "url": "http://127.0.0.1:3101/",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "d8d2186b36b0d6fe89071836ae144742010b84ab52f8336185d38600a0a40708"
+  },
+  "catalog": {
+    "at": "2026-11-27T08:44:45.156237+00:00",
+    "url": "http://127.0.0.1:3101/catalog",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "3646b2b46bb3a1a2e19f2f88ae8c49e0624e9792c7c6f6419c90e2e9e159850d"
+  },
+  "car": {
+    "at": "2026-11-27T08:44:46.584616+00:00",
+    "url": "http://127.0.0.1:3101/cars/6b0942f4d545a0149a017d9a?",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "70d6d4cc02aaa210c10aed76236c3337fad857b4f349dd5ff40d1cfdc6b1c36f"
+  },
+  "privacy": {
+    "at": "2026-11-27T08:44:47.283715+00:00",
+    "url": "http://127.0.0.1:3101/privacy.html",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "ebeb6faa03401674fe0065e18418f05f29951a000efe00a04babdc2515b35f79"
+  },
+  "terms": {
+    "at": "2026-11-27T08:44:47.848435+00:00",
+    "url": "http://127.0.0.1:3101/terms.html",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "1361e38950dc8af2d3b808853834732b6db306e8609760334510717a2553274b"
+  },
+  "consent": {
+    "at": "2026-11-27T08:44:48.475682+00:00",
+    "url": "http://127.0.0.1:3101/consent.html",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "b107057c5925e74120643e12d8d2885bddea9a8e9696f2aba1646e084813cf09"
+  },
+  "footer": {
+    "at": "2026-11-27T08:44:49.200451+00:00",
+    "url": "http://127.0.0.1:3101/",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "49988e4e0b20027a76378bd99949197a1b73e7969559b18db852baa96d4df6e1"
+  },
+  "mobile": {
+    "at": "2026-11-27T08:44:51.931785+00:00",
+    "url": "http://127.0.0.1:3101/",
+    "viewport": {
+      "height": 757,
+      "width": 390
+    },
+    "sha256": "c820c119512c0d6346cd877200984cfc58234d1cdb26e1fc5125d680c13eec84"
+  },
+  "registration": {
+    "at": "2026-11-27T08:44:54.154075+00:00",
+    "url": "http://127.0.0.1:3101/",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "c020cb06f093285c01419d3f8244a4d51f2ea33a798fc9346e92297fc54e908c"
+  },
+  "consents": {
+    "at": "2026-11-27T08:44:54.835168+00:00",
+    "url": "http://127.0.0.1:3101/",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "c926fa984068e140235244921dfb462ab2440f903cb3cdf9a770f70a117ba22e"
+  },
+  "account": {
+    "at": "2026-11-27T08:44:56.957606+00:00",
+    "url": "http://127.0.0.1:3101/account",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "d68cdfa789db9001d1c5c8a01c4a81c4dbc71c1238f8055af278290b8903b1c6"
+  },
+  "admin": {
+    "at": "2026-11-27T08:45:01.671089+00:00",
+    "url": "http://127.0.0.1:3101/admin?tab=overview",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "4a2c3d285ce5e9a40c87bebc9dc775064ab411c76bebbc01730bd0fe71cbd4dc"
+  },
+  "fleet": {
+    "at": "2026-11-27T08:45:02.811143+00:00",
+    "url": "http://127.0.0.1:3101/admin?tab=fleet",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "99f74fd30eed04cf83378865b4d85763f4663b3386e55b0fad4c590c76c99601"
+  },
+  "maintenance": {
+    "at": "2026-11-27T08:45:04.014139+00:00",
+    "url": "http://127.0.0.1:3101/admin?tab=maintenance",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "7e8e02f3cb7654fa9c46625027a25ec16708932c753d391f1127d6f3a0f8eabb"
+  },
+  "photos": {
+    "at": "2026-11-27T08:45:11.580115+00:00",
+    "url": "http://127.0.0.1:3101/admin?tab=fleet",
+    "viewport": {
+      "height": 857,
+      "width": 1440
+    },
+    "sha256": "413ea559bddf8d94fc0b6f0966df042dc83e82ee048515ca067dce4e7885e1d1"
+  },
+  "database": {
+    "source": "Actual native terminal window: Python health and mongosh query",
+    "database": "norde_python_test",
+    "at": "2026-11-27",
+    "sha256": "eafe575a91b10c48d30a8b6da520466b60d9928ffc58bdac4fd17f36724f135e"
+  }
+}

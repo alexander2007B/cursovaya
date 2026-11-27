@@ -2,12 +2,12 @@
   "info": {
     "name": "NORDE automated API acceptance tests",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "Only isolated local test database. Compact collection: registration, access and rental cancellation."
+    "description": "Python server HTTP acceptance scenarios; import in Postman or run tests/postman/test_collection.py. No Node.js or Newman is required."
   },
   "variable": [
     {
       "key": "baseUrl",
-      "value": "http://127.0.0.1:3001"
+      "value": "http://127.0.0.1:3101"
     }
   ],
   "event": [
