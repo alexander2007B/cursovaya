@@ -1,57 +1,35 @@
-# Проверки NORDÉ: Selenium, pytest и Postman
+# Проверки Python-версии
 
-Актуальный набор от 26.11.2026. Используются настоящий Chromium, Express и MongoDB replica set. Статическая демоверсия Render не поддерживает серверные API: для этих проверок поднимается полная локальная версия.
+| Набор | Файлы | Итог нового запуска |
+|---|---|---|
+| Правила аренды и телефон | tests/python/test_domain.py → norde/domain.py | 6 случаев |
+| HTTP и настоящая MongoDB | tests/python/test_api.py | 5 сценариев |
+| Selenium / Chromium | tests/python/test_browser.py | 4 сценария |
+| Коллекция Postman, исполнитель Python/Requests | docs/postman_collection.json; tests/postman/test_collection.py | 15 HTTP-кодов |
+| Локальная нагрузка | tests/python/test_load.py | 4 режима, 12 повторов |
 
-| Инструмент | Что проверяет | Файл | Итог нового прогона |
-|---|---|---|---|
-| pytest + Node.js адаптер | Цена, даты, статусы, телефон | [test_domain.py](../tests/python/test_domain.py) | 6 случаев |
-| pytest + Requests + MongoDB | Согласия, пароль, аренда, гонка, фото, доступ | [test_api.py](../tests/python/test_api.py) | 5 сценариев |
-| Selenium WebDriver + pytest | Страницы, регистрация, профиль, админка, модальные окна, 4 фото, адаптивность | [test_browser.py](../tests/python/test_browser.py) | 4 сценария |
-| Postman / Newman | HTTP-последовательности и ожидаемые отказы | [postman_collection.json](postman_collection.json) | 15 запросов, 15 утверждений |
-| pytest + Requests + ThreadPoolExecutor | GET /api/cars, identity/gzip, 10/50 соединений | [test_load.py](../tests/python/test_load.py) | 4 режима по 3 повтора |
+Итого основной pytest: 15 функциональных случаев. Коллекция проверяется отдельным запуском; Python не исполняет её Postman JavaScript-песочницу. Встроенные проверки самой коллекции можно выполнить в приложении Postman. Newman и Node.js не используются.
 
-Это разные единицы: число HTTP-запросов нельзя складывать с числом функций и называть общим числом тестов. Итоговые протоколы находятся в [reports/selenium-pytest-postman](reports/selenium-pytest-postman/).
+## Полный прогон
 
-## Полный повтор
-
-Нужны Node.js 22+, Python 3.12+, установленный Chromium или Google Chrome и MongoDB replica set на 127.0.0.1:27017. Для используемых версий Python-пакетов см. requirements-test.txt. В этом запуске использован Linux; другие ОС отдельно не проверялись.
+Установите Python 3.12, Chromium/Chrome, requirements.txt и requirements-test.txt, запустите MongoDB replica set:
 
 ```sh
-npm ci
-python3 -m venv .venv
-. .venv/bin/activate
-python3 -m pip install -r requirements-test.txt
-npm run db:up
-npm run test:all
+python -m pip install -r requirements.txt -r requirements-test.txt
+docker compose up -d --wait mongo
+python -m scripts.quality
 ```
 
-В Windows используйте `python` вместо `python3`, активацию `.venv\Scripts\Activate.ps1` в PowerShell. Команды npm в этой редакции запускают python3; если такого имени нет, выполните `python scripts/run-quality.py` непосредственно. Путь к установленному Chrome можно задать переменной CHROMIUM_PATH. Selenium Manager подбирает драйвер, при первом запуске может потребоваться интернет.
+Порт 3101 должен быть свободен. Runner сбрасывает только norde_python_test, запускает сервер Python, последовательно выполняет три этапа и останавливает сервер. Не храните нужные данные в этой учебной базе. Для отдельных проверок запустите `python -m scripts.test_server`, затем в другом терминале `python -m pytest -m "not load"`, `python -m pytest tests/postman/test_collection.py` или `python -m pytest -m load`.
 
-Общий runner собирает приложение, запускает scripts/test-server.js на порту 3001, ждёт готовности, последовательно выполняет Newman, функциональные проверки pytest и нагрузку. Затем останавливает сервер. Порт 3001 должен быть свободен. Пересоздаётся только учебная база avtobaza_e2e; рабочую базу runner не использует. Нельзя хранить в avtobaza_e2e нужные данные.
+Нагрузка: GET /api/cars, 10/50 потоков, identity/gzip, по три повтора по 5 с. Успех: 0 ошибок и p99 < 2000 мс в каждом повторе. Клиент проверяет HTTP 200 и содержимое каталога; байты измерены до декодирования gzip, без заголовков. Сервер и генератор делят один компьютер; это не тест предельной мощности и не нагрузка на опубликованный Render.
 
-## Отдельный сценарий
+## Дополнительные доказательства
 
-В одном терминале после сборки запустите `npm run test:server`, в другом с активным Python-окружением:
+Red/Green: `TDD_PHONE_RED=1 python -m pytest tests/tdd_demo/test_phone.py` ожидаемо падает на изолированной неполной функции; без переменной тот же тест проходит на norde/domain.py. В PowerShell задайте `$env:TDD_PHONE_RED="1"`, затем удалите переменную для Green. Это демонстрация, не история первоначальной разработки.
 
-```sh
-npm run test:api
-npm test
-npm run test:e2e
-npm run test:load
-```
+`python scripts/check_demo.py` проверяет отдельный Python-сервер APP_MODE=demo на порту 3102: каталог, создание заявки клиентом, подтверждение менеджером и сохранение после обновления. `no-node-runtime.json` фиксирует запуск страниц и API с PATH, где доступны только Python-команды виртуального окружения.
 
-Не запускайте нагрузку одновременно с функциональными тестами. Повторные входы на одном процессе учитываются лимитом 40 попыток за 15 минут; для полного повторного опыта используйте test:all с новым сервером. Защита не отключается.
+## Протоколы
 
-Для Postman: импортируйте docs/postman_collection.json и запустите Collection Runner по порядку, baseUrl = http://127.0.0.1:3001. Коллекция сама получает cookie/CSRF и создаёт тестовые сущности. Newman - командный исполнитель той же коллекции; приложение Postman вручную в зафиксированном прогоне не запускалось.
-
-## Протоколы и изображения
-
-- pytest.txt / pytest.xml - 15 функциональных случаев, включая Selenium.
-- newman.txt / newman.xml / newman-summary.json - запросы и утверждения Postman.
-- load.txt / load.xml / load-*.json - четыре режима, все 12 измерений.
-- environment.json / exit-codes.json - версии и коды завершения.
-- screenshots.json - время, URL, размер окна и SHA-256 новых снимков.
-
-Снимки обновляет Selenium. `scripts/refresh-coursework-evidence.py` строит диаграмму нагрузки из JSON и иллюстрацию из реального вывода mongosh; нужен контейнер MongoDB (MONGO_CONTAINER задаёт его имя при отличии). Продуктовая схема обновляется scripts/diagrams.py. Все актуальные изображения показаны в отдельном атласе интерфейса в комплекте курсовой.
-
-Исторические node:test / Supertest / Playwright / Autocannon и docs/reports/norde-final сохранены как архив разработки. Их команды имеют префикс test:legacy; текущие результаты курсовой принадлежат новому набору. Новый набор не измеряет процент покрытия JavaScript. Нагрузка локальная, короткая, на одном хосте с генератором: это не проверка доступности Render и не оценка предельного числа клиентов.
+docs/reports/python-final: pytest.xml/txt, postman.xml/txt, load.xml/txt и load-*.json, environment.json, exit-codes.json, screenshots.json, demo-smoke.json, no-node-runtime.json. Изображения находятся в docs/screenshots/coursework. Перед новой серией используйте новый процесс сервера: вход ограничен 40 попытками за 15 минут, защита не отключается.

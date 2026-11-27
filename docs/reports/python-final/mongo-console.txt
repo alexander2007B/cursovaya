@@ -1,0 +1,8 @@
+DATABASE: norde_python_test | MongoDB 8.0.38
+Active cars: 12
+{"brand":"Audi","dailyRate":5900,"model":"A5"}
+{"brand":"BMW","dailyRate":18900,"model":"M4 Competition"}
+{"brand":"BMW","dailyRate":9900,"model":"520d xDrive"}
+{"brand":"Ford","dailyRate":11200,"model":"Mustang"}
+Last completed rental:
+{"carName":"Audi A5","status":"completed","from":"2026-11-27","to":"2026-11-28","returnMileage":18010}

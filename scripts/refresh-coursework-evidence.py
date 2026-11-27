@@ -9,9 +9,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 root = Path(__file__).resolve().parents[1]
-report = root / "docs/reports/selenium-pytest-postman"
+report = root / "docs/reports/python-final"
 shots = root / "docs/screenshots/coursework"
-query = """const d=db.getSiblingDB("avtobaza_e2e");
+query = """const d=db.getSiblingDB("norde_python_test");
 print("DATABASE: "+d.getName()+" | MongoDB "+db.version());
 print("Active cars: "+d.cars.countDocuments({archived:false}));
 print("Cars (first 4):");
@@ -34,53 +34,8 @@ stdout = subprocess.check_output(
     ["docker", "exec", container, "mongosh", "--quiet", "--eval", query], text=True
 )
 (report / "mongosh.txt").write_text(stdout)
-# This figure typesets the genuine console transcript; it is not a fake UI screenshot.
-wrapped = "\n".join(
-    textwrap.fill(line, width=100, subsequent_indent="  ")
-    for line in stdout.splitlines()
-)
-plt.rcParams["font.family"] = "DejaVu Sans"
-fig = plt.figure(
-    figsize=(12, max(5, len(wrapped.splitlines()) * 0.24 + 1.3)), facecolor="#f2f5f8"
-)
-fig.text(
-    0.04,
-    0.96,
-    "MongoDB: фактический вывод mongosh",
-    fontsize=17,
-    color="#182e40",
-    va="top",
-)
-fig.text(
-    0.04,
-    0.89,
-    wrapped,
-    fontfamily="DejaVu Sans Mono",
-    fontsize=11,
-    color="#182e40",
-    va="top",
-    linespacing=1.5,
-)
-fig.text(
-    0.04,
-    0.03,
-    "Текст из mongosh.txt; учебная база avtobaza_e2e",
-    fontsize=10,
-    color="#425a70",
-)
-fig.savefig(shots / "database.png", dpi=180, bbox_inches="tight")
-plt.close(fig)
-manifest = json.loads((report / "screenshots.json").read_text())
-manifest["database"] = {
-    "at": datetime.now(timezone.utc).isoformat(),
-    "source": "mongosh.txt",
-    "kind": "Typeset genuine mongosh stdout, not browser screenshot",
-    "query": "mongosh-query.js",
-    "sha256": hashlib.sha256((shots / "database.png").read_bytes()).hexdigest(),
-}
-(report / "screenshots.json").write_text(
-    json.dumps(manifest, ensure_ascii=False, indent=2)
-)
+# database.png is a real terminal-window capture. Never redraw it from text.
+# To refresh it, run capture-mongo-console.sh in a terminal and capture that window.
 plt.rcParams["font.family"] = "DejaVu Sans"
 fig, axes = plt.subplots(1, 2, figsize=(12, 4.8))
 summary = {}

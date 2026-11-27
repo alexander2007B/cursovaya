@@ -1,0 +1,51 @@
+erDiagram
+direction LR
+USERS ||--o{ RENTALS : user
+CARS ||--o{ RENTALS : car
+CARS ||--o{ MAINTENANCES : car
+USERS ||--o{ MAINTENANCES : author
+USERS ||--o{ EVENTS : actor
+USERS {
+ ObjectId id PK
+ string name
+ string email UK
+ string passwordHash
+ string role
+ object legal
+}
+CARS {
+ ObjectId id PK
+ string plate UK
+ string brand
+ string model
+ int dailyRate
+ int mileage
+ string image
+ array gallery
+ bool archived
+ int lockVersion
+}
+RENTALS {
+ ObjectId id PK
+ ObjectId user FK
+ ObjectId car FK
+ string number UK
+ string from
+ string to
+ object quote
+ string status
+ array history
+}
+MAINTENANCES {
+ ObjectId id PK
+ ObjectId car FK
+ ObjectId author FK
+ int mileage
+ int wear
+ string node
+}
+EVENTS {
+ ObjectId actor FK
+ string action
+ date createdAt
+}

@@ -2,7 +2,7 @@
 
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
-import json, subprocess, time
+import json, time
 import pytest, requests
 from conftest import BASE
 
@@ -26,15 +26,12 @@ def call(s, method, path, body=None, status=200):
     return r.json()
 
 
-def db(expression):
-    code = (
-        'import mongoose from "mongoose";import {User,Rental} from "./server/models.js";await mongoose.connect("mongodb://127.0.0.1:27017/avtobaza_e2e?replicaSet=rs0&directConnection=true");console.log(JSON.stringify('
-        + expression
-        + "));await mongoose.disconnect();"
-    )
-    return json.loads(
-        subprocess.check_output(["node", "--input-type=module", "-e", code], text=True)
-    )
+from pymongo import MongoClient
+from bson import ObjectId
+
+DATABASE = MongoClient(
+    "mongodb://127.0.0.1:27017/norde_python_test?replicaSet=rs0&directConnection=true"
+).get_default_database()
 
 
 @pytest.fixture
@@ -71,11 +68,7 @@ def test_registration_records_and_password():
         assert (
             result["user"]["role"] == "client" and "passwordHash" not in result["user"]
         )
-        saved = db(
-            "await User.findOne({email:"
-            + json.dumps(email)
-            + '}).select("+passwordHash").lean()'
-        )
+        saved = DATABASE.users.find_one({"email": email})
         assert saved["passwordHash"] != body["password"] and saved[
             "passwordHash"
         ].startswith("$2")
@@ -118,7 +111,7 @@ def test_rental_lifecycle_and_history(actors):
         {"status": "completed", "returnMileage": car["mileage"] + 10},
     )["rental"]
     assert result["status"] == "completed" and len(result["history"]) == 4
-    saved = db("await Rental.findById(" + json.dumps(r["_id"]) + ").lean()")
+    saved = DATABASE.rentals.find_one({"_id": ObjectId(r["_id"])})
     assert saved["returnMileage"] == car["mileage"] + 10 and len(saved["history"]) == 4
 
 
@@ -140,12 +133,8 @@ def test_parallel_booking_conflict(actors):
     assert sorted(r.status_code for r in responses) == [201, 409]
     rental = next(r.json()["rental"] for r in responses if r.status_code == 201)
     assert (
-        db(
-            "await Rental.countDocuments({car:"
-            + json.dumps(car["_id"])
-            + ",from:"
-            + json.dumps(body["from"])
-            + ',status:"new"})'
+        DATABASE.rentals.count_documents(
+            {"car": ObjectId(car["_id"]), "from": body["from"], "status": "new"}
         )
         == 1
     )

@@ -1,45 +1,33 @@
-# HTTP API
+# Python JSON API
 
-Сначала `GET /api/auth/session`. Сохраните cookie и `csrfToken`. Для POST/PATCH/DELETE отправляйте заголовок `X-CSRF-Token`. После входа используйте новый токен. Все тела — JSON. Формат ошибки: `{message, fields?}`; типичные коды 400/401/403/404/409.
+Сначала GET /api/auth/session: сохраните cookie и csrfToken. Для POST/PATCH/DELETE нужен X-CSRF-Token. После входа токен меняется. Ошибка имеет JSON {message, fields?}; ожидаемые коды 400/401/403/404/409/429.
 
-| Метод и адрес | Доступ | Назначение |
-|---|---|---|
-| GET /api/health | Все | Проверка MongoDB |
-| GET /api/auth/session | Все | Сессия и CSRF |
-| POST /api/auth/register | Все | name, email, phone, password, ageConfirmed, licenseConfirmed, drivingExperience, termsAccepted, personalDataConsent, legalVersion |
-| POST /api/auth/login | Все | email, password |
-| POST /api/auth/logout | Все | Завершить сессию |
-| PATCH /api/profile | Пользователь | name, phone, ageConfirmed, licenseConfirmed, drivingExperience |
-| GET /api/cars | Все | category, search, sort, from, to |
-| GET /api/cars/:id | Все | Характеристики и занятые периоды без личных данных |
-| POST /api/quote | Все | Расчёт и доступность |
-| POST /api/rentals | Пользователь | Создать заявку |
-| GET /api/rentals | Пользователь | Только свои заявки |
-| PATCH /api/rentals/:id/status | Владелец/сотрудник | Владелец — только отмена new/confirmed |
-| GET /api/admin/overview | Сотрудник | Машины, заявки, агрегаты, события |
-| POST /api/admin/photos | Администратор | Проверка изображения, перекодирование в WebP, путь image |
-| POST /api/admin/cars | Администратор | Добавление автомобиля |
-| PATCH /api/admin/cars/:id | Сотрудник | Менеджер меняет только технический статус |
-| DELETE /api/admin/cars/:id | Администратор | Архивирование без удаления истории |
-| GET/POST /api/admin/maintenance | Сотрудник | Осмотры |
-| GET /api/admin/users | Администратор | Пользователи |
-| PATCH /api/admin/users/:id | Администратор | Назначение роли, кроме собственной |
-| GET /api/admin/export | Сотрудник | CSV заявок, защита от формул |
+| Метод / маршрут | Назначение |
+|---|---|
+| GET /api/health | Состояние MongoDB и runtime=python |
+| GET /api/auth/session | Текущий пользователь и CSRF |
+| POST /api/auth/register | Имя, email, телефон, пароль, возраст/права/стаж и два согласия |
+| POST /api/auth/login | Email и пароль |
+| POST /api/auth/logout | Завершение сессии |
+| PATCH /api/profile | Имя, телефон, условия допуска |
+| GET /api/cars | category, search, sort, from, to |
+| GET /api/cars/:id | Карточка и занятые периоды |
+| POST /api/quote | Расчёт и доступность |
+| POST /api/rentals | Создание заявки |
+| GET /api/rentals | Только свои заявки |
+| PATCH /api/rentals/:id/status | Отмена / подтверждение / выдача / возврат |
+| GET /api/admin/overview | Машины, аренды, события и показатели |
+| POST /api/admin/photos | Изображение data URL → WebP и путь image |
+| POST/PATCH/DELETE /api/admin/cars[/id] | Добавление, изменение, архивирование |
+| GET/POST /api/admin/maintenance | Просмотр и запись осмотров |
+| GET /api/admin/users | Список пользователей администратора |
+| PATCH /api/admin/users/:id | Роль пользователя, кроме собственной |
+| GET /api/admin/export | CSV аренд с защитой от формул |
 
-Тело quote/rentals: `{"carId":"<ObjectId>","from":"2026-11-10","to":"2026-11-13","extras":{"insurance":true,"childSeat":false},"comment":"Получение утром"}`. Даты нужно заменить актуальными. Общая стоимость рассчитывается на сервере, клиентская сумма не принимается.
+Регистрация принимает только client: name, email, phone, password, ageConfirmed=true, licenseConfirmed=true, drivingExperience (целое 1–80), termsAccepted=true, personalDataConsent=true, legalVersion="2026-11-23.1". Дополнительный role запрещён. Пароль минимум 8 символов и максимум 72 байта UTF-8. Согласия фиксируются сервером с версиями и датами; публичный ответ не содержит хеш.
 
-Тело изменения статуса: `{"status":"confirmed"}`. Для завершения: `{"status":"completed","returnMileage":45000}`.
+quote/rentals: carId, from/to в YYYY-MM-DD, extras={insurance,childSeat}, comment. Status: {status}; завершение дополнительно returnMileage. Автомобиль: image — обложка, gallery — до трёх дополнительных путей. Фото — JPG/PNG/WebP до 4 МБ и 20 мегапикселей, сервер перекодирует Pillow.
 
-Тело осмотра: `{"carId":"<ObjectId>","node":"Тормоза","wear":40,"mileage":45000,"note":"Осмотр без замечаний"}`.
+Клиент управляет только своей отменой new/confirmed. Менеджер обрабатывает аренды и осмотры, меняет технический статус. Администратор дополнительно управляет каталогом и ролями. Полномочия проверяются сервером при каждом запросе.
 
-Для ручной работы можно импортировать `docs/postman_collection.json`. Вначале получите сессию; коллекция сохраняет CSRF-токен. Примеры изменяющих запросов действительно меняют данные, поэтому используйте учебные аккаунты. Актуальная коллекция содержит 27 запросов и 40 автоматических утверждений; она выполнена Newman (CLI Postman). Для воспроизводимого запуска используйте docs/TESTING.md и отдельную базу avtobaza_e2e.
-
-## Согласия при регистрации
-
-Для регистрации необходимы termsAccepted=true, personalDataConsent=true и legalVersion="2026-11-23.1". Строки "true", отсутствие поля и старая версия отклоняются с 400. Пользователь подтверждает два действия отдельно; согласие не распространяется на рекламу. При регистрации сервер формирует legal с версиями и датами подтверждения; дата не принимается от клиента. Старым аккаунтам согласия задним числом не присваиваются.
-
-В статической версии те же проверки выполняет локальный обработчик; время берётся с устройства и запись может быть изменена через браузер. Это не независимый журнал доказательств согласия. Для серверного сбора настоящих клиентских данных требуется отдельно обновить описанную в политике схему обработки и проверить требования к инфраструктуре.
-
-## Фотографии автомобиля
-
-До четырёх фотографий: поле image содержит обложку, gallery - массив до трёх дополнительных путей. POST /api/admin/photos получает {data: "data:image/...;base64,..."} и возвращает путь image. Ограничения проверяются сервером; архивирование автомобиля не удаляет его осмотры.
+Коллекция Postman: docs/postman_collection.json, baseUrl=http://127.0.0.1:3101. Автоматический Python-исполнитель — tests/postman/test_collection.py; он проверяет 15 HTTP-кодов, не выполняет JavaScript-песочницу Postman.

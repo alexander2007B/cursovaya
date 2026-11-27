@@ -1,47 +1,15 @@
 {
-  "date": "2026-11-26",
-  "pages_total": 30,
-  "pages_before_appendices": 28,
-  "figures": 10,
-  "tables": 8,
-  "toc_entries": 27,
-  "font": [
-    "BAAAAA+XOThames-Regular",
-    "CAAAAA+XOThames-Bold"
-  ],
-  "margins_mm": {
-    "left": 30,
-    "right": 15,
-    "top": 20,
-    "bottom": 20
-  },
-  "font_size_pt": 12,
-  "line_spacing": 1.5,
-  "geometry_issues": [],
-  "manual_pages": {
-    "Defense_Plan.pdf": 3,
-    "Admin_Guide.pdf": 4,
-    "User_Guide.pdf": 3,
-    "UI_Atlas.pdf": 10
-  },
-  "current_checks": "2026-11-26: pytest 15 passed (6 domain, 5 API, 4 Selenium); Newman 15 requests, 15 assertions passed; load 4 cases / 12 repeats passed",
-  "original_methodology_files": "College Regulation DOCX supplied by user and read directly on 2026-11-26; separate course methodology not available; user confirmed three sections",
-  "title_missing_fields": [
-    "Нормоконтролёр",
-    "Подписи и даты сдачи"
-  ],
-  "title_data": {
-    "author": "Баев Александр Павлович",
-    "group": "ИСП-423Т",
-    "specialty": "09.02.07 «Информационные системы и программирование / специалист по тестированию в области информационных технологий»",
-    "mdk": "Поддержка и тестирование программных модулей",
-    "supervisor": "Мартяков Дмитрий Сергеевич",
-    "reviewer": "",
-    "mdk_code": "МДК.10.3"
-  },
-  "regulation_conflicts": [
-    "6.11 versus Appendix 2: table titles; Appendix 2 retained",
-    "6.2 versus Appendix 7: appendix titles in TOC; Appendix 7 retained"
-  ],
-  "source_age_status": "See current 24-source HTTP check on 2026-11-26; publication age not established for all living web resources; see source-date-check.json"
+  "status": "current notes checked; earlier numbering clarification pending",
+  "preview_pages": 30,
+  "functional_requirements": 18,
+  "nonfunctional_requirements": 14,
+  "logical_tables": 6,
+  "table_blocks": 7,
+  "bordered_figures": 10,
+  "bibliography_entries": 25,
+  "headings_line_spacing": 1,
+  "bibliography_line_spacing": 1.25,
+  "font": "Times New Roman",
+  "local_pdf_font_substitution": true,
+  "note": "Word specifies Times New Roman; preview host lacks it. Final pagination should be checked in Microsoft Word."
 }

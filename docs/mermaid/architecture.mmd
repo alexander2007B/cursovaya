@@ -1,0 +1,5 @@
+flowchart TB
+B["Браузер: HTML, CSS, JavaScript"] <-->|HTTP JSON, cookie, CSRF| F["Python / Flask: маршруты, роли, валидация"]
+F --> J["Шаблоны Jinja"]
+F <-->|PyMongo и транзакции| D[("MongoDB replica set")]
+F --> P["Фотографии uploads / Pillow"]

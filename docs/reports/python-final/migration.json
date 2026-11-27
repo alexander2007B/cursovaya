@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": [
+    "existing bcrypt hash accepted and unchanged",
+    "user/car/rental ObjectId and references preserved",
+    "mileage, status and custom tariff preserved",
+    "old standard SVG photo upgraded",
+    "custom uploaded photo path preserved",
+    "historical quote and history preserved"
+  ],
+  "database": "norde_python_migration_test"
+}

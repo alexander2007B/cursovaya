@@ -1,0 +1,15 @@
+sequenceDiagram
+actor C as Клиент
+participant R as HTML + JavaScript
+participant E as Flask
+participant D as MongoDB
+C->>R: Забронировать автомобиль
+R->>E: POST /api/rentals + CSRF
+E->>E: Проверить роль, допуск и даты
+E->>D: Начать транзакцию, lockVersion++
+E->>D: Проверить пересечения
+D-->>E: Интервал свободен
+E->>D: Сохранить аренду и событие, commit
+D-->>E: Запись подтверждена
+E-->>R: HTTP 201 и заявка
+R-->>C: Номер заявки

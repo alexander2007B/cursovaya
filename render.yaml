@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: norde-python
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 app:app
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.14
+      - key: APP_MODE
+        value: demo
+      - key: APP_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
