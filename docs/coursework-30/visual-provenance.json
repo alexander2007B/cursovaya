@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-27",
+  "mermaid": "SVG and PNG exported from Mermaid in real Chromium via Selenium; no image generation model",
+  "database": "Native terminal window capture by ImageMagick/X11, real docker exec mongosh output",
+  "ui": "Existing catalog/admin screenshots taken by Selenium from the running application",
+  "files": {
+    "docs/mermaid/usecase.mmd": "90a4e86a0ed4ce10f689ffa08f1b7ef4d6419c67d5e99d95f002cc0272db5b5e",
+    "docs/mermaid/idef_a2.mmd": "947e35dc706410b6bee011246a5c3e7e992adc5729e47e8c8fdaa5f1ea61ee61",
+    "docs/mermaid/idef_a0.mmd": "932b24efc9dceccd679cbbe50b6f9370704b5f7d984c2e0d29f705bc2704478f",
+    "docs/mermaid/architecture.mmd": "fdf22a83b814ea0878202f4f5585f198515826d9560fb433f32be6d7eb5eb5d8",
+    "docs/mermaid/sequence.mmd": "13d93d44e20322bdf51d7597501353b5c6393587ba1216c630a32f6e42f5ec33",
+    "docs/mermaid/er.mmd": "5520bd87d83d437e58b0c21e98c95af07e5d21ea8e645639e81f6ac032118f6c",
+    "docs/mermaid/states.mmd": "2dec818cffe39242baf77f6dae1bc89ac82814b8ba5217adaaf8d70192e9cb70",
+    "docs/mermaid/dfd.mmd": "662e8cca2747b9d6d9af81cedd807100dee3d6b361c8ed0e9e7666a8fe051d4b",
+    "docs/mermaid/idef_context.mmd": "4201de8838a26003d2c8d229cb2108e6bd16e273c40d26c4699f48b8c046c7f7",
+    "docs/mermaid/classes.mmd": "0a392935760fc2e508a05fe9b53585e732e5bc6424705822ec054527afe7d218",
+    "docs/mermaid/activity.mmd": "80eb15790d8be9d2d18f223c214748f85842556b45364602a55f0158ae553ffd",
+    "docs/diagrams/dfd.png": "00fc67eaec33a0f1218d6403e2c9f908821e7292c017335d6c42bf3dc1faeeb7",
+    "docs/diagrams/architecture.png": "9adf8f92dcb16ed38bf8281c14f4379e2ee4a6894225d6af2d36cd8edf83cdd6",
+    "docs/diagrams/idef_a2.png": "60d9a590ce5b610b53e2eb4a0ab6cdadadd9157c68ed62ddff1532ef4493413b",
+    "docs/diagrams/idef_context.png": "d8b160e7bccda1a16d38e851464529ad6b76ce71358ac3576c6537f5266249cd",
+    "docs/diagrams/er.png": "78dec79d8286b26827dd809abad287524a5b0051f213a0a25e03dcc8febde68a",
+    "docs/diagrams/idef_a0.png": "c60a527ed6fd194ce82d33d10b43e81e4cfaf0a3e891cda2cb76a55806c25cfd",
+    "docs/diagrams/activity.png": "cca5953bb118f84607c55fba51d5e87d77eb56ac65991e69dafffe23c6a24ee5",
+    "docs/diagrams/sequence.png": "c4b5590613d320c84407411b34ec654eb3c3ac9b73f93f7a47bd7b1ecf0c55ac",
+    "docs/diagrams/usecase.png": "4163f8f903884b14e8f19dbe958b42d3905da3ffe0f0b82249b1f216226f229a",
+    "docs/diagrams/states.png": "b16cd362a6643771d6e88b11b70976cde335676fe36b4b94afbb82865b5f2b86",
+    "docs/diagrams/classes.png": "2b140ddef54705163f7803aa8f98ff32083597f2b788394a246127a7c110d13b",
+    "docs/screenshots/coursework/database.png": "5a579f4b7249c968170ad971f13bfb4c7d06e3a6c24157d1ad32b414a50dbfe3"
+  }
+}

@@ -99,11 +99,10 @@
     "sha256": "960f36a7ffa609cc6787d18def8b86fd1b90949546d48f750d5a14c081261ee0"
   },
   "database": {
-    "at": "2026-11-26T12:18:54.494818+00:00",
-    "source": "mongosh.txt",
-    "kind": "Typeset genuine mongosh stdout, not browser screenshot",
-    "query": "mongosh-query.js",
-    "sha256": "5164ffdc1f5a23cb7b911a319584fe1cbbe62fc9a835878a811f49c3e9c13fc2"
+    "kind": "Unedited native terminal window screenshot",
+    "source": "docker exec mongosh query, actual local MongoDB",
+    "at": "2026-11-27",
+    "sha256": "5a579f4b7249c968170ad971f13bfb4c7d06e3a6c24157d1ad32b414a50dbfe3"
   },
   "consents": {
     "at": "2026-11-26T12:17:19.527040+00:00",

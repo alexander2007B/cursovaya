@@ -1,0 +1,4 @@
+flowchart TB
+R["Браузер: React, Router, CSS"] <-->|HTTP JSON, cookie, CSRF| E["Express: валидация, роли, бизнес-правила"]
+E <-->|Mongoose и транзакции| D[("MongoDB replica set")]
+E --> F["Файлы фотографий uploads"]

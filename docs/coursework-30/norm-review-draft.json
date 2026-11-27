@@ -1,0 +1,15 @@
+{
+  "status": "current notes checked; earlier numbering clarification pending",
+  "preview_pages": 30,
+  "functional_requirements": 18,
+  "nonfunctional_requirements": 14,
+  "logical_tables": 6,
+  "table_blocks": 7,
+  "bordered_figures": 10,
+  "bibliography_entries": 25,
+  "headings_line_spacing": 1,
+  "bibliography_line_spacing": 1.25,
+  "font": "Times New Roman",
+  "local_pdf_font_substitution": true,
+  "note": "Word specifies Times New Roman; preview host lacks it. Final pagination should be checked in Microsoft Word."
+}

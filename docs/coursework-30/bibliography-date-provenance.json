@@ -1,0 +1,105 @@
+{
+  "note": "Dates assigned at explicit user request as a logical study chronology, not verified access events. Original actual verification dates remain in source-date-check.json.",
+  "entries": [
+    {
+      "entry": "Вологодский колледж связи и информационных технологий. Положение: документ по курсовому проектированию и оформлению. - Электронный документ, предоставленный для нормоконтроля: Polozhenie_kursovye_VKSIIT 2.docx. - Дата утверждения в библиографической записи не уточнена.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Российская Федерация. О персональных данных: Федеральный закон от 27.07.2006 № 152-ФЗ : сайт. - URL: https://www.consultant.ru/document/cons_doc_LAW_61801/ (дата обращения: 17.09.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Яндекс. Яндекс Прокат: аренда автомобилей : сайт. - URL: https://rentacar.yandex.ru/russia/moscow (дата обращения: 22.09.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Automattic and contributors. Mongoose 8: Schemas : сайт. - URL: https://mongoosejs.com/docs/guide.html (дата обращения: 07.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "dcodeIO and contributors. bcrypt.js: Optimized bcrypt in JavaScript : сайт. - URL: https://github.com/dcodeIO/bcrypt.js (дата обращения: 29.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Desboeufs, J. and contributors. connect-mongo: MongoDB session store : сайт. - URL: https://github.com/jdesboeufs/connect-mongo (дата обращения: 30.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Docker Inc.. Docker Compose: How Compose works : сайт. - URL: https://docs.docker.com/compose/intro/compose-application-model/ (дата обращения: 08.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Express contributors. express-session: Session middleware : сайт. - URL: https://github.com/expressjs/session (дата обращения: 24.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Helmet contributors. Helmet: HTTP security headers : сайт. - URL: https://helmetjs.github.io/ (дата обращения: 31.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "IMask contributors. IMask: JavaScript input mask : сайт. - URL: https://imask.js.org/guide.html (дата обращения: 04.11.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Lovell, L. and contributors. sharp: High performance Node.js image processing : сайт. - URL: https://sharp.pixelplumbing.com/ (дата обращения: 05.11.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "McDonnell, C. and contributors. Zod 3: Schema validation : сайт. - URL: https://v3.zod.dev/ (дата обращения: 28.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Meta Platforms, Inc.. React 19: Reference : сайт. - URL: https://react.dev/reference/react (дата обращения: 21.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "MongoDB, Inc.. MongoDB 8.0: Transactions : сайт. - URL: https://www.mongodb.com/docs/v8.0/core/transactions/ (дата обращения: 06.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Node.js contributors. Node.js 24: Documentation : сайт. - URL: https://nodejs.org/docs/latest-v24.x/api/ (дата обращения: 20.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "OpenJS Foundation. Express 5: Web framework for Node.js : сайт. - URL: https://expressjs.com/en/5x/api.html (дата обращения: 23.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "OWASP Foundation. Authorization Cheat Sheet : сайт. - URL: https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html (дата обращения: 15.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Postman, Inc.. Newman: Command-line collection runner : сайт. - URL: https://learning.postman.com/docs/collections/using-newman-cli/command-line-integration-with-newman/ (дата обращения: 18.11.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "pytest developers. pytest: How to parametrize fixtures and test functions : сайт. - URL: https://docs.pytest.org/en/stable/how-to/parametrize.html (дата обращения: 12.11.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Python Software Foundation. concurrent.futures: ThreadPoolExecutor : сайт. - URL: https://docs.python.org/3/library/concurrent.futures.html (дата обращения: 25.11.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Requests contributors. Requests: Advanced Usage : сайт. - URL: https://requests.readthedocs.io/en/latest/user/advanced/ (дата обращения: 22.11.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Selenium project. Selenium WebDriver : сайт. - URL: https://www.selenium.dev/documentation/webdriver/ (дата обращения: 14.11.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "SIXT SE. SIXT: Car rental : сайт. - URL: https://www.sixt.com/ (дата обращения: 24.09.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Turo Inc.. Turo: Car rental marketplace : сайт. - URL: https://turo.com/ (дата обращения: 23.09.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    },
+    {
+      "entry": "Vite contributors. Vite: Getting Started : сайт. - URL: https://vite.dev/guide/ (дата обращения: 22.10.2026). - Текст : электронный.",
+      "date_provenance": "Illustrative dates assigned by the user as an editorial project chronology, not verified browsing events"
+    }
+  ]
+}

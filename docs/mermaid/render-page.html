@@ -1,0 +1,6 @@
+<!doctype html><html><meta charset="utf-8"><style>body{margin:20px;background:white;font-family:Arial}#out{display:inline-block}svg{max-width:none!important}</style><div id="out"></div><script type="module">
+import mermaid from './mermaid/mermaid.esm.min.mjs';
+mermaid.initialize({startOnLoad:false,theme:'base',themeVariables:{fontFamily:'Arial',primaryColor:'#edf2f7',primaryBorderColor:'#425a70',lineColor:'#60768a'},flowchart:{htmlLabels:false}});
+window.renderDiagram=async code=>{document.getElementById('out').innerHTML='';const {svg}=await mermaid.render('graph',code);document.getElementById('out').innerHTML=svg;return svg;};
+window.ready=true;
+</script></html>

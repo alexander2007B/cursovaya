@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0
+rootdir: /workspace/testing-migration
+configfile: pytest.ini
+plugins: platformdirs-4.14.8
+collected 1 item
+
+tests/tdd_demo/test_phone.py F                                           [100%]
+
+=================================== FAILURES ===================================
+__________________ test_phone_rejects_brackets_without_digits __________________
+tests/tdd_demo/test_phone.py:11: in test_phone_rejects_brackets_without_digits
+    assert json.loads(result) is True
+E   AssertionError: assert False is True
+E    +  where False = <function loads at 0x7f87495a4720>('false\n')
+E    +    where <function loads at 0x7f87495a4720> = json.loads
+- generated xml file: /workspace/testing-migration/docs/reports/red-green/red.xml -
+=========================== short test summary info ============================
+FAILED tests/tdd_demo/test_phone.py::test_phone_rejects_brackets_without_digits
+============================== 1 failed in 0.06s ===============================

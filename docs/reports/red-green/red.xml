@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.066" timestamp="2026-11-27T08:16:32.524366+00:00" hostname="23a9a505049b"><testcase classname="tests.tdd_demo.test_phone" name="test_phone_rejects_brackets_without_digits" time="0.037"><failure message="AssertionError: assert False is True&#10; +  where False = &lt;function loads at 0x7f87495a4720&gt;('false\n')&#10; +    where &lt;function loads at 0x7f87495a4720&gt; = json.loads">tests/tdd_demo/test_phone.py:11: in test_phone_rejects_brackets_without_digits
+    assert json.loads(result) is True
+E   AssertionError: assert False is True
+E    +  where False = &lt;function loads at 0x7f87495a4720&gt;('false\n')
+E    +    where &lt;function loads at 0x7f87495a4720&gt; = json.loads</failure></testcase></testsuite></testsuites>

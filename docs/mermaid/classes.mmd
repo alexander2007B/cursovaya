@@ -1,0 +1,31 @@
+classDiagram
+class User {
+ +string email
+ +string role
+ +object legal
+}
+class Car {
+ +string image
+ +array gallery
+ +int dailyRate
+ +int mileage
+}
+class Rental {
+ +string from
+ +string to
+ +string status
+ +array history
+}
+class Quote {
+ +int days
+ +int total
+ +int deposit
+}
+class Maintenance {
+ +int mileage
+ +int wear
+}
+User "1" --> "0..*" Rental
+Car "1" --> "0..*" Rental
+Car "1" --> "0..*" Maintenance
+Rental *-- Quote

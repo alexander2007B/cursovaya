@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-python3 scripts/diagrams.py
+# Mermaid exports are prepared by scripts/render-mermaid-local.py; do not overwrite them with Graphviz.
 for iteration in 1 2 3; do
   python3 scripts/build_coursework_compact.py
   soffice -env:UserInstallation=file:///tmp/norde-compact-lo --headless --convert-to pdf --outdir docs/coursework-30 docs/coursework-30/Baev_NORDE_25-30.docx
